@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cbcf2d6b6ce16b436b26ee7a7ad904a6",
-    "content-hash": "37c61ce4966f8c3b42dd0c03ab921071",
+    "hash": "8e8b80b1ee4b2ef3582f0b3338a7778e",
+    "content-hash": "c47237d11e48f4422753f25491ef67ce",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -533,16 +533,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "a6e4018e2940a625ff78d3b039819ad3adad785c"
+                "reference": "5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a6e4018e2940a625ff78d3b039819ad3adad785c",
-                "reference": "a6e4018e2940a625ff78d3b039819ad3adad785c",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d",
+                "reference": "5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d",
                 "shasum": ""
             },
             "require": {
@@ -562,6 +562,11 @@
                 "squizlabs/php_codesniffer": "~2.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "PhpSchool\\PhpWorkshop\\": "src"
@@ -582,7 +587,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2015-10-20 19:56:36"
+            "time": "2015-10-20 21:52:41"
         },
         {
             "name": "php-school/psx",
@@ -1755,6 +1760,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "php-school/php-workshop": 20,
         "nikic/php-parser": 20
     },
     "prefer-stable": false,
