@@ -1,0 +1,29 @@
+{
+    "name": "php-school/learn-you-php",
+    "description": "Learn You PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aydin Hassan",
+            "email": "aydin@hotmail.co.uk"
+        }
+    ],
+    "require" : {
+        "php" : ">=5.6",
+        "php-school/php-workshop": "~1.0",
+        "nikic/php-parser": "dev-master#98d28d7aa04e2d92fea2b375373878d0b1fce992"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1",
+        "squizlabs/php_codesniffer": "~2.0"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "PhpSchool\\LearnYouPhp\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "PhpSchool\\LearnYouPhpTest\\": "test/" }
+    },
+    "bin": ["bin/learnyouphp"]
+}

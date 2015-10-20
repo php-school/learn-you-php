@@ -1,0 +1,5 @@
+before_commands:
+  - "composer install --prefer-source"
+
+checks:
+    php: true
