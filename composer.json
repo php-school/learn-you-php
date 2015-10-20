@@ -10,7 +10,7 @@
     ],
     "require" : {
         "php" : ">=5.6",
-        "php-school/php-workshop": "~1.0",
+        "php-school/php-workshop": "^0.1",
         "nikic/php-parser": "dev-master#98d28d7aa04e2d92fea2b375373878d0b1fce992"
     },
     "require-dev": {

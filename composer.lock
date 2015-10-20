@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b5e3ab4f7d67f1ab58f2bd43be4e8f7",
-    "content-hash": "498244adb1051e3eecc72d5d98eaa3af",
+    "hash": "cbcf2d6b6ce16b436b26ee7a7ad904a6",
+    "content-hash": "37c61ce4966f8c3b42dd0c03ab921071",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -489,16 +489,16 @@
         },
         {
             "name": "php-school/cli-menu",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/cli-menu.git",
-                "reference": "b03ad1a146e7c3e1ddf78750174fd67dcba06c69"
+                "reference": "b1581981a5943db7a00ea2252207f6c59aed9276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/cli-menu/zipball/b03ad1a146e7c3e1ddf78750174fd67dcba06c69",
-                "reference": "b03ad1a146e7c3e1ddf78750174fd67dcba06c69",
+                "url": "https://api.github.com/repos/php-school/cli-menu/zipball/b1581981a5943db7a00ea2252207f6c59aed9276",
+                "reference": "b1581981a5943db7a00ea2252207f6c59aed9276",
                 "shasum": ""
             },
             "require": {
@@ -529,24 +529,25 @@
                 }
             ],
             "description": "A command line menu helper in PHP",
-            "time": "2015-10-19 21:44:45"
+            "time": "2015-10-20 16:02:43"
         },
         {
             "name": "php-school/php-workshop",
-            "version": "1.0.0",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "d14308710f8e6ea9e13a058f60117317e3abe30b"
+                "reference": "a6e4018e2940a625ff78d3b039819ad3adad785c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/d14308710f8e6ea9e13a058f60117317e3abe30b",
-                "reference": "d14308710f8e6ea9e13a058f60117317e3abe30b",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a6e4018e2940a625ff78d3b039819ad3adad785c",
+                "reference": "a6e4018e2940a625ff78d3b039819ad3adad785c",
                 "shasum": ""
             },
             "require": {
                 "aydin-hassan/cli-md-renderer": "~1.0",
+                "beberlei/assert": "^2.4",
                 "fzaninotto/faker": "^1.5",
                 "nikic/php-parser": "dev-master#98d28d7aa04e2d92fea2b375373878d0b1fce992",
                 "php": ">=5.6",
@@ -581,7 +582,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2015-10-19 23:18:37"
+            "time": "2015-10-20 19:56:36"
         },
         {
             "name": "php-school/psx",
