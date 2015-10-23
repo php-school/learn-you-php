@@ -309,7 +309,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/98d28d7aa04e2d92fea2b375373878d0b1fce992",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/33602889c1dbf9087d6b715aa90e95e2a3fc058e",
                 "reference": "98d28d7aa04e2d92fea2b375373878d0b1fce992",
                 "shasum": ""
             },
@@ -352,16 +352,16 @@
         },
         {
             "name": "php-di/invoker",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/Invoker.git",
-                "reference": "7b2d2cd0e40b1583fe6601fb343a280c378669c9"
+                "reference": "9949fff87fcf14e8f2ccfbe36dac1e5921944c48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/7b2d2cd0e40b1583fe6601fb343a280c378669c9",
-                "reference": "7b2d2cd0e40b1583fe6601fb343a280c378669c9",
+                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/9949fff87fcf14e8f2ccfbe36dac1e5921944c48",
+                "reference": "9949fff87fcf14e8f2ccfbe36dac1e5921944c48",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
                 "invoke",
                 "invoker"
             ],
-            "time": "2015-09-17 09:57:25"
+            "time": "2015-10-22 19:49:23"
         },
         {
             "name": "php-di/php-di",
@@ -537,12 +537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d"
+                "reference": "be0df2fe149d52a2bcf13b8462ececb7d1fdcb59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d",
-                "reference": "5d8f8e234e12fb1aa5ce391e77aaecbfb2de873d",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/be0df2fe149d52a2bcf13b8462ececb7d1fdcb59",
+                "reference": "be0df2fe149d52a2bcf13b8462ececb7d1fdcb59",
                 "shasum": ""
             },
             "require": {
@@ -587,7 +587,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2015-10-20 21:52:41"
+            "time": "2015-10-22 19:37:57"
         },
         {
             "name": "php-school/psx",
@@ -1136,16 +1136,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.14",
+            "version": "4.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b4900675926860bef091644849305399b986efa2"
+                "reference": "be8f7b9eacf8243940f8412f8b4a9a434c73dd7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b4900675926860bef091644849305399b986efa2",
-                "reference": "b4900675926860bef091644849305399b986efa2",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be8f7b9eacf8243940f8412f8b4a9a434c73dd7b",
+                "reference": "be8f7b9eacf8243940f8412f8b4a9a434c73dd7b",
                 "shasum": ""
             },
             "require": {
@@ -1204,7 +1204,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-10-17 15:03:30"
+            "time": "2015-10-22 09:05:37"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

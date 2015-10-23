@@ -3,6 +3,7 @@
 use function DI\factory;
 use function DI\object;
 use Interop\Container\ContainerInterface;
+use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
@@ -19,5 +20,8 @@ return [
     }),
     FilteredLs::class   => factory(function (ContainerInterface $c) {
         return new FilteredLs($c->get(Filesystem::class));
+    }),
+    ArrayWeGo::class    => factory(function (ContainerInterface $c) {
+        return new ArrayWeGo($c->get(Filesystem::class), FakerFactory::create());
     }),
 ];
