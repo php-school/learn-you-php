@@ -352,16 +352,16 @@
         },
         {
             "name": "php-di/invoker",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-DI/Invoker.git",
-                "reference": "7b2d2cd0e40b1583fe6601fb343a280c378669c9"
+                "reference": "9949fff87fcf14e8f2ccfbe36dac1e5921944c48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/7b2d2cd0e40b1583fe6601fb343a280c378669c9",
-                "reference": "7b2d2cd0e40b1583fe6601fb343a280c378669c9",
+                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/9949fff87fcf14e8f2ccfbe36dac1e5921944c48",
+                "reference": "9949fff87fcf14e8f2ccfbe36dac1e5921944c48",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
                 "invoke",
                 "invoker"
             ],
-            "time": "2015-09-17 09:57:25"
+            "time": "2015-10-22 19:49:23"
         },
         {
             "name": "php-di/php-di",

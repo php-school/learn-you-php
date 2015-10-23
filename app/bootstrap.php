@@ -24,6 +24,7 @@ use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
+use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 
 $app = new Application(null, __DIR__ . '/config.php');
 
@@ -31,6 +32,7 @@ $app->addExercise(HelloWorld::class);
 $app->addExercise(BabySteps::class);
 $app->addExercise(MyFirstIo::class);
 $app->addExercise(FilteredLs::class);
+$app->addExercise(ArrayWeGo::class);
 
 $art = <<<ART
         _ __ _
