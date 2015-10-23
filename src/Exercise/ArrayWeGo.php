@@ -77,8 +77,8 @@ class ArrayWeGo implements
     {
         $this->filesystem->mkdir($this->getTemporaryPath());
 
-        $fileCount = rand(1, 10);
-        $realFiles = rand(1, $fileCount-1);
+        $fileCount = rand(2, 10);
+        $realFiles = rand(1, $fileCount - 1);
 
         $files = [];
         foreach (range(1, $fileCount) as $index) {
