@@ -1,8 +1,8 @@
-Write a program that takes an array of filepaths as arguments, filtering out files that do not exist and mapping existing files to SPLFileObjects.
+Write a program that takes an array of filepaths as arguments, filtering out files that do not exist and mapping existing files to `SplFileObject`'s.
 
 Finally output the basename of the files, each on a new line.
 
-The full path to the files to read will be provided as the command line arguments. You do not need to make your own test files. 
+The full path of the files to read will be provided as the command line arguments. You do not need to make your own test files. 
 
 ----------------------------------------------------------------------
 ## HINTS
