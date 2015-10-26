@@ -5,6 +5,7 @@ use function DI\object;
 use Interop\Container\ContainerInterface;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
+use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
@@ -24,4 +25,7 @@ return [
     ArrayWeGo::class    => factory(function (ContainerInterface $c) {
         return new ArrayWeGo($c->get(Filesystem::class), FakerFactory::create());
     }),
+    ExceptionalCoding::class => factory(function (ContainerInterface $c) {
+        return new ExceptionalCoding($c->get(Filesystem::class), FakerFactory::create());
+    })
 ];
