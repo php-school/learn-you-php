@@ -19,6 +19,7 @@ switch (true) {
         throw new RuntimeException('Unable to locate Composer autoloader; please run "composer install".');
 }
 
+use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
@@ -33,6 +34,7 @@ $app->addExercise(BabySteps::class);
 $app->addExercise(MyFirstIo::class);
 $app->addExercise(FilteredLs::class);
 $app->addExercise(ArrayWeGo::class);
+$app->addExercise(ExceptionalCoding::class);
 
 $art = <<<ART
         _ __ _
