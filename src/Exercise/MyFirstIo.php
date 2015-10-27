@@ -71,7 +71,7 @@ class MyFirstIo implements
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getArgs()
     {
