@@ -19,6 +19,7 @@ switch (true) {
         throw new RuntimeException('Unable to locate Composer autoloader; please run "composer install".');
 }
 
+use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
@@ -36,7 +37,9 @@ $app->addExercise(MyFirstIo::class);
 $app->addExercise(FilteredLs::class);
 $app->addExercise(ArrayWeGo::class);
 $app->addExercise(ExceptionalCoding::class);
+$app->addExercise(TimeServer::class);
 $app->addExercise(HttpJsonApi::class);
+
 
 $art = <<<ART
         _ __ _
