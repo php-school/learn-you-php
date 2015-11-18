@@ -1,48 +1,52 @@
-Write an HTTP **server** that serves JSON data when it receives a GET request to the path '/api/parsetime'. Expect the request to contain a query string with a key 'iso' and an ISO-format time as the value.
+Write a **TCP time server**!
 
-For example:
+Your server should listen to TCP connections on the port provided by the first argument to your program. For each connection you must write the current date & 24 hour time in the format:
 
-  /api/parsetime?iso=2015-11-15T20:18:04+0000
-
-The JSON response should contain only 'hour', 'minute' and 'second' properties. For example:
-
-```json
-{
-  "hour": 14,
-  "minute": 23,
-  "second": 15
-}
+```
+"YYYY-MM-DD hh:mm:ss"
 ```
 
-Add a second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch time in milliseconds (the number of milliseconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
+followed by a **newline** character. Month, day, hour, minute and second must be *zero-filled* to 2 integers. For example:
 
-For example:
-
-```json
-{ "unixtime": 1376136615474 }
+```
+"2013-07-06 17:42:30"
 ```
 
 ----------------------------------------------------------------------
 ## HINTS
 
-The `$_SERVER` super global array has a `REQUEST_URI` property that you will need to use to *"route"* your requests for the two endpoints.
+For this exercise we'll be creating a raw TCP server. We will be using the core PHP socket_* functions. These functions are a thin wrapper around the C libraries.
 
-You can parse the URL using the global `parse_url` function. The result will be an array of helpful properties.
-You can access the query string properties via the `$_GET` super global array.
+To create a server you need to use the functions `socket_create`, `socket_bind` & `socket_listen`. Once the socket is 
+listening, you can accept connections from it, which will return a new socket connected to the client whenever a client
+connects.
 
-Documentation on the `parse_url` function can be found by pointing your browser here:
-    [http://php.net/manual/en/function.parse-url.php]()
-  
-Your response should be in a JSON string format. Look at `json_encode` for more information.
+`socket_create` returns a server resource. You must bind it to a host and port and then start listening.
 
-You should also be a good web citizen and set the Content-Type properly:
+A typical PHP TCP server looks like this:
 
 ```php
-header('Content-Type: application/json');
+<?php
+$server = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+socket_bind($server, '127.0.0.1', 8000);
+
+socket_listen($sock);
+
+$client = socket_accept($server);
 ```
 
-The PHP `DateTime` object can print dates in ISO format, e.g. `(new \DateTime())->format('u');`. It can also parse this format if you pass the string into the `\DateTime` constructor. The various parameters to `format()` will also
-come in handy. You can find the documentation here:
+Remember to use the port number supplied to you as the first command-line argument.
+
+You can read and write to the socket by using `socket_read` and `socket_write`.  For this exercise we only need to write data and then close the socket.
+
+Use `socket_write($client, $data, strlen($data))` to write data to the socket and then `socket_close($socket)` to close the socket.
+
+Documentation on PHP streams can be found by pointing your browser here:
+    [http://php.net/manual/en/sockets.examples.php]()
+    [http://php.net/manual/en/function.stream-socket-server.php]()
+
+To create the date you'll need to create a custom format from the PHP `DateTime` object. The various parameters to `format()` will 
+help you. You can find the documentation here:
     [http://php.net/manual/en/class.datetime.php]()
 
 ----------------------------------------------------------------------

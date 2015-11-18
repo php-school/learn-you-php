@@ -2,14 +2,17 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use Hoa\Core\Exception\Exception;
+use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
-use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
+use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
 use Zend\Diactoros\Request;
 
 /**
@@ -17,10 +20,23 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class TimeServer implements
-    ExerciseInterface,
-    SelfCheck
+class TimeServer implements ExerciseInterface, SelfCheck
 {
+
+    /**
+     * @var TcpSocketFactory
+     */
+    private $socketFactory;
+
+    /**
+     * TimeServer constructor.
+     * @param TcpSocketFactory $socketFactory
+     */
+    public function __construct(TcpSocketFactory $socketFactory)
+    {
+        $this->socketFactory = $socketFactory;
+    }
+    
     /**
      * @return string
      */
@@ -74,29 +90,20 @@ class TimeServer implements
         $process->start();
         
         //wait for server to boot
-        sleep(1);
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        usleep(100000);
         
-        if (false === $socket) {
-            return Failure::fromNameAndReason($this->getName(), 'Failed to create socket');
+        $client = $this->socketFactory->createClient($address, $port);
+        
+        try {
+            $client->connect();
+        } catch (Exception $e) {
+            return Failure::fromNameAndReason($this->getName(), $e->getMessage());
         }
+      
+        $out = $client->readAll();
         
-        $result = @socket_connect($socket, $address, $port);
-        
-        if (false === $result) {
-            return Failure::fromNameAndReason(
-                $this->getName(),
-                sprintf(
-                    'Could not connect to %s:%s Reason: "%s"',
-                    $address,
-                    $port,
-                    socket_strerror(socket_last_error($socket))
-                )
-            );
-        }
-        $out = socket_read($socket, 2048);
         //wait for shutdown
-        sleep(1);
+        usleep(100000);
         
         if ($process->isRunning()) {
             $process->stop();
@@ -108,7 +115,7 @@ class TimeServer implements
             //match the current date but any seconds
             //since we can't mock time in PHP easily
             if (!preg_match(sprintf('/^%s:([0-5][0-9]|60)\n$/', $date->format('Y-m-d H:i')), $out)) {
-                return Failure::fromNameAndReason($this->getName(), sprintf('Date is wrong. Got: "%s"', $out));
+                return new StdOutFailure($this->getName(), $date->format("Y-m-d H:i:s\n"), $out);
             }
             return new Success($this->getName());
         }
@@ -121,6 +128,6 @@ class TimeServer implements
      */
     private function getRandomPort()
     {
-        return 1024 + floor((mt_rand() / mt_getrandmax()) * 64511);
+        return mt_rand(1025, 65535);
     }
 }
