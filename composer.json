@@ -1,6 +1,7 @@
 {
     "name": "php-school/learn-you-php",
     "description": "Learn You PHP",
+    "type": "php-school-workshop",
     "license": "MIT",
     "authors": [
         {
