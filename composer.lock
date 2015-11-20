@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8e8b80b1ee4b2ef3582f0b3338a7778e",
-    "content-hash": "c47237d11e48f4422753f25491ef67ce",
+    "hash": "3a70dee75b29741b4bf235d9a090b87b",
+    "content-hash": "4e1b82cb1d8f49d7198b6691300857d1",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -537,12 +537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "052651f7a7a5dd03c7d9ed55d44a0b925ee8257a"
+                "reference": "07b89a8c8b7aadb8c89b0c79016ab9ed6d06e2a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/052651f7a7a5dd03c7d9ed55d44a0b925ee8257a",
-                "reference": "052651f7a7a5dd03c7d9ed55d44a0b925ee8257a",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/07b89a8c8b7aadb8c89b0c79016ab9ed6d06e2a9",
+                "reference": "07b89a8c8b7aadb8c89b0c79016ab9ed6d06e2a9",
                 "shasum": ""
             },
             "require": {
@@ -589,7 +589,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2015-11-15 20:03:52"
+            "time": "2015-11-17 23:15:18"
         },
         {
             "name": "php-school/psx",
@@ -632,6 +632,51 @@
             ],
             "description": "PHP CLI Syntax Highlighter",
             "time": "2015-11-15 17:43:36"
+        },
+        {
+            "name": "php-school/workshop-installer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-school/workshop-installer.git",
+                "reference": "9fd47eaee53e56e174cf058ec42343061044a75c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-school/workshop-installer/zipball/9fd47eaee53e56e174cf058ec42343061044a75c",
+                "reference": "9fd47eaee53e56e174cf058ec42343061044a75c",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev",
+                "phpunit/phpunit": "^5.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "\\PhpSchool\\PhpWorkshopInstaller\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpSchool\\PhpWorkshopInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aydin Hassan",
+                    "email": "aydin@hotmail.co.uk"
+                }
+            ],
+            "description": "Installer for PHP School workshops",
+            "time": "2015-11-19 21:56:12"
         },
         {
             "name": "psr/http-message",
@@ -1853,7 +1898,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "php-school/php-workshop": 20,
-        "nikic/php-parser": 20
+        "nikic/php-parser": 20,
+        "php-school/workshop-installer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
