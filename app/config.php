@@ -5,6 +5,7 @@ use function DI\object;
 use Interop\Container\ContainerInterface;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
+use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
@@ -31,6 +32,9 @@ return [
     }),
     ExceptionalCoding::class => factory(function (ContainerInterface $c) {
         return new ExceptionalCoding($c->get(Filesystem::class), FakerFactory::create());
+    }),
+    DatabaseRead::class => factory(function (ContainerInterface $c) {
+        return new DatabaseRead($c->get(Filesystem::class), FakerFactory::create());
     }),
     TimeServer::class   => factory(function (ContainerInterface $c) {
         return new TimeServer(new TcpSocketFactory);

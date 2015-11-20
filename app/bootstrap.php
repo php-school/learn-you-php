@@ -20,8 +20,9 @@ switch (true) {
 }
 
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
-use PhpSchool\PhpWorkshop\Application;
+use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
@@ -37,9 +38,9 @@ $app->addExercise(MyFirstIo::class);
 $app->addExercise(FilteredLs::class);
 $app->addExercise(ArrayWeGo::class);
 $app->addExercise(ExceptionalCoding::class);
+$app->addExercise(DatabaseRead::class);
 $app->addExercise(TimeServer::class);
 $app->addExercise(HttpJsonApi::class);
-
 
 $art = <<<ART
         _ __ _
