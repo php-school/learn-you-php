@@ -14,7 +14,7 @@ class TcpSocketFactory
     /**
      * @param string $ip
      * @param int $port
-     * @return Cliente
+     * @return Client
      */
     public function createClient($ip, $port)
     {
