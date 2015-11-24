@@ -68,11 +68,11 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
 
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $reason  = '/^Client returns an error \(number 10061\): No connection could be made because';
+            $reason  = '/^Client returns an error \(number \d+\): No connection could be made because';
             $reason .= ' the target machine actively refused it\.\r\n';
             $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
         } else {
-            $reason  = '/^Client returns an error \(number 61\): Connection refused';
+            $reason  = '/^Client returns an error \(number \d+\): Connection refused';
             $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
         }
 
