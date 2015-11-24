@@ -65,11 +65,17 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
         $failure = $this->exercise->check('program.php');
         
         $this->assertInstanceOf(Failure::class, $failure);
-        
-        $reason  = '/^Client returns an error (\(number 61\): Connection refused|';
-        $reason .= '\(number 10061\): No connection could be made because the target machine actively refused it\.\n)';
-        $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
-        
+
+
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $reason  = '/^Client returns an error \(number 10061\): No connection could be made because';
+            $reason .= ' the target machine actively refused it\.\r\n';
+            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
+        } else {
+            $reason  = '/^Client returns an error \(number 61\): Connection refused';
+            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
+        }
+
         $this->assertRegExp($reason, $failure->getReason());
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
