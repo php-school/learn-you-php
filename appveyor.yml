@@ -17,6 +17,7 @@ install:
   - echo extension_dir=ext >> php.ini
   - echo extension=php_openssl.dll >> php.ini
   - echo extension=php_mbstring.dll >> php.ini
+  - echo extension=php_sockets.dll >> php.ini
   - SET PATH=C:\tools\php;%PATH%
   - cd C:\projects\my-php-workshop
   - php -r "readfile('http://getcomposer.org/installer');" | php
