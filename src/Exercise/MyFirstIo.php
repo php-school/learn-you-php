@@ -3,7 +3,9 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use Symfony\Component\Filesystem\Filesystem;
@@ -13,11 +15,13 @@ use Symfony\Component\Filesystem\Filesystem;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class MyFirstIo implements
+class MyFirstIo extends AbstractExercise implements
     ExerciseInterface,
     StdOutExerciseCheck,
     FunctionRequirementsExerciseCheck
 {
+    use TemporaryDirectoryTrait;
+    
     /**
      * @var Filesystem
      */
@@ -55,22 +59,6 @@ class MyFirstIo implements
     }
 
     /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/my-first-io/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/my-first-io/problem.md';
-    }
-
-    /**
      * @return array
      */
     public function getArgs()
@@ -104,13 +92,5 @@ class MyFirstIo implements
     public function getBannedFunctions()
     {
         return ['file'];
-    }
-
-    /**
-     * @return string
-     */
-    private function getTemporaryPath()
-    {
-        return sprintf('%s/%s', realpath(sys_get_temp_dir()), str_replace('\\', '_', __CLASS__));
     }
 }

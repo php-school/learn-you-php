@@ -2,7 +2,9 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -11,8 +13,10 @@ use Symfony\Component\Filesystem\Filesystem;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class FilteredLs implements ExerciseInterface, StdOutExerciseCheck
+class FilteredLs extends AbstractExercise implements ExerciseInterface, StdOutExerciseCheck
 {
+    use TemporaryDirectoryTrait;
+    
     /**
      * @var Filesystem
      */
@@ -41,23 +45,7 @@ class FilteredLs implements ExerciseInterface, StdOutExerciseCheck
     {
         return 'Read files in a folder and filter by a given extension';
     }
-
-    /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/filtered-ls/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/filtered-ls/problem.md';
-    }
-
+    
     /**
      * @return array
      */
@@ -103,13 +91,5 @@ class FilteredLs implements ExerciseInterface, StdOutExerciseCheck
     public function tearDown()
     {
         $this->filesystem->remove($this->getTemporaryPath());
-    }
-
-    /**
-     * @return string
-     */
-    private function getTemporaryPath()
-    {
-        return sprintf('%s/%s', realpath(sys_get_temp_dir()), str_replace('\\', '_', __CLASS__));
     }
 }

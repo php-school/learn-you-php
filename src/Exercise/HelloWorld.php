@@ -2,6 +2,7 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 
@@ -10,7 +11,7 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class HelloWorld implements ExerciseInterface, StdOutExerciseCheck
+class HelloWorld extends AbstractExercise implements ExerciseInterface, StdOutExerciseCheck
 {
 
     /**
@@ -30,33 +31,10 @@ class HelloWorld implements ExerciseInterface, StdOutExerciseCheck
     }
 
     /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/hello-world/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/hello-world/problem.md';
-    }
-
-    /**
      * @return array
      */
     public function getArgs()
     {
         return [];
-    }
-
-    /**
-     * @return void
-     */
-    public function tearDown()
-    {
     }
 }

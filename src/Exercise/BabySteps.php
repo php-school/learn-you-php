@@ -2,6 +2,7 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 
@@ -10,7 +11,7 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class BabySteps implements ExerciseInterface, StdOutExerciseCheck
+class BabySteps extends AbstractExercise implements ExerciseInterface, StdOutExerciseCheck
 {
 
     /**
@@ -30,22 +31,6 @@ class BabySteps implements ExerciseInterface, StdOutExerciseCheck
     }
 
     /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/baby-steps/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/baby-steps/problem.md';
-    }
-
-    /**
      * @return array
      */
     public function getArgs()
@@ -58,12 +43,5 @@ class BabySteps implements ExerciseInterface, StdOutExerciseCheck
         }
 
         return $args;
-    }
-
-    /**
-     * @return void
-     */
-    public function tearDown()
-    {
     }
 }
