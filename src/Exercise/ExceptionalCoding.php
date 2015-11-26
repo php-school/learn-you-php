@@ -3,16 +3,20 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use Symfony\Component\Filesystem\Filesystem;
 
-class ExceptionalCoding implements
+class ExceptionalCoding extends AbstractExercise implements
     ExerciseInterface,
     StdOutExerciseCheck,
     FunctionRequirementsExerciseCheck
 {
+    use TemporaryDirectoryTrait;
+    
     /**
      * @var Filesystem
      */
@@ -47,22 +51,6 @@ class ExceptionalCoding implements
     public function getDescription()
     {
         return "Introduction to Exceptions";
-    }
-
-    /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/exceptional-coding/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/exceptional-coding/problem.md';
     }
 
     /**
@@ -109,13 +97,5 @@ class ExceptionalCoding implements
     public function getBannedFunctions()
     {
         return ['array_filter', 'file_exists'];
-    }
-
-    /**
-     * @return string
-     */
-    private function getTemporaryPath()
-    {
-        return sprintf('%s/%s', realpath(sys_get_temp_dir()), str_replace('\\', '_', __CLASS__));
     }
 }

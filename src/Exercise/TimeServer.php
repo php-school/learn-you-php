@@ -4,6 +4,7 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Hoa\Core\Exception\Exception;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
 use PhpSchool\PhpWorkshop\Result\Failure;
@@ -20,7 +21,7 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class TimeServer implements ExerciseInterface, SelfCheck
+class TimeServer extends AbstractExercise implements ExerciseInterface, SelfCheck
 {
 
     /**
@@ -51,29 +52,6 @@ class TimeServer implements ExerciseInterface, SelfCheck
     public function getDescription()
     {
         return 'Build a Time Server!';
-    }
-
-    /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/time-server/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/time-server/problem.md';
-    }
-
-    /**
-     * @return null
-     */
-    public function tearDown()
-    {
     }
 
     /**

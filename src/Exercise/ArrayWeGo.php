@@ -3,7 +3,9 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use Symfony\Component\Filesystem\Filesystem;
@@ -13,11 +15,13 @@ use Symfony\Component\Filesystem\Filesystem;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class ArrayWeGo implements
+class ArrayWeGo extends AbstractExercise implements
     ExerciseInterface,
     StdOutExerciseCheck,
     FunctionRequirementsExerciseCheck
 {
+    use TemporaryDirectoryTrait;
+    
     /**
      * @var Filesystem
      */
@@ -52,22 +56,6 @@ class ArrayWeGo implements
     public function getDescription()
     {
         return 'Filter an array of file paths and map to SplFile objects';
-    }
-
-    /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/array-we-go/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/array-we-go/problem.md';
     }
 
     /**
@@ -114,13 +102,5 @@ class ArrayWeGo implements
     public function getBannedFunctions()
     {
         return ['basename'];
-    }
-
-    /**
-     * @return string
-     */
-    private function getTemporaryPath()
-    {
-        return sprintf('%s/%s', realpath(sys_get_temp_dir()), str_replace('\\', '_', __CLASS__));
     }
 }

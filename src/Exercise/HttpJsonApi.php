@@ -2,6 +2,7 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use Psr\Http\Message\RequestInterface;
@@ -12,9 +13,7 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class HttpJsonApi implements
-    ExerciseInterface,
-    CgiOutputExerciseCheck
+class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiOutputExerciseCheck
 {
     /**
      * @return string
@@ -30,29 +29,6 @@ class HttpJsonApi implements
     public function getDescription()
     {
         return 'HTTP JSON API - Servers JSON when it receives a GET request';
-    }
-
-    /**
-     * @return string
-     */
-    public function getSolution()
-    {
-        return __DIR__ . '/../../res/solutions/http-json-api/solution.php';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProblem()
-    {
-        return __DIR__ . '/../../res/problems/http-json-api/problem.md';
-    }
-
-    /**
-     * @return null
-     */
-    public function tearDown()
-    {
     }
     
     /**
