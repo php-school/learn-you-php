@@ -48,7 +48,7 @@ $art = <<<ART
         |_''_|
 
       PHP SCHOOL
-LEARNING FOR ELEPHPANTS
+LEARNING FOR ELEPHANTS
 ART;
 
 $app->setLogo($art);
