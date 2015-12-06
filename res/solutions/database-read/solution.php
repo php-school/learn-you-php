@@ -7,4 +7,4 @@ foreach ($users as $user) {
 }
 $nameToUpdate = $argv[2];
 $stmt = $db->prepare('UPDATE users SET name = :newName WHERE name = :oldName');
-$stmt->execute(array(':newName' => 'David Attenborough', ':oldName' => $nameToUpdate));
+$stmt->execute([':newName' => 'David Attenborough', ':oldName' => $nameToUpdate]);

@@ -34,7 +34,7 @@ return [
         return new ExceptionalCoding($c->get(Filesystem::class), FakerFactory::create());
     }),
     DatabaseRead::class => factory(function (ContainerInterface $c) {
-        return new DatabaseRead($c->get(Filesystem::class), FakerFactory::create());
+        return new DatabaseRead(FakerFactory::create());
     }),
     TimeServer::class   => factory(function (ContainerInterface $c) {
         return new TimeServer(new TcpSocketFactory);
