@@ -8,7 +8,6 @@ use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
-use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**

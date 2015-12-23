@@ -30,6 +30,7 @@ use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
+use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
 
 $app = new Application(null, __DIR__ . '/config.php');
 
@@ -43,6 +44,7 @@ $app->addExercise(ExceptionalCoding::class);
 $app->addExercise(DatabaseRead::class);
 $app->addExercise(TimeServer::class);
 $app->addExercise(HttpJsonApi::class);
+$app->addExercise(DependencyHeaven::class);
 
 $art = <<<ART
         _ __ _
