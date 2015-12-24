@@ -1,4 +1,4 @@
-Write a program that prints the text "HELLO WORLD" to the console (stdout).
+Write a program that prints the text "Hello World" to the console (stdout).
 
 ----------------------------------------------------------------------
 ## HINTS
