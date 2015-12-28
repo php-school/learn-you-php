@@ -1,8 +1,6 @@
 <?php
 
 require_once __DIR__ . '/DirectoryFilter.php';
-
-$filter = new DirectoryFilter;
-$files = $filter->getFiles($argv[1], $argv[2]);
-
-echo implode("\n", $files) . "\n";
+array_map(function ($fileName) {
+    echo $fileName . "\n";
+}, (new DirectoryFilter)->getFiles($argv[1], $argv[2]));

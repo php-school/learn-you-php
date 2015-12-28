@@ -20,7 +20,7 @@ use PhpParser\Node\Expr\Include_;
 /**
  * Class ConcernedAboutSeparation
  * @package PhpSchool\LearnYouPhp\Exercise
- * @author Michael Woodward <mikeymike.mw@gmail.com>
+ * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
 class ConcernedAboutSeparation extends AbstractExercise implements 
     ExerciseInterface, 
