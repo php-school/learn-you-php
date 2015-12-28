@@ -13,6 +13,7 @@ use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
@@ -46,7 +47,7 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Time Server', $this->exercise->getName());
         $this->assertEquals('Build a Time Server!', $this->exercise->getDescription());
 
-        $this->assertFileExists(realpath($this->exercise->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $this->exercise->getSolution());
         $this->assertFileExists(realpath($this->exercise->getProblem()));
         $this->assertNull($this->exercise->tearDown());
     }

@@ -6,6 +6,7 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
@@ -41,7 +42,7 @@ class ExceptionalCodingTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Exceptional Coding', $e->getName());
         $this->assertEquals('Introduction to Exceptions', $e->getDescription());
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }

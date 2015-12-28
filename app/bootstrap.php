@@ -19,6 +19,7 @@ switch (true) {
         throw new RuntimeException('Unable to locate Composer autoloader; please run "composer install".');
 }
 
+use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
@@ -36,6 +37,7 @@ $app->addExercise(HelloWorld::class);
 $app->addExercise(BabySteps::class);
 $app->addExercise(MyFirstIo::class);
 $app->addExercise(FilteredLs::class);
+$app->addExercise(ConcernedAboutSeparation::class);
 $app->addExercise(ArrayWeGo::class);
 $app->addExercise(ExceptionalCoding::class);
 $app->addExercise(DatabaseRead::class);

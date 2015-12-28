@@ -3,6 +3,7 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 
@@ -29,7 +30,7 @@ class BabyStepsTest extends PHPUnit_Framework_TestCase
             $this->assertInternalType('int', $arg);
         }
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }
