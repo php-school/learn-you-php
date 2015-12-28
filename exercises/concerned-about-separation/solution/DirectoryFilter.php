@@ -9,16 +9,11 @@ class DirectoryFilter
      */
     public function getFiles($directory, $ext)
     {
-        return array_map(
-            function (DirectoryIterator $file) {
-                return $file->getFilename();
-            },
-            array_filter(
-                iterator_to_array(new DirectoryIterator($directory)),
-                function (DirectoryIterator $file) use ($ext) {
-                    return $file->getExtension() === $ext;    
-                }
-            )
+        return array_filter(
+            scandir($directory),
+            function ($file) use ($ext) {
+                return pathinfo($file, PATHINFO_EXTENSION) === $ext;    
+            }
         );
     }
 }
