@@ -10,7 +10,7 @@
     ],
     "require" : {
         "php" : ">=5.6",
-        "php-school/php-workshop": "dev-multi-solution",
+        "php-school/php-workshop": "^0.1@dev",
         "hoa/socket": "^0.15.09"
     },
     "require-dev": {
