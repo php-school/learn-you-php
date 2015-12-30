@@ -26,5 +26,10 @@
     "autoload-dev": {
         "psr-4": { "PhpSchool\\LearnYouPhpTest\\": "test/" }
     },
-    "bin": ["bin/learnyouphp"]
+    "bin": ["bin/learnyouphp"],
+    "extra" : {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
 }
