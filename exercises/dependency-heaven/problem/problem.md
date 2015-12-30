@@ -34,7 +34,7 @@ A request with `data = "you know you love it, don't you?"` should return the res
 
 You should use the routing library `klein/klein` for this task pulling it in as a dependency through Composer. 
 
-It's also recommended to use `danielstjules/stringy` to manipulate the data as this correctly handles multibyte characters. 
+You will also be required to use `danielstjules/stringy` to manipulate the data as this correctly handles multibyte characters. 
 
 ----------------------------------------------------------------------
 ## HINTS

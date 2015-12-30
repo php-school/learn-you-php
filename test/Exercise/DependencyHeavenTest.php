@@ -7,6 +7,7 @@ use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use Psr\Http\Message\RequestInterface;
 
@@ -35,7 +36,8 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Dependency Heaven', $e->getName());
         $this->assertEquals('An introduction to Composer dependency management', $e->getDescription());
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
+        $this->assertFileExists(realpath($e->getSolution()->getEntryPoint()));
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }
@@ -89,14 +91,28 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
         $this->assertSame('No composer.lock file found', $result->getReason());
     }
 
-    public function testCheckReturnsFailureIfKleinNotRequired()
+    /**
+     * @dataProvider dependencyProvider
+     *
+     * @param $dependency
+     * @param $solutionFile
+     */
+    public function testCheckReturnsFailureIfDependencyNotRequired($dependency, $solutionFile)
     {
         $e      = new DependencyHeaven($this->faker);
-        $result = $e->check(__DIR__ . '/../res/dependency-heaven/wrong-solution/solution.php');
+        $result = $e->check($solutionFile);
 
         $this->assertInstanceOf(Failure::class, $result);
         $this->assertSame('Dependency Heaven', $result->getCheckName());
-        $this->assertSame('Lockfile doesn\'t include "klein/klein" at any version', $result->getReason());
+        $this->assertSame(sprintf('Lockfile doesn\'t include "%s" at any version', $dependency), $result->getReason());
+    }
+
+    public function dependencyProvider()
+    {
+        return [
+            ['klein/klein',           __DIR__ . '/../res/dependency-heaven/no-klein/solution.php'],
+            ['danielstjules/stringy', __DIR__ . '/../res/dependency-heaven/no-stringy/solution.php']
+        ];
     }
 
     public function testCheckReturnsSuccessIfCorrectLockfile()

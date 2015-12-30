@@ -116,6 +116,10 @@ class DependencyHeaven extends AbstractExercise implements ExerciseInterface, Cg
             return new Failure($this->getName(), 'Lockfile doesn\'t include "klein/klein" at any version');
         }
 
+        if (!$locker->getLockedRepository()->findPackages('danielstjules/stringy')) {
+            return new Failure($this->getName(), 'Lockfile doesn\'t include "danielstjules/stringy" at any version');
+        }
+
         return new Success($this->getName());
     }
 }
