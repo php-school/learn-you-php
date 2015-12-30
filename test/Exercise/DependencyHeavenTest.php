@@ -58,18 +58,14 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
     {
         $e = new DependencyHeaven($this->faker);
 
-        $requests  = $e->getRequests();
-        $endpoints = ['/reverse' => 0, '/swapcase' => 0, '/titleize' => 0];
+        $endPoints = array_map(function (RequestInterface $request) {
+            return $request->getUri()->getPath();
+        }, $e->getRequests());
 
-        foreach ($requests as $request) {
-            $endpoint = $request->getUri()->getPath();
-            if (array_key_exists($endpoint, $endpoints)) {
-                $endpoints[$endpoint]++;
-            }
-        }
-
-        foreach ($endpoints as $count) {
-            $this->assertGreaterThan(1, $count);
+        $counts = array_count_values($endPoints);
+        foreach (['/reverse', '/swapcase', '/titleize'] as $endPoint) {
+            $this->assertTrue(isset($counts[$endPoint]));
+            $this->assertGreaterThan(1, $counts[$endPoint]);
         }
     }
 
