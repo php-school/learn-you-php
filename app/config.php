@@ -14,6 +14,7 @@ use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
+use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use Symfony\Component\Filesystem\Filesystem;
 use Faker\Factory as FakerFactory;
@@ -48,4 +49,7 @@ return [
     TimeServer::class   => factory(function (ContainerInterface $c) {
         return new TimeServer(new TcpSocketFactory);
     }),
+    DependencyHeaven::class  => factory(function (ContainerInterface $c) {
+        return new DependencyHeaven(FakerFactory::create('fr_FR'));
+    })
 ];

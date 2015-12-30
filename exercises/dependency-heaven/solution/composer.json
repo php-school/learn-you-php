@@ -1,0 +1,14 @@
+{
+    "name": "learn-you-php/dependency-heaven",
+    "description": "String manipulation with Composer",
+    "require": {
+        "danielstjules/stringy": "^2.1",
+        "klein/klein": "^2.1"
+    },
+    "authors": [
+        {
+            "name": "Michael Woodward",
+            "email": "mikeymike.mw@gmail.com"
+        }
+    ]
+}

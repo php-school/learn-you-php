@@ -1,0 +1,39 @@
+{
+   "name": "klein/klein",
+   "description": "A lightning fast router for PHP",
+   "keywords": ["router", "routing", "sinatra", "boilerplate"],
+   "homepage": "https://github.com/chriso/klein.php",
+   "license": "MIT",
+   "authors": [
+      {
+         "name": "Chris O'Hara",
+         "email": "cohara87@gmail.com",
+         "homepage": "http://chris6f.com/",
+         "role": "Creator/Developer"
+      },
+      {
+         "name": "Trevor Suarez",
+         "email": "rican7@gmail.com",
+         "homepage": "http://about.me/tnsuarez",
+         "role": "Contributor/Developer"
+      }
+   ],
+   "require": {
+      "php": ">=5.3.0"
+   },
+   "require-dev": {
+      "phpunit/phpunit": "3.7.x",
+      "phpunit/php-code-coverage": "1.2.x",
+      "squizlabs/php_codesniffer": "1.4.8"
+   },
+   "autoload": {
+      "psr-4": {
+         "Klein\\": "src/Klein/"
+      }
+   },
+   "autoload-dev": {
+      "psr-4": {
+         "Klein\\Tests\\": "tests/Klein/Tests"
+      }
+   }
+}
