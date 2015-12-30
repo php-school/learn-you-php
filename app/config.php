@@ -3,8 +3,10 @@
 use function DI\factory;
 use function DI\object;
 use Interop\Container\ContainerInterface;
+use PhpParser\Parser;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
+use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
 use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
@@ -26,6 +28,13 @@ return [
     }),
     FilteredLs::class   => factory(function (ContainerInterface $c) {
         return new FilteredLs($c->get(Filesystem::class));
+    }),
+    ConcernedAboutSeparation::class   => factory(function (ContainerInterface $c) {
+        return new ConcernedAboutSeparation(
+            $c->get(Filesystem::class),
+            FakerFactory::create(),
+            $c->get(Parser::class)
+        );
     }),
     ArrayWeGo::class    => factory(function (ContainerInterface $c) {
         return new ArrayWeGo($c->get(Filesystem::class), FakerFactory::create());

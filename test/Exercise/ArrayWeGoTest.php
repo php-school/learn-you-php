@@ -6,6 +6,7 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
@@ -40,13 +41,13 @@ class ArrayWeGoTest extends PHPUnit_Framework_TestCase
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $this->assertEquals('Array We Go!', $e->getName());
         $this->assertEquals('Filter an array of file paths and map to SplFile objects', $e->getDescription());
-
-        $this->assertFileExists(realpath($e->getSolution()));
+        
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreateAtleastOneExistingFile()
+    public function testGetArgsCreateAtLeastOneExistingFile()
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -60,7 +61,7 @@ class ArrayWeGoTest extends PHPUnit_Framework_TestCase
         $this->assertGreaterThanOrEqual(1, count($existingFiles));
     }
 
-    public function testGetArgsHasAtleastOneNonExistingFile()
+    public function testGetArgsHasAtLeastOneNonExistingFile()
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $args = $e->getArgs();

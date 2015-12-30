@@ -3,6 +3,7 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use Symfony\Component\Filesystem\Filesystem;
@@ -31,7 +32,7 @@ class FilteredLsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Filtered LS', $e->getName());
         $this->assertEquals('Read files in a folder and filter by a given extension', $e->getDescription());
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }

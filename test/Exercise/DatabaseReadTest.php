@@ -6,6 +6,7 @@ use Faker\Factory;
 use Faker\Generator;
 use PDO;
 use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -32,7 +33,7 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Database Read', $e->getName());
         $this->assertEquals('Read an SQL databases contents', $e->getDescription());
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }

@@ -5,6 +5,7 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Faker\Factory;
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
@@ -40,7 +41,7 @@ class MyFirstIoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('My First IO', $e->getName());
         $this->assertEquals('Read a file from the file system', $e->getDescription());
 
-        $this->assertFileExists(realpath($e->getSolution()));
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }

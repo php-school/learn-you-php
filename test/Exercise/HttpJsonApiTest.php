@@ -7,6 +7,7 @@ use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Psr\Http\Message\RequestInterface;
@@ -39,8 +40,8 @@ class HttpJsonApiTest extends PHPUnit_Framework_TestCase
         $this->assertSame('www.time.com', $request2->getUri()->getHost());
         $this->assertSame('/api/parsetime', $request1->getUri()->getPath());
         $this->assertSame('/api/unixtime', $request2->getUri()->getPath());
-        
-        $this->assertFileExists(realpath($e->getSolution()));
+
+        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }
