@@ -22,8 +22,8 @@ use PhpParser\Node\Expr\Include_;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class ConcernedAboutSeparation extends AbstractExercise implements 
-    ExerciseInterface, 
+class ConcernedAboutSeparation extends AbstractExercise implements
+    ExerciseInterface,
     StdOutExerciseCheck,
     SelfCheck
 {
@@ -47,12 +47,13 @@ class ConcernedAboutSeparation extends AbstractExercise implements
     /**
      * @param Filesystem $filesystem
      * @param Generator $faker
+     * @param Parser $parser
      */
     public function __construct(Filesystem $filesystem, Generator $faker, Parser $parser)
     {
         $this->filesystem   = $filesystem;
         $this->faker        = $faker;
-        $this->parser = $parser;
+        $this->parser       = $parser;
     }
 
     /**
@@ -68,7 +69,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements
      */
     public function getDescription()
     {
-        return 'Separate code and utlise files and classes';
+        return 'Separate code and utilise files and classes';
     }
 
     /**
@@ -138,7 +139,8 @@ class ConcernedAboutSeparation extends AbstractExercise implements
         foreach ($statements as $statement) {
             if ($statement instanceof Include_) {
                 $include = $statement;
-            } 
+                break;
+            }
         }
         
         if (null === $include) {
