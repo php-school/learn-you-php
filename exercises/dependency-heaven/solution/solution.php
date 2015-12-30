@@ -11,13 +11,15 @@ use Stringy\Stringy as S;
 $klein = new Klein();
 
 $klein->respond('POST', '/reverse', function (Request $req, Response $res) {
-    $res->json(['result' => (new S($req->param('data', '')))->reverse()]);
+    $res->json(['result' => (new S($req->param('data', '')))->reverse()->__toString()]);
 });
 
 $klein->respond('POST', '/swapcase', function (Request $req, Response $res) {
-    $res->json(['result' => (new S($req->param('data', '')))->swapCase()]);
+    $res->json(['result' => (new S($req->param('data', '')))->swapCase()->__toString()]);
 });
 
 $klein->respond('POST', '/titleize', function (Request $req, Response $res) {
-    $res->json(['result' => (new S($req->param('data', '')))->titleize()]);
+    $res->json(['result' => (new S($req->param('data', '')))->titleize()->__toString()]);
 });
+
+$klein->dispatch();
