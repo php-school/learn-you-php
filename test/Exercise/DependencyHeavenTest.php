@@ -5,8 +5,6 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
-use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -42,6 +40,14 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
         $this->assertNull($e->tearDown());
     }
 
+    public function testGetRequiredPackages()
+    {
+        $this->assertSame(
+            ['klein/klein', 'danielstjules/stringy'],
+            (new DependencyHeaven($this->faker))->getRequiredPackages()
+        );
+    }
+
     public function testGetRequests()
     {
         $e = new DependencyHeaven($this->faker);
@@ -56,7 +62,7 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function testGetRequestsReturnsMultipleRequestsForEachEnpoint()
+    public function testGetRequestsReturnsMultipleRequestsForEachEndpoint()
     {
         $e = new DependencyHeaven($this->faker);
 
@@ -69,58 +75,5 @@ class DependencyHeavenTest extends PHPUnit_Framework_TestCase
             $this->assertTrue(isset($counts[$endPoint]));
             $this->assertGreaterThan(1, $counts[$endPoint]);
         }
-    }
-
-    public function testCheckReturnsFailureIfNoComposerFile()
-    {
-        $e      = new DependencyHeaven($this->faker);
-        $result = $e->check('invalid/solution');
-
-        $this->assertInstanceOf(Failure::class, $result);
-        $this->assertSame('Dependency Heaven', $result->getCheckName());
-        $this->assertSame('No composer.json file found', $result->getReason());
-    }
-
-    public function testCheckReturnsFailureIfNoComposerLockFile()
-    {
-        $e      = new DependencyHeaven($this->faker);
-        $result = $e->check(__DIR__ . '/../res/dependency-heaven/not-locked/solution.php');
-
-        $this->assertInstanceOf(Failure::class, $result);
-        $this->assertSame('Dependency Heaven', $result->getCheckName());
-        $this->assertSame('No composer.lock file found', $result->getReason());
-    }
-
-    /**
-     * @dataProvider dependencyProvider
-     *
-     * @param $dependency
-     * @param $solutionFile
-     */
-    public function testCheckReturnsFailureIfDependencyNotRequired($dependency, $solutionFile)
-    {
-        $e      = new DependencyHeaven($this->faker);
-        $result = $e->check($solutionFile);
-
-        $this->assertInstanceOf(Failure::class, $result);
-        $this->assertSame('Dependency Heaven', $result->getCheckName());
-        $this->assertSame(sprintf('Lockfile doesn\'t include "%s" at any version', $dependency), $result->getReason());
-    }
-
-    public function dependencyProvider()
-    {
-        return [
-            ['klein/klein',           __DIR__ . '/../res/dependency-heaven/no-klein/solution.php'],
-            ['danielstjules/stringy', __DIR__ . '/../res/dependency-heaven/no-stringy/solution.php']
-        ];
-    }
-
-    public function testCheckReturnsSuccessIfCorrectLockfile()
-    {
-        $e      = new DependencyHeaven($this->faker);
-        $result = $e->check(__DIR__ . '/../res/dependency-heaven/good-solution/solution.php');
-
-        $this->assertInstanceOf(Success::class, $result);
-        $this->assertSame('Dependency Heaven', $result->getCheckName());
     }
 }

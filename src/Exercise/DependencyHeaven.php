@@ -2,20 +2,13 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
-use Composer\Config;
-use Composer\Installer\InstallationManager;
-use Composer\IO\NullIO;
-use Composer\Json\JsonFile;
-use Composer\Package\Locker;
-use Composer\Repository\RepositoryManager;
 use Faker\Generator;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
-use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\ResultInterface;
-use PhpSchool\PhpWorkshop\Result\Success;
+use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
+use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use Zend\Diactoros\Request;
 
 /**
@@ -23,7 +16,10 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class DependencyHeaven extends AbstractExercise implements ExerciseInterface, CgiOutputExerciseCheck, SelfCheck
+class DependencyHeaven extends AbstractExercise implements
+    ExerciseInterface,
+    CgiOutputExerciseCheck,
+    ComposerExerciseCheck
 {
     /**
      * @var Generator
@@ -55,7 +51,15 @@ class DependencyHeaven extends AbstractExercise implements ExerciseInterface, Cg
     }
 
     /**
-     * @return Request[]
+     * @return SolutionInterface
+     */
+    public function getSolution()
+    {
+        return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/dependency-heaven/solution');
+    }
+
+    /**
+     * @return RequestInterface[]
      */
     public function getRequests()
     {
@@ -71,8 +75,8 @@ class DependencyHeaven extends AbstractExercise implements ExerciseInterface, Cg
     }
 
     /**
-     * @param $endpoint
-     * @return Request
+     * @param string $endpoint
+     * @return RequestInterface
      */
     private function newApiRequest($endpoint)
     {
@@ -88,38 +92,13 @@ class DependencyHeaven extends AbstractExercise implements ExerciseInterface, Cg
     }
 
     /**
-     * @param string $fileName
-     * @return ResultInterface
+     * @return array
      */
-    public function check($fileName)
+    public function getRequiredPackages()
     {
-        $composerFile = new JsonFile(sprintf('%s/composer.json', dirname($fileName)));
-        $lockFile     = new JsonFile(sprintf('%s/composer.lock', dirname($fileName)));
-
-        if (!$composerFile->exists()) {
-            return new Failure($this->getName(), 'No composer.json file found');
-        }
-
-        if (!$lockFile->exists()) {
-            return new Failure($this->getName(), 'No composer.lock file found');
-        }
-
-        $locker = new Locker(
-            new NullIO,
-            $lockFile,
-            new RepositoryManager(new NullIO, new Config),
-            new InstallationManager,
-            file_get_contents($composerFile->getPath())
-        );
-
-        if (!$locker->getLockedRepository()->findPackages('klein/klein')) {
-            return new Failure($this->getName(), 'Lockfile doesn\'t include "klein/klein" at any version');
-        }
-
-        if (!$locker->getLockedRepository()->findPackages('danielstjules/stringy')) {
-            return new Failure($this->getName(), 'Lockfile doesn\'t include "danielstjules/stringy" at any version');
-        }
-
-        return new Success($this->getName());
+        return [
+            'klein/klein',
+            'danielstjules/stringy'
+        ];
     }
 }
