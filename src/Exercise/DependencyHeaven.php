@@ -2,21 +2,11 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
-use Composer\Config;
-use Composer\Installer\InstallationManager;
-use Composer\IO\NullIO;
-use Composer\Json\JsonFile;
-use Composer\Package\Locker;
-use Composer\Repository\RepositoryManager;
 use Faker\Generator;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
-use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\ResultInterface;
-use PhpSchool\PhpWorkshop\Result\Success;
 use Zend\Diactoros\Request;
 
 /**
@@ -24,7 +14,7 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class DependencyHeaven extends AbstractExercise implements 
+class DependencyHeaven extends AbstractExercise implements
     ExerciseInterface,
     CgiOutputExerciseCheck,
     ComposerExerciseCheck
