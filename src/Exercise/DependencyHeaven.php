@@ -7,6 +7,8 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
+use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
+use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use Zend\Diactoros\Request;
 
 /**
@@ -46,6 +48,14 @@ class DependencyHeaven extends AbstractExercise implements
     public function getDescription()
     {
         return 'An introduction to Composer dependency management';
+    }
+
+    /**
+     * @return SolutionInterface
+     */
+    public function getSolution()
+    {
+        return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/dependency-heaven/solution');
     }
 
     /**
