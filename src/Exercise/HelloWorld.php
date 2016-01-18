@@ -48,12 +48,4 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     {
         return ExerciseType::CLI();
     }
-
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
-    public function configure(ExerciseDispatcher $dispatcher)
-    {
-        // TODO: Implement configure() method.
-    }
 }
