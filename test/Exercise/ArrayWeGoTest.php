@@ -34,7 +34,6 @@ class ArrayWeGoTest extends PHPUnit_Framework_TestCase
         $this->filesystem = new Filesystem;
     }
 
-
     public function testArrWeGoExercise()
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);

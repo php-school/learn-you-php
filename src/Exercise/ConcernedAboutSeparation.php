@@ -5,10 +5,13 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 use Faker\Generator;
 use PhpParser\Parser;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -22,13 +25,10 @@ use PhpParser\Node\Expr\Include_;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class ConcernedAboutSeparation extends AbstractExercise implements
-    ExerciseInterface,
-    StdOutExerciseCheck,
-    SelfCheck
+class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInterface, CliExercise, SelfCheck
 {
     use TemporaryDirectoryTrait;
-    
+
     /**
      * @var Filesystem
      */
@@ -38,7 +38,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements
      * @var Generator
      */
     private $faker;
-    
+
     /**
      * @var Parser
      */
@@ -51,9 +51,9 @@ class ConcernedAboutSeparation extends AbstractExercise implements
      */
     public function __construct(Filesystem $filesystem, Generator $faker, Parser $parser)
     {
-        $this->filesystem   = $filesystem;
-        $this->faker        = $faker;
-        $this->parser       = $parser;
+        $this->filesystem = $filesystem;
+        $this->faker = $faker;
+        $this->parser = $parser;
     }
 
     /**
@@ -134,7 +134,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements
     public function check($fileName)
     {
         $statements = $this->parser->parse(file_get_contents($fileName));
-        
+
         $include = null;
         foreach ($statements as $statement) {
             if ($statement instanceof Include_) {
@@ -142,11 +142,19 @@ class ConcernedAboutSeparation extends AbstractExercise implements
                 break;
             }
         }
-        
+
         if (null === $include) {
             return Failure::fromNameAndReason($this->getName(), 'No require statement found');
         }
-        
+
         return new Success($this->getName());
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CLI();
     }
 }

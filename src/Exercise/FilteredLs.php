@@ -3,9 +3,12 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -13,7 +16,7 @@ use Symfony\Component\Filesystem\Filesystem;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class FilteredLs extends AbstractExercise implements ExerciseInterface, StdOutExerciseCheck
+class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExercise
 {
     use TemporaryDirectoryTrait;
     
@@ -91,5 +94,13 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, StdOutEx
     public function tearDown()
     {
         $this->filesystem->remove($this->getTemporaryPath());
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CLI();
     }
 }

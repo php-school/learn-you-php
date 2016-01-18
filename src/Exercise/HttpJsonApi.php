@@ -4,7 +4,9 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Psr\Http\Message\RequestInterface;
 use Zend\Diactoros\Request;
 
@@ -13,7 +15,7 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiOutputExerciseCheck
+class HttpJsonApi extends AbstractExercise implements ExerciseInterface
 {
     /**
      * @return string
@@ -43,5 +45,13 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiOutp
             (new Request(sprintf($url, 'unixtime', (new \DateTime)->format(DATE_ISO8601))))
                 ->withMethod('GET'),
         ];
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CGI();
     }
 }

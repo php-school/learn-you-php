@@ -5,8 +5,11 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 use Hoa\Core\Exception\Exception;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
@@ -21,7 +24,7 @@ use Zend\Diactoros\Request;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class TimeServer extends AbstractExercise implements ExerciseInterface, SelfCheck
+class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise, SelfCheck
 {
 
     /**
@@ -107,5 +110,21 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, SelfChec
     private function getRandomPort()
     {
         return mt_rand(1025, 65535);
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CLI();
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getArgs()
+    {
+        return ['127.0.0.1', $this->getRandomPort()];
     }
 }
