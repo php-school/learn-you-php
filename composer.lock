@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7984355d861cf8b14c3d0f4bc89c0580",
-    "content-hash": "fe432837489cfbc2cada7248041e900a",
+    "hash": "4a98af8579e0be6d63ae68a8ec4c539e",
+    "content-hash": "a5ff4488d3fdced09e485589c036c8d5",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -763,12 +763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "10a25ff1105201a1f0c347bb537cb96b3d41a5d2"
+                "reference": "b67411d78623ff888409e56502ef4dcf8067b286"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/10a25ff1105201a1f0c347bb537cb96b3d41a5d2",
-                "reference": "10a25ff1105201a1f0c347bb537cb96b3d41a5d2",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/b67411d78623ff888409e56502ef4dcf8067b286",
+                "reference": "b67411d78623ff888409e56502ef4dcf8067b286",
                 "shasum": ""
             },
             "require": {
@@ -816,7 +816,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2016-01-18 19:55:47"
+            "time": "2016-01-23 18:25:05"
         },
         {
             "name": "php-school/psx",
@@ -1963,16 +1963,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67"
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e4fb41d5d0387d556e2c25534d630b3cce90ea67",
-                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
                 "shasum": ""
             },
             "require": {
@@ -1990,7 +1990,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -2036,7 +2036,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-12-11 00:12:46"
+            "time": "2016-01-19 23:39:10"
         },
         {
             "name": "symfony/yaml",

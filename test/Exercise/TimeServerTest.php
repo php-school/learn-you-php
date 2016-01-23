@@ -10,9 +10,14 @@ use Hoa\Socket\Client;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
+use PhpSchool\PhpWorkshop\Check\CheckRepository;
+use PhpSchool\PhpWorkshop\Event\EventDispatcher;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\Factory\RunnerFactory;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
+use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
@@ -32,14 +37,20 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
     private $exercise;
 
     /**
-     * @var TcpSocketFactory
+     * @var ExerciseDispatcher
      */
-    private $socketFactory;
+    private $exerciseDispatcher;
 
     public function setUp()
     {
-        $this->socketFactory = $this->getMock(TcpSocketFactory::class);
-        $this->exercise = new TimeServer($this->socketFactory);
+        $results = new ResultAggregator;
+        $this->exerciseDispatcher = new ExerciseDispatcher(
+            new RunnerFactory,
+            $results,
+            new EventDispatcher($results),
+            new CheckRepository([])
+        );
+        $this->exercise = new TimeServer(new TcpSocketFactory);
     }
 
     public function testGetters()
@@ -54,37 +65,35 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
 
     public function testFailureIsReturnedIfCannotConnect()
     {
-        $this->socketFactory
-            ->expects($this->once())
-            ->method('createClient')
-            ->with('127.0.0.1', $this->logicalAnd(
-                $this->greaterThan(1024),
-                $this->lessThan(655356)
-            ))
-            ->will($this->returnValue(new Client('tcp://127.0.0.1:655355')));
-        
-        $failure = $this->exercise->check('program.php');
-        
-        $this->assertInstanceOf(Failure::class, $failure);
+        $results = $this->exerciseDispatcher->verify($this->exercise, 'failure.php');
+        $this->assertCount(2, $results);
 
+        $failure = iterator_to_array($results)[0];
+        $this->assertInstanceOf(Failure::class, $failure);
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $reason  = '/^Client returns an error \(number \d+\): No connection could be made because';
             $reason .= ' the target machine actively refused it\.\r\n';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
+            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
         } else {
             $reason  = '/^Client returns an error \(number \d+\): Connection refused';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:655355\.$/';
+            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
         }
 
         $this->assertRegExp($reason, $failure->getReason());
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
-    
+
     public function testFailureIsReturnedIfOutputWasNotCorrect()
     {
-        $e = new TimeServer(new TcpSocketFactory);
-        $failure = $e->check(__DIR__ . '/../res/time-server/solution-wrong.php');
+        $results = $this->exerciseDispatcher->verify(
+            $this->exercise,
+            __DIR__ . '/../res/time-server/solution-wrong.php'
+        );
+
+        $this->assertCount(2, $results);
+        $failure = iterator_to_array($results)[0];
+
         $this->assertInstanceOf(StdOutFailure::class, $failure);
         $this->assertNotEquals($failure->getExpectedOutput(), $failure->getActualOutput());
         $this->assertEquals('Time Server', $failure->getCheckName());
@@ -92,26 +101,13 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
 
     public function testSuccessIsReturnedIfOutputIsCorrect()
     {
-        $e = new TimeServer(new TcpSocketFactory);
-        $success = $e->check(__DIR__ . '/../res/time-server/solution.php');
+        $results = $this->exerciseDispatcher->verify(
+            $this->exercise,
+            __DIR__ . '/../res/time-server/solution.php'
+        );
+
+        $this->assertCount(2, $results);
+        $success = iterator_to_array($results)[0];
         $this->assertInstanceOf(Success::class, $success);
-    }
-
-    public function testProcessIsStoppedIfStillRunning()
-    {
-        $e = new TimeServer(new TcpSocketFactory);
-        $failure = $e->check(__DIR__ . '/../res/time-server/solution-keep-running.php');
-        $this->assertInstanceOf(Failure::class, $failure);
-        $this->assertEquals('', $failure->getReason());
-        $this->assertEquals('Time Server', $failure->getCheckName());
-    }
-
-    public function testFailureIsReturnedIfProcessWasNotSuccessful()
-    {
-        $e = new TimeServer(new TcpSocketFactory);
-        $failure = $e->check(__DIR__ . '/../res/time-server/solution-bad-exit.php');
-        $this->assertInstanceOf(Failure::class, $failure);
-        $this->assertEquals('', $failure->getReason());
-        $this->assertEquals('Time Server', $failure->getCheckName());
     }
 }
