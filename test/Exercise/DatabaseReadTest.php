@@ -45,12 +45,12 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
         $e = new DatabaseRead($this->faker);
         
         $e->seed($db);
-        
+
         $args = $e->getArgs();
         $stmt = $db->query('SELECT * FROM users;');
         
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $this->assertTrue(count($users) > 5);
+        $this->assertTrue(count($users) >= 5);
         $this->assertInternalType('array', $users);
         $this->assertTrue(in_array($args[0], array_column($users, 'name')));
     }
