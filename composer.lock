@@ -763,12 +763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "b67411d78623ff888409e56502ef4dcf8067b286"
+                "reference": "a8a50679cc73b19b6927ae0dc2bddff8b98c02c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/b67411d78623ff888409e56502ef4dcf8067b286",
-                "reference": "b67411d78623ff888409e56502ef4dcf8067b286",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a8a50679cc73b19b6927ae0dc2bddff8b98c02c7",
+                "reference": "a8a50679cc73b19b6927ae0dc2bddff8b98c02c7",
                 "shasum": ""
             },
             "require": {
@@ -816,7 +816,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2016-01-23 18:25:05"
+            "time": "2016-01-24 20:13:33"
         },
         {
             "name": "php-school/psx",
