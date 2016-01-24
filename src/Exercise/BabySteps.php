@@ -7,7 +7,6 @@ use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 
 /**
  * Class BabySteps

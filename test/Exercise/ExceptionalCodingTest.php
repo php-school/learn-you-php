@@ -6,6 +6,9 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
+use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
@@ -35,12 +38,12 @@ class ExceptionalCodingTest extends PHPUnit_Framework_TestCase
         $this->filesystem = new Filesystem;
     }
 
-
     public function testArrWeGoExercise()
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $this->assertEquals('Exceptional Coding', $e->getName());
         $this->assertEquals('Introduction to Exceptions', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
 
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
@@ -96,6 +99,20 @@ class ExceptionalCodingTest extends PHPUnit_Framework_TestCase
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $this->assertEquals([], $e->getRequiredFunctions());
         $this->assertEquals(['array_filter', 'file_exists'], $e->getBannedFunctions());
+    }
 
+    public function testConfigure()
+    {
+        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $dispatcher
+            ->expects($this->once())
+            ->method('requireCheck')
+            ->with(FunctionRequirementsCheck::class);
+
+        $e = new ExceptionalCoding($this->filesystem, $this->faker);
+        $e->configure($dispatcher);
     }
 }

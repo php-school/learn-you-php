@@ -80,13 +80,8 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             //wait for server to boot
             usleep(100000);
 
-            try {
-                $client->connect();
-            } catch (Exception $e) {
-                return;
-            }
-
-            $out = $client->readAll();
+            $client->connect();
+            $client->readAll();
 
             //wait for shutdown
             usleep(100000);

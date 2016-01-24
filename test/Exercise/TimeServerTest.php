@@ -12,6 +12,7 @@ use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Factory\RunnerFactory;
 use PhpSchool\PhpWorkshop\Result\Failure;
@@ -57,6 +58,7 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('Time Server', $this->exercise->getName());
         $this->assertEquals('Build a Time Server!', $this->exercise->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $this->exercise->getType());
 
         $this->assertInstanceOf(SolutionInterface::class, $this->exercise->getSolution());
         $this->assertFileExists(realpath($this->exercise->getProblem()));
