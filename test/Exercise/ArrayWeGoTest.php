@@ -6,6 +6,9 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
+use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use Symfony\Component\Filesystem\Filesystem;
@@ -34,12 +37,12 @@ class ArrayWeGoTest extends PHPUnit_Framework_TestCase
         $this->filesystem = new Filesystem;
     }
 
-
     public function testArrWeGoExercise()
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $this->assertEquals('Array We Go!', $e->getName());
         $this->assertEquals('Filter an array of file paths and map to SplFile objects', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
         
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
@@ -95,6 +98,20 @@ class ArrayWeGoTest extends PHPUnit_Framework_TestCase
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $this->assertEquals(['array_shift', 'array_filter', 'array_map'], $e->getRequiredFunctions());
         $this->assertEquals(['basename'], $e->getBannedFunctions());
+    }
 
+    public function testConfigure()
+    {
+        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $dispatcher
+            ->expects($this->once())
+            ->method('requireCheck')
+            ->with(FunctionRequirementsCheck::class);
+
+        $e = new ArrayWeGo($this->filesystem, $this->faker);
+        $e->configure($dispatcher);
     }
 }

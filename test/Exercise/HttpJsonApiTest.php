@@ -7,6 +7,7 @@ use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
@@ -25,8 +26,8 @@ class HttpJsonApiTest extends PHPUnit_Framework_TestCase
         $e = new HttpJsonApi;
         $this->assertEquals('HTTP JSON API', $e->getName());
         $this->assertEquals('HTTP JSON API - Servers JSON when it receives a GET request', $e->getDescription());
+        $this->assertEquals(ExerciseType::CGI, $e->getType());
 
-        
         $requests = $e->getRequests();
         $request1 = $requests[0];
         $request2 = $requests[1];

@@ -4,9 +4,15 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
 use PDO;
+use PhpSchool\PhpWorkshop\Check\DatabaseCheck;
+use PhpSchool\PhpWorkshop\Check\ListenableCheckInterface;
+use PhpSchool\PhpWorkshop\Event\Event;
+use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\DatabaseExerciseCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\SubmissionPatch;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -99,5 +105,21 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         $result = $stmt->fetchColumn();
         
         return $result === 'David Attenborough';
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CLI();
+    }
+
+    /**
+     * @param ExerciseDispatcher $dispatcher
+     */
+    public function configure(ExerciseDispatcher $dispatcher)
+    {
+        $dispatcher->requireListenableCheck(DatabaseCheck::class);
     }
 }

@@ -3,7 +3,9 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 
 /**
@@ -11,7 +13,7 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
  * @package PhpSchool\LearnYouPhp\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class BabySteps extends AbstractExercise implements ExerciseInterface, StdOutExerciseCheck
+class BabySteps extends AbstractExercise implements ExerciseInterface, CliExercise
 {
 
     /**
@@ -43,5 +45,13 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, StdOutExe
         }
 
         return $args;
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CLI();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 ini_set('display_errors', 1);
+
 date_default_timezone_set('Europe/London');
 switch (true) {
     case (file_exists(__DIR__ . '/../vendor/autoload.php')):

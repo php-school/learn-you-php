@@ -3,10 +3,14 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use Zend\Diactoros\Request;
@@ -18,7 +22,7 @@ use Zend\Diactoros\Request;
  */
 class DependencyHeaven extends AbstractExercise implements
     ExerciseInterface,
-    CgiOutputExerciseCheck,
+    CgiExercise,
     ComposerExerciseCheck
 {
     /**
@@ -100,5 +104,21 @@ class DependencyHeaven extends AbstractExercise implements
             'klein/klein',
             'danielstjules/stringy'
         ];
+    }
+
+    /**
+     * @return ExerciseType
+     */
+    public function getType()
+    {
+        return ExerciseType::CGI();
+    }
+
+    /**
+     * @param ExerciseDispatcher $dispatcher
+     */
+    public function configure(ExerciseDispatcher $dispatcher)
+    {
+        $dispatcher->requireCheck(ComposerCheck::class, $dispatcher::CHECK_BEFORE);
     }
 }

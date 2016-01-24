@@ -5,6 +5,9 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Faker\Factory;
 use Faker\Generator;
+use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
@@ -34,12 +37,12 @@ class MyFirstIoTest extends PHPUnit_Framework_TestCase
         $this->filesystem = new Filesystem;
     }
 
-
     public function testMyFirstIoExercise()
     {
         $e = new MyFirstIo($this->filesystem, $this->faker);
         $this->assertEquals('My First IO', $e->getName());
         $this->assertEquals('Read a file from the file system', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
 
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
@@ -82,6 +85,20 @@ class MyFirstIoTest extends PHPUnit_Framework_TestCase
         $e = new MyFirstIo($this->filesystem, $this->faker);
         $this->assertEquals(['file_get_contents'], $e->getRequiredFunctions());
         $this->assertEquals(['file'], $e->getBannedFunctions());
+    }
 
+    public function testConfigure()
+    {
+        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $dispatcher
+            ->expects($this->once())
+            ->method('requireCheck')
+            ->with(FunctionRequirementsCheck::class);
+
+        $e = new MyFirstIo($this->filesystem, $this->faker);
+        $e->configure($dispatcher);
     }
 }

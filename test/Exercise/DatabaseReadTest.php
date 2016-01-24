@@ -6,6 +6,9 @@ use Faker\Factory;
 use Faker\Generator;
 use PDO;
 use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
+use PhpSchool\PhpWorkshop\Check\DatabaseCheck;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit_Framework_TestCase;
 
@@ -26,12 +29,12 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
         $this->faker = Factory::create();
     }
 
-
     public function testDatabaseExercise()
     {
         $e = new DatabaseRead($this->faker);
         $this->assertEquals('Database Read', $e->getName());
         $this->assertEquals('Read an SQL databases contents', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
 
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
@@ -45,12 +48,12 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
         $e = new DatabaseRead($this->faker);
         
         $e->seed($db);
-        
+
         $args = $e->getArgs();
         $stmt = $db->query('SELECT * FROM users;');
         
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $this->assertTrue(count($users) > 5);
+        $this->assertTrue(count($users) >= 5);
         $this->assertInternalType('array', $users);
         $this->assertTrue(in_array($args[0], array_column($users, 'name')));
     }
@@ -71,5 +74,20 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
         $stmt->execute([':id' => 5, ':name' => 'David Attenborough', ':age' => 50, ':gender' => 'Male']);
         
         $this->assertTrue($e->verify($db));
+    }
+
+    public function testConfigure()
+    {
+        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $dispatcher
+            ->expects($this->once())
+            ->method('requireListenableCheck')
+            ->with(DatabaseCheck::class);
+
+        $e = new DatabaseRead($this->faker);
+        $e->configure($dispatcher);
     }
 }

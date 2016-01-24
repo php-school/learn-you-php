@@ -6,6 +6,7 @@ use Faker\Factory;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
+use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\FailureInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -47,6 +48,7 @@ class ConcernedAboutSeparationTest extends PHPUnit_Framework_TestCase
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $this->assertEquals('Concerned about Separation?', $e->getName());
         $this->assertEquals('Separate code and utilise files and classes', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
 
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
