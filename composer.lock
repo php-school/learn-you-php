@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a98af8579e0be6d63ae68a8ec4c539e",
-    "content-hash": "a5ff4488d3fdced09e485589c036c8d5",
+    "hash": "5346872d28f6900e5883272ce6c3f418",
+    "content-hash": "0411a05a7b86516a58b57af2b6617d43",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -759,7 +759,7 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "dev-master",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
