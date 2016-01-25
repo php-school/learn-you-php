@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5346872d28f6900e5883272ce6c3f418",
-    "content-hash": "0411a05a7b86516a58b57af2b6617d43",
+    "hash": "f5e92b5e2db1edab6422e897ab5fc741",
+    "content-hash": "271294773d7005ed06e0b7eca12d6615",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -859,6 +859,51 @@
             ],
             "description": "PHP CLI Syntax Highlighter",
             "time": "2015-12-04 17:38:50"
+        },
+        {
+            "name": "php-school/workshop-installer",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-school/workshop-installer.git",
+                "reference": "7810444a553ef26ec58e181c4332e77ef205d81b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-school/workshop-installer/zipball/7810444a553ef26ec58e181c4332e77ef205d81b",
+                "reference": "7810444a553ef26ec58e181c4332e77ef205d81b",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev",
+                "phpunit/phpunit": "^5.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "\\PhpSchool\\PhpWorkshopInstaller\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpSchool\\PhpWorkshopInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aydin Hassan",
+                    "email": "aydin@hotmail.co.uk"
+                }
+            ],
+            "description": "Installer for PHP School workshops",
+            "time": "2016-01-25 12:44:43"
         },
         {
             "name": "psr/http-message",
@@ -2091,7 +2136,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "php-school/php-workshop": 20
+        "php-school/php-workshop": 20,
+        "php-school/workshop-installer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
