@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f5e92b5e2db1edab6422e897ab5fc741",
-    "content-hash": "271294773d7005ed06e0b7eca12d6615",
+    "hash": "3b8b77aab974d125e0b1557b34963106",
+    "content-hash": "7de477d93d8a5c9ca2cb45739d8d3a6d",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -759,16 +759,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "a8a50679cc73b19b6927ae0dc2bddff8b98c02c7"
+                "reference": "dc93f977ad4a2da19246d099364a291024cbe1db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a8a50679cc73b19b6927ae0dc2bddff8b98c02c7",
-                "reference": "a8a50679cc73b19b6927ae0dc2bddff8b98c02c7",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/dc93f977ad4a2da19246d099364a291024cbe1db",
+                "reference": "dc93f977ad4a2da19246d099364a291024cbe1db",
                 "shasum": ""
             },
             "require": {
@@ -816,7 +816,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2016-01-24 20:13:33"
+            "time": "2016-01-26 22:33:13"
         },
         {
             "name": "php-school/psx",
