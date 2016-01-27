@@ -862,16 +862,16 @@
         },
         {
             "name": "php-school/workshop-installer",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/workshop-installer.git",
-                "reference": "7810444a553ef26ec58e181c4332e77ef205d81b"
+                "reference": "f4982a239661f33413da18b837dfead18235bf16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/workshop-installer/zipball/7810444a553ef26ec58e181c4332e77ef205d81b",
-                "reference": "7810444a553ef26ec58e181c4332e77ef205d81b",
+                "url": "https://api.github.com/repos/php-school/workshop-installer/zipball/f4982a239661f33413da18b837dfead18235bf16",
+                "reference": "f4982a239661f33413da18b837dfead18235bf16",
                 "shasum": ""
             },
             "require": {
@@ -903,7 +903,7 @@
                 }
             ],
             "description": "Installer for PHP School workshops",
-            "time": "2016-01-25 12:44:43"
+            "time": "2016-01-27 20:40:47"
         },
         {
             "name": "psr/http-message",
