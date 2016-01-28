@@ -9,6 +9,7 @@ use PhpSchool\PhpWorkshop\Check\ListenableCheckInterface;
 use PhpSchool\PhpWorkshop\Event\Event;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
+use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\DatabaseExerciseCheck;
@@ -22,7 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
  * @author Michael Woodawrd <mikeymike.mw@gmail.com>
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck
+class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck, CliExercise
 {
 
     /**
