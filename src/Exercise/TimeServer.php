@@ -10,6 +10,7 @@ use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -63,15 +64,14 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     {
         $eventDispatcher = $exerciseDispatcher->getEventDispatcher();
 
-        $eventDispatcher->listen('cli.verify.solution-execute.pre', function (CliExecuteEvent $event) {
+        $appendArgsListener = function (CliExecuteEvent $event) {
             $event->appendArg('127.0.0.1');
             $event->appendArg($this->getRandomPort());
-        });
+        };
 
-        $eventDispatcher->listen('cli.verify.user-execute.pre', function (CliExecuteEvent $event) {
-            $event->appendArg('127.0.0.1');
-            $event->appendArg($this->getRandomPort());
-        });
+        $eventDispatcher->listen('cli.verify.solution-execute.pre', $appendArgsListener);
+        $eventDispatcher->listen('cli.verify.user-execute.pre', $appendArgsListener);
+        $eventDispatcher->listen('cli.run.user-execute.pre', $appendArgsListener);
 
         $eventDispatcher->listen('cli.verify.solution.executing', function (CliExecuteEvent $event) {
             $args   = $event->getArgs()->getArrayCopy();
@@ -113,6 +113,24 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
                 return new StdOutFailure($this->getName(), $date->format("Y-m-d H:i:s\n"), $out);
             }
             return new Success($this->getName());
+        });
+
+        $eventDispatcher->listen('cli.run.executing', function (CliExecuteEvent $event) {
+            /** @var OutputInterface $output */
+            $output = $event->getParameter('output');
+            $args   = $event->getArgs()->getArrayCopy();
+            $client = $this->socketFactory->createClient(...$args);
+
+            //wait for server to boot
+            usleep(100000);
+
+            $client->connect();
+            $out = $client->readAll();
+
+            //wait for shutdown
+            usleep(100000);
+
+            $output->write($out);
         });
     }
 
