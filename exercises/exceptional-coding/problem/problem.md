@@ -1,6 +1,6 @@
-Write a program that takes an array of filepaths as arguments and outputs the basename of each seperated by a new line. 
+Write a program that takes an array of filepaths as arguments and outputs the basename of each, seperated by a new line. 
 
-Every file should exist but under exceptional circumstances some files may not. In these cases output the message below if it occurs.  
+Every file should exist but under exceptional circumstances some files may not. If this occurs, output a message similar to the below.  
 
 ```
 Unable to open file at path '/file/path'
@@ -11,7 +11,7 @@ The full path of the files to read will be provided as the command line argument
 ----------------------------------------------------------------------
 ## HINTS
 
-You are urged to use `try... catch` logic here along with the SplFileObject contruct which throws a `RuntimeException` when a files does not exist.
+You are urged to use `try... catch` logic here along with the SplFileObject contruct which throws a `RuntimeException` when a file does not exist.
 
 Documentation on the `SplFileObject` class can be found by pointing your browser here:
   [http://php.net/manual/en/class.splfileobject.php]()
