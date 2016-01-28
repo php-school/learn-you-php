@@ -58,7 +58,7 @@ LEARNING FOR ELEPHANTS
 ART;
 
 $app->setLogo($art);
-$app->setFgColour('green');
+$app->setFgColour('magenta');
 $app->setBgColour('black');
 
 return $app;
