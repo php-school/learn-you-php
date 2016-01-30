@@ -759,16 +759,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "0.3.1",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "80079cb264959fe60d6f2af84e41d973a3738efc"
+                "reference": "cdeca0539c2f1448af9faf566d877256b1e4f568"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/80079cb264959fe60d6f2af84e41d973a3738efc",
-                "reference": "80079cb264959fe60d6f2af84e41d973a3738efc",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/cdeca0539c2f1448af9faf566d877256b1e4f568",
+                "reference": "cdeca0539c2f1448af9faf566d877256b1e4f568",
                 "shasum": ""
             },
             "require": {
@@ -816,7 +816,7 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2016-01-28 08:51:02"
+            "time": "2016-01-30 22:01:51"
         },
         {
             "name": "php-school/psx",
