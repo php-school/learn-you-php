@@ -3,10 +3,13 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
+use Colors\Color;
 use Faker\Factory;
 use Faker\Generator;
 use Hoa\Core\Exception\Exception;
 use Hoa\Socket\Client;
+use PhpSchool\CliMenu\Terminal\TerminalInterface;
+use PhpSchool\CliMenu\Terminal\UnixTerminal;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
@@ -15,6 +18,7 @@ use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Factory\RunnerFactory;
+use PhpSchool\PhpWorkshop\Output\StdOutput;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -111,5 +115,29 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
         $this->assertCount(2, $results);
         $success = iterator_to_array($results)[0];
         $this->assertInstanceOf(Success::class, $success);
+    }
+
+    public function testRun()
+    {
+        $color = new Color;
+        $color->setForceStyle(true);
+        $output = new StdOutput($color, $terminal = $this->getMock(TerminalInterface::class));
+        
+        $outputRegEx  = "/\n";
+        $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';
+        $outputRegEx .= "\n";
+        $outputRegEx .= '127.0.0.1, \d+';
+        $outputRegEx .= "\n";
+        $outputRegEx .= '\[1m\[4mOutput\[0m\[0m';
+        $outputRegEx .= "\n";
+        $outputRegEx .= '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
+        $outputRegEx .= "\n/";
+        $this->expectOutputRegex($outputRegEx);
+
+        $this->exerciseDispatcher->run(
+            $this->exercise,
+            __DIR__ . '/../res/time-server/solution.php',
+            $output
+        );
     }
 }
