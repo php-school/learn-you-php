@@ -9,5 +9,5 @@ $fileObjects = array_map(function ($filePath) {
 }, $filePaths);
 
 foreach ($fileObjects as $fileObject) {
-    echo sprintf("%\n", $fileObject->getBasename());
+    echo sprintf("%s\n", $fileObject->getBasename());
 }
