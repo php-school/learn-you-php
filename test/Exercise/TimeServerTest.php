@@ -127,7 +127,7 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
         $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';
         $outputRegEx .= "\n";
         $outputRegEx .= '127.0.0.1, \d+';
-        $outputRegEx .= "\n";
+        $outputRegEx .= "\n\n";
         $outputRegEx .= '\[1m\[4mOutput\[0m\[0m';
         $outputRegEx .= "\n";
         $outputRegEx .= '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
