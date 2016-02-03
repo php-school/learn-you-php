@@ -6,7 +6,7 @@ The very first PHP School workshop. A revolutionary new way to learn PHP </br> B
 
 <p align="center">
 <a href="https://travis-ci.org/php-school/learn-you-php">
-    <img src="https://img.shields.io/travis/php-school/learn-you-php.svg?style=flat-square&label=Linux">
+    <img src="https://img.shields.io/travis/php-school/learn-you-php/master.svg?style=flat-square&label=Linux">
 </a>
 <a href="https://ci.appveyor.com/project/AydinHassan/learn-you-php">
     <img src="https://img.shields.io/appveyor/ci/AydinHassan/learn-you-php/master.svg?style=flat-square&label=Windows">
