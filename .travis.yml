@@ -15,6 +15,7 @@ script:
   - ./vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
   - ./vendor/bin/phpcs --standard=PSR2 ./src/
   - ./vendor/bin/phpcs --standard=PSR2 ./test/
+  - composer global require php-school/learn-you-php
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)
