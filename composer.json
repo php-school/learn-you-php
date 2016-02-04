@@ -11,9 +11,9 @@
     ],
     "require" : {
         "php" : ">=5.6",
-        "php-school/php-workshop": "^0.3@dev",
+        "php-school/php-workshop": "^0.3",
         "hoa/socket": "^0.15.09",
-        "php-school/workshop-installer": "^0.1@dev"
+        "php-school/workshop-installer": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1",
