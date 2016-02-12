@@ -1,6 +1,6 @@
 Write a **TCP time server**!
 
-Your server should listen to TCP connections on the port provided by the first argument to your program. For each connection you must write the current date & 24 hour time in the format:
+Your server should listen to TCP connections on the IP address provided as the first argument and the port provided by the second argument to your program. For each connection you must write the current date & 24 hour time in the format:
 
 ```
 "YYYY-MM-DD hh:mm:ss"
@@ -35,7 +35,7 @@ socket_listen($sock);
 $client = socket_accept($server);
 ```
 
-Remember to use the port number supplied to you as the first command-line argument.
+Remember to use the IP address & port number supplied to you as the first and second command-line argument.
 
 You can read and write to the socket by using `socket_read` and `socket_write`.  For this exercise we only need to write data and then close the socket.
 
