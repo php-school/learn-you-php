@@ -40,9 +40,9 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     {
         $url = 'http://www.time.com/api/%s?iso=%s';
         return [
-            (new Request(sprintf($url, 'parsetime', (new \DateTime)->format(DATE_ISO8601))))
+            (new Request(sprintf($url, 'parsetime', urlencode((new \DateTime)->format(DATE_ISO8601)))))
                 ->withMethod('GET'),
-            (new Request(sprintf($url, 'unixtime', (new \DateTime)->format(DATE_ISO8601))))
+            (new Request(sprintf($url, 'unixtime', urlencode((new \DateTime)->format(DATE_ISO8601)))))
                 ->withMethod('GET'),
         ];
     }
