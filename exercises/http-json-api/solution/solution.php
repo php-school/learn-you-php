@@ -20,7 +20,7 @@ if ($urlParts['path'] === '/api/parsetime') {
 if ($urlParts['path'] === '/api/unixtime') {
     if (isset($_GET['iso'])) {
         $date = new \DateTime($_GET['iso']);
-        echo json_encode(["unixtime" => $date->format('u')]);
+        echo json_encode(["unixtime" => $date->format('U')]);
         exit;
     }
 }

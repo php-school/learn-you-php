@@ -41,7 +41,7 @@ You should also be a good web citizen and set the Content-Type properly:
 header('Content-Type: application/json');
 ```
 
-The PHP `DateTime` object can print dates in ISO format, e.g. `(new \DateTime())->format('u');`. It can also parse this format if you pass the string into the `\DateTime` constructor. The various parameters to `format()` will also
+The PHP `DateTime` object can print dates as a UNIX timestamp, e.g. `(new \DateTime())->format('U');`. It can also parse this format if you pass the string into the `\DateTime` constructor. The various parameters to `format()` will also
 come in handy. You can find the documentation here:
     [http://php.net/manual/en/class.datetime.php]()
 
