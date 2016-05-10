@@ -33,5 +33,15 @@
         "branch-alias": {
             "dev-master": "0.1.x-dev"
         }
+    },
+    "scripts" : {
+        "test": [
+            "phpunit",
+            "@cs"
+        ],
+        "cs" : [
+            "phpcs src --standard=PSR2",
+            "phpcs test --standard=PSR2"
+        ]
     }
 }
