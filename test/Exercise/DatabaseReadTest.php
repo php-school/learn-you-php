@@ -84,7 +84,7 @@ class DatabaseReadTest extends PHPUnit_Framework_TestCase
 
         $dispatcher
             ->expects($this->once())
-            ->method('requireListenableCheck')
+            ->method('requireCheck')
             ->with(DatabaseCheck::class);
 
         $e = new DatabaseRead($this->faker);

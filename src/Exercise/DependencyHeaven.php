@@ -119,6 +119,6 @@ class DependencyHeaven extends AbstractExercise implements
      */
     public function configure(ExerciseDispatcher $dispatcher)
     {
-        $dispatcher->requireCheck(ComposerCheck::class, $dispatcher::CHECK_BEFORE);
+        $dispatcher->requireCheck(ComposerCheck::class);
     }
 }

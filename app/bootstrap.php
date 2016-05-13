@@ -33,7 +33,7 @@ use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
 
-$app = new Application(null, __DIR__ . '/config.php');
+$app = new Application('Learn You PHP!', __DIR__ . '/config.php');
 
 $app->addExercise(HelloWorld::class);
 $app->addExercise(BabySteps::class);

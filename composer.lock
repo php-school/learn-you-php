@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a027b8268a6003f1543fe9c59b38476",
-    "content-hash": "74c0a26eacb2d6ab97931217ff0b6ba9",
+    "hash": "3c34b05495c5ad89debfb44bc0899817",
+    "content-hash": "4d3e25686c86f133f4bb15846c9bec96",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -755,16 +755,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "0.3.8",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "6dd3aa1ffc7b40eaadc8f96708f423ab47ffb79e"
+                "reference": "409365ac18b89f969a5beac7a8abb02766518a10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/6dd3aa1ffc7b40eaadc8f96708f423ab47ffb79e",
-                "reference": "6dd3aa1ffc7b40eaadc8f96708f423ab47ffb79e",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/409365ac18b89f969a5beac7a8abb02766518a10",
+                "reference": "409365ac18b89f969a5beac7a8abb02766518a10",
                 "shasum": ""
             },
             "require": {
@@ -774,6 +774,7 @@
                 "ext-pdo_sqlite": "*",
                 "fzaninotto/faker": "^1.5",
                 "myclabs/php-enum": "^1.4",
+                "nikic/php-parser": "^2.1",
                 "php": ">=5.6",
                 "php-di/invoker": "^1.0",
                 "php-di/php-di": "^5.0",
@@ -815,7 +816,18 @@
                 }
             ],
             "description": "PHP Workshop Framework",
-            "time": "2016-03-31 07:17:26"
+            "homepage": "https://www.phpschool.io",
+            "keywords": [
+                "cli",
+                "console",
+                "education",
+                "learning",
+                "php-school",
+                "phpschool",
+                "terminal",
+                "workshop"
+            ],
+            "time": "2016-05-13 21:04:12"
         },
         {
             "name": "php-school/psx",
@@ -1420,20 +1432,23 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/38e9124049cf1a164f1e4537caf19c99bf1eb260",
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4|~5"
             },
             "type": "library",
             "autoload": {
@@ -1457,7 +1472,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2015-06-21 08:01:12"
+            "time": "2016-05-12 18:03:57"
         },
         {
             "name": "phpunit/php-token-stream",

@@ -121,6 +121,6 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
      */
     public function configure(ExerciseDispatcher $dispatcher)
     {
-        $dispatcher->requireListenableCheck(DatabaseCheck::class);
+        $dispatcher->requireCheck(DatabaseCheck::class);
     }
 }
