@@ -69,11 +69,11 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             $event->appendArg($this->getRandomPort());
         };
 
-        $eventDispatcher->listen('cli.verify.solution-execute.pre', $appendArgsListener);
-        $eventDispatcher->listen('cli.verify.user-execute.pre', $appendArgsListener);
-        $eventDispatcher->listen('cli.run.user-execute.pre', $appendArgsListener);
+        $eventDispatcher->listen('cli.verify.reference-execute.pre', $appendArgsListener);
+        $eventDispatcher->listen('cli.verify.student-execute.pre', $appendArgsListener);
+        $eventDispatcher->listen('cli.run.student-execute.pre', $appendArgsListener);
 
-        $eventDispatcher->listen('cli.verify.solution.executing', function (CliExecuteEvent $event) {
+        $eventDispatcher->listen('cli.verify.reference.executing', function (CliExecuteEvent $event) {
             $args   = $event->getArgs()->getArrayCopy();
             $client = $this->socketFactory->createClient(...$args);
 
@@ -87,7 +87,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             usleep(100000);
         });
 
-        $eventDispatcher->insertVerifier('cli.verify.user.executing', function (CliExecuteEvent $event) {
+        $eventDispatcher->insertVerifier('cli.verify.student.executing', function (CliExecuteEvent $event) {
             $args   = $event->getArgs()->getArrayCopy();
             $client = $this->socketFactory->createClient(...$args);
 
@@ -115,7 +115,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             return new Success($this->getName());
         });
 
-        $eventDispatcher->listen('cli.run.executing', function (CliExecuteEvent $event) {
+        $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) {
             /** @var OutputInterface $output */
             $output = $event->getParameter('output');
             $args   = $event->getArgs()->getArrayCopy();
