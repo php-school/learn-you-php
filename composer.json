@@ -1,6 +1,6 @@
 {
     "name": "php-school/learn-you-php",
-    "description": "Learn You PHP",
+    "description": "An introduction to PHP's core features: i/o, http, arrays, exceptions and so on.",
     "keywords": ["cli", "console", "terminal", "phpschool", "php-school", "workshop", "learning", "education", "php"],
     "homepage": "https://www.phpschool.io",
     "license": "MIT",
