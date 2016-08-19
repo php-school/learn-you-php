@@ -29,8 +29,8 @@ The very first PHP School workshop. A revolutionary new way to learn PHP </br> B
 ## Installation
 
 1. Install [PHP](http://php.net/downloads.php)
-2. Install [Composer](https://getcomposer.org/download/)
-3. Run `composer global require php-school/learn-you-php`
+2. Install [workshop-manager](https://www.phpschool.io/)
+3. Run `workshop-manager install learnyouphp`
 4. Run `learnyouphp`
 
 **learnyouphp** will run through a series of PHP workshops. Starting at a basic "Hello World" and moving on to more advanced exercises about dealing with filesystems, objects, exceptions and streams.
