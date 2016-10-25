@@ -2,7 +2,7 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
-use Hoa\Core\Exception\Exception;
+use Hoa\Socket\Exception\Exception;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
@@ -14,10 +14,6 @@ use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
-use Psr\Http\Message\RequestInterface;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
-use Zend\Diactoros\Request;
 
 /**
  * Class TimeServer
