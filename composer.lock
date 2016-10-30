@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d3db4c80b2157f6465e583b34e6e62b",
+    "content-hash": "e2124b29e0be014c25927b47056dd144",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
-            "version": "1.0.1",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AydinHassan/cli-md-renderer.git",
-                "reference": "9b0ea965eab2033ce6df4c9094c35c1a3d52a602"
+                "reference": "acde5854fd82e37e88e39f95b5fc19cc395df159"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AydinHassan/cli-md-renderer/zipball/9b0ea965eab2033ce6df4c9094c35c1a3d52a602",
-                "reference": "9b0ea965eab2033ce6df4c9094c35c1a3d52a602",
+                "url": "https://api.github.com/repos/AydinHassan/cli-md-renderer/zipball/acde5854fd82e37e88e39f95b5fc19cc395df159",
+                "reference": "acde5854fd82e37e88e39f95b5fc19cc395df159",
                 "shasum": ""
             },
             "require": {
-                "league/commonmark": "^0.11.3",
+                "league/commonmark": "^0.13",
                 "nikic/php-parser": "^2.0",
                 "php": ">=5.5",
                 "php-school/psx": "^1.1.1"
@@ -47,7 +47,7 @@
                 }
             ],
             "description": "A CLI Markdown Render for league/commonmark compatibile AST",
-            "time": "2015-12-04T18:09:36+00:00"
+            "time": "2016-10-27T17:47:22+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -586,16 +586,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.11.3",
+            "version": "0.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d22d6a6a4b049faccc2f8e491cce6076eeb165c7"
+                "reference": "83f8210427fb01f671e272bb8d44b4ed3a94d459"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d22d6a6a4b049faccc2f8e491cce6076eeb165c7",
-                "reference": "d22d6a6a4b049faccc2f8e491cce6076eeb165c7",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/83f8210427fb01f671e272bb8d44b4ed3a94d459",
+                "reference": "83f8210427fb01f671e272bb8d44b4ed3a94d459",
                 "shasum": ""
             },
             "require": {
@@ -606,14 +606,17 @@
                 "colinodell/commonmark-php": "*"
             },
             "require-dev": {
+                "cebe/markdown": "~1.0",
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.22",
-                "jgm/smartpunct": "0.22",
+                "jgm/commonmark": "0.25",
                 "michelf/php-markdown": "~1.4",
-                "mikehaertl/php-shellcommand": "~1.1.0",
-                "phpunit/phpunit": "~4.3",
-                "phpunit/phpunit-mock-objects": "2.3.0",
-                "symfony/finder": "~2.3"
+                "mikehaertl/php-shellcommand": "~1.2.0",
+                "phpunit/phpunit": "~4.3|~5.0",
+                "scrutinizer/ocular": "~1.1",
+                "symfony/finder": "~2.3|~3.0"
+            },
+            "suggest": {
+                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
             },
             "bin": [
                 "bin/commonmark"
@@ -621,7 +624,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.12-dev"
+                    "dev-master": "0.14-dev"
                 }
             },
             "autoload": {
@@ -637,7 +640,7 @@
                 {
                     "name": "Colin O'Dell",
                     "email": "colinodell@gmail.com",
-                    "homepage": "http://www.colinodell.com",
+                    "homepage": "https://www.colinodell.com",
                     "role": "Lead Developer"
                 }
             ],
@@ -648,7 +651,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-09-25T12:40:32+00:00"
+            "time": "2016-06-14T14:49:29+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -887,20 +890,21 @@
         },
         {
             "name": "php-school/cli-menu",
-            "version": "1.2.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/cli-menu.git",
-                "reference": "c7bdb1b67a9d394151b8c4bc78f8d1594d21c0c5"
+                "reference": "5472d7d4fc7b5753820cfb2628f4bf907937e90c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/cli-menu/zipball/c7bdb1b67a9d394151b8c4bc78f8d1594d21c0c5",
-                "reference": "c7bdb1b67a9d394151b8c4bc78f8d1594d21c0c5",
+                "url": "https://api.github.com/repos/php-school/cli-menu/zipball/5472d7d4fc7b5753820cfb2628f4bf907937e90c",
+                "reference": "5472d7d4fc7b5753820cfb2628f4bf907937e90c",
                 "shasum": ""
             },
             "require": {
                 "beberlei/assert": "^2.4",
+                "ext-posix": "*",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -936,24 +940,24 @@
                 "phpschool",
                 "terminal"
             ],
-            "time": "2016-10-03T18:37:45+00:00"
+            "time": "2016-10-27T21:31:02+00:00"
         },
         {
             "name": "php-school/php-workshop",
-            "version": "0.5.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "a9183cfb71296f807e4076655b935975d93396cb"
+                "reference": "602dc827b9875f6f851e4fa6aada2030c6a0888c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a9183cfb71296f807e4076655b935975d93396cb",
-                "reference": "a9183cfb71296f807e4076655b935975d93396cb",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/602dc827b9875f6f851e4fa6aada2030c6a0888c",
+                "reference": "602dc827b9875f6f851e4fa6aada2030c6a0888c",
                 "shasum": ""
             },
             "require": {
-                "aydin-hassan/cli-md-renderer": "~1.0",
+                "aydin-hassan/cli-md-renderer": "^2.1",
                 "beberlei/assert": "^2.4",
                 "container-interop/container-interop": "^1.0",
                 "ext-pdo_sqlite": "*",
@@ -963,7 +967,7 @@
                 "php": ">=5.6",
                 "php-di/invoker": "^1.0",
                 "php-di/php-di": "^5.0",
-                "php-school/cli-menu": "^1.0.3",
+                "php-school/cli-menu": "^2.0",
                 "php-school/psx": "~1.0",
                 "psr/http-message": "^1.0",
                 "symfony/filesystem": "^2.3|^3.0",
@@ -972,7 +976,7 @@
             },
             "require-dev": {
                 "composer/composer": "^1.0-alpha",
-                "phpunit/phpunit": "^5.1",
+                "phpunit/phpunit": "^5.4",
                 "squizlabs/php_codesniffer": "^2.4"
             },
             "type": "library",
@@ -1012,7 +1016,7 @@
                 "terminal",
                 "workshop"
             ],
-            "time": "2016-06-02T17:20:33+00:00"
+            "time": "2016-10-30T17:13:45+00:00"
         },
         {
             "name": "php-school/psx",
@@ -1153,16 +1157,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "682fd8fdb3135fdf05fc496a01579ccf6c85c0e5"
+                "reference": "0565b61bf098cb4dc09f4f103f033138ae4f42c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/682fd8fdb3135fdf05fc496a01579ccf6c85c0e5",
-                "reference": "682fd8fdb3135fdf05fc496a01579ccf6c85c0e5",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/0565b61bf098cb4dc09f4f103f033138ae4f42c6",
+                "reference": "0565b61bf098cb4dc09f4f103f033138ae4f42c6",
                 "shasum": ""
             },
             "require": {
@@ -1198,11 +1202,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-14T00:18:46+00:00"
+            "time": "2016-10-18T04:30:12+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -2386,16 +2390,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3"
+                "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/368b9738d4033c8b93454cb0dbd45d305135a6d3",
-                "reference": "368b9738d4033c8b93454cb0dbd45d305135a6d3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/7ff51b06c6c3d5cc6686df69004a42c69df09e27",
+                "reference": "7ff51b06c6c3d5cc6686df69004a42c69df09e27",
                 "shasum": ""
             },
             "require": {
@@ -2431,7 +2435,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-25T08:27:07+00:00"
+            "time": "2016-10-24T18:41:13+00:00"
         },
         {
             "name": "webmozart/assert",
