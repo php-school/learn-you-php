@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2124b29e0be014c25927b47056dd144",
+    "content-hash": "9b0c181817e5fe25fb933cb3323c86b6",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -51,16 +51,16 @@
         },
         {
             "name": "beberlei/assert",
-            "version": "2.6.5",
+            "version": "v2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/assert.git",
-                "reference": "fbadde44717ea3eb98fba35425d49731185bf418"
+                "reference": "f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/fbadde44717ea3eb98fba35425d49731185bf418",
-                "reference": "fbadde44717ea3eb98fba35425d49731185bf418",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055",
+                "reference": "f567e3e4bce5419bccb9e9b1faf8d4ca9b2f5055",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2016-10-11T17:13:28+00:00"
+            "time": "2016-10-31T12:09:54+00:00"
         },
         {
             "name": "container-interop/container-interop",
@@ -944,16 +944,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "1.1.0",
+            "version": "dev-exercise-selected-event",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "602dc827b9875f6f851e4fa6aada2030c6a0888c"
+                "reference": "ca502721c62209a62211dc6806d9b1cbc47b13d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/602dc827b9875f6f851e4fa6aada2030c6a0888c",
-                "reference": "602dc827b9875f6f851e4fa6aada2030c6a0888c",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/ca502721c62209a62211dc6806d9b1cbc47b13d1",
+                "reference": "ca502721c62209a62211dc6806d9b1cbc47b13d1",
                 "shasum": ""
             },
             "require": {
@@ -1016,7 +1016,7 @@
                 "terminal",
                 "workshop"
             ],
-            "time": "2016-10-30T17:13:45+00:00"
+            "time": "2016-11-01 23:36:06"
         },
         {
             "name": "php-school/psx",
@@ -2490,7 +2490,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "php-school/php-workshop": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

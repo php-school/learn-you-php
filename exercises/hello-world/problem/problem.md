@@ -35,6 +35,7 @@ You should see the word "text" printed out on the console.
 
 Now you must adapt the code to pass the challenge presented. Remember the challenge was: Write a program that prints the text "Hello World" to the console (stdout).
 
+We have created you a file named `hello-world.php` in your current working directory, feel free to use it!
 
 When you have finished and saved the file you must run the following (substituting program.php to the name of the file you created which contains your code)
 

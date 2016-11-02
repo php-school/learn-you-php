@@ -16,6 +16,7 @@ use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
+use PhpSchool\PhpWorkshop\Event\Event;
 use Symfony\Component\Filesystem\Filesystem;
 use Faker\Factory as FakerFactory;
 
@@ -51,5 +52,15 @@ return [
     }),
     DependencyHeaven::class  => factory(function (ContainerInterface $c) {
         return new DependencyHeaven(FakerFactory::create('fr_FR'));
-    })
+    }),
+
+    'eventListeners' => [
+        'exercise.selected.hello-world' => [
+            function () {
+                if (!file_exists('hello-world.php')) {
+                    touch('hello-world.php');
+                }
+            }
+        ]
+    ]
 ];
