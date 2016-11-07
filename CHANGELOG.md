@@ -11,6 +11,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+## [0.3.3]
+### Fixed
+ - Clarified getting started instructions and automatically create first file for students (#70)
+
 ## [0.3.2]
 ### Fixed
  - Fix counting of new lines in exercise 3 (#64)
