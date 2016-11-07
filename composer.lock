@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b0c181817e5fe25fb933cb3323c86b6",
+    "content-hash": "2c22a8bd36843f49bd5db12726e6e1ef",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -944,16 +944,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "dev-exercise-selected-event",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "ca502721c62209a62211dc6806d9b1cbc47b13d1"
+                "reference": "eb888696c84792bea7e82862fa6d5695c6954526"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/ca502721c62209a62211dc6806d9b1cbc47b13d1",
-                "reference": "ca502721c62209a62211dc6806d9b1cbc47b13d1",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/eb888696c84792bea7e82862fa6d5695c6954526",
+                "reference": "eb888696c84792bea7e82862fa6d5695c6954526",
                 "shasum": ""
             },
             "require": {
@@ -1016,7 +1016,7 @@
                 "terminal",
                 "workshop"
             ],
-            "time": "2016-11-01 23:36:06"
+            "time": "2016-11-07T20:57:44+00:00"
         },
         {
             "name": "php-school/psx",
@@ -2490,9 +2490,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-school/php-workshop": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
