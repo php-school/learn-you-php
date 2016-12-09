@@ -8,17 +8,26 @@ use Faker\Factory;
 use Faker\Generator;
 use Hoa\Core\Exception\Exception;
 use Hoa\Socket\Client;
+use PhpParser\ParserFactory;
 use PhpSchool\CliMenu\Terminal\TerminalInterface;
 use PhpSchool\CliMenu\Terminal\UnixTerminal;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
+use PhpSchool\PhpWorkshop\Check\CodeParseCheck;
+use PhpSchool\PhpWorkshop\Check\FileExistsCheck;
+use PhpSchool\PhpWorkshop\Check\PhpLintCheck;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\ExerciseRunner\CliRunner;
+use PhpSchool\PhpWorkshop\ExerciseRunner\Factory\CliRunnerFactory;
+use PhpSchool\PhpWorkshop\ExerciseRunner\RunnerManager;
 use PhpSchool\PhpWorkshop\Factory\RunnerFactory;
+use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Output\StdOutput;
+use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -49,11 +58,20 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $results = new ResultAggregator;
+        $eventDispatcher = new EventDispatcher($results);
+
+        $r = new \ReflectionClass(CliRunner::class);
+        $rp = $r->getProperty('requiredChecks');
+        $rp->setAccessible(true);
+        $rp->setValue([]);
+
+        $runnerManager = new RunnerManager;
+        $runnerManager->addFactory(new CliRunnerFactory($eventDispatcher));
         $this->exerciseDispatcher = new ExerciseDispatcher(
-            new RunnerFactory,
+            $runnerManager,
             $results,
-            new EventDispatcher($results),
-            new CheckRepository([])
+            $eventDispatcher,
+            new CheckRepository()
         );
         $this->exercise = new TimeServer(new TcpSocketFactory);
     }
@@ -71,7 +89,8 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
 
     public function testFailureIsReturnedIfCannotConnect()
     {
-        $results = $this->exerciseDispatcher->verify($this->exercise, 'failure.php');
+        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/no-server.php']);
+        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
         $this->assertCount(2, $results);
 
         $failure = iterator_to_array($results)[0];
@@ -92,25 +111,21 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
 
     public function testFailureIsReturnedIfOutputWasNotCorrect()
     {
-        $results = $this->exerciseDispatcher->verify(
-            $this->exercise,
-            __DIR__ . '/../res/time-server/solution-wrong.php'
-        );
+        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution-wrong.php']);
+        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
 
         $this->assertCount(2, $results);
         $failure = iterator_to_array($results)[0];
 
-        $this->assertInstanceOf(StdOutFailure::class, $failure);
-        $this->assertNotEquals($failure->getExpectedOutput(), $failure->getActualOutput());
+        $this->assertInstanceOf(ComparisonFailure::class, $failure);
+        $this->assertNotEquals($failure->getExpectedValue(), $failure->getActualValue());
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
 
     public function testSuccessIsReturnedIfOutputIsCorrect()
     {
-        $results = $this->exerciseDispatcher->verify(
-            $this->exercise,
-            __DIR__ . '/../res/time-server/solution.php'
-        );
+        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution.php']);
+        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
 
         $this->assertCount(2, $results);
         $success = iterator_to_array($results)[0];
@@ -134,10 +149,7 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
         $outputRegEx .= "\n/";
         $this->expectOutputRegex($outputRegEx);
 
-        $this->exerciseDispatcher->run(
-            $this->exercise,
-            __DIR__ . '/../res/time-server/solution.php',
-            $output
-        );
+        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution.php']);
+        $this->exerciseDispatcher->run($this->exercise, $input, $output);
     }
 }

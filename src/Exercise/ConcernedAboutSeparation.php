@@ -12,6 +12,7 @@ use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -132,12 +133,12 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     }
 
     /**
-     * @param string $fileName
+     * @param Input $input
      * @return ResultInterface
      */
-    public function check($fileName)
+    public function check(Input $input)
     {
-        $statements = $this->parser->parse(file_get_contents($fileName));
+        $statements = $this->parser->parse(file_get_contents($input->getArgument('program')));
 
         $include = null;
         foreach ($statements as $statement) {
