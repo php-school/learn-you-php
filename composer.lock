@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc329fb80aa459b2627395f5426a4e1f",
+    "content-hash": "99f34505dc1aec1eef7b0919552af4d2",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -944,16 +944,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "8d5c4c5d45fe782349c145dce745fcf1340967f9"
+                "reference": "11c72ffb971a4a720e96a350d848a23bc756dfed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/8d5c4c5d45fe782349c145dce745fcf1340967f9",
-                "reference": "8d5c4c5d45fe782349c145dce745fcf1340967f9",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/11c72ffb971a4a720e96a350d848a23bc756dfed",
+                "reference": "11c72ffb971a4a720e96a350d848a23bc756dfed",
                 "shasum": ""
             },
             "require": {
@@ -1021,7 +1021,7 @@
                 "terminal",
                 "workshop"
             ],
-            "time": "2016-12-09 21:30:26"
+            "time": "2016-12-10T17:44:14+00:00"
         },
         {
             "name": "php-school/psx",
@@ -1162,7 +1162,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -1211,7 +1211,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -2396,16 +2396,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f2300ba8fbb002c028710b92e1906e7457410693"
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f2300ba8fbb002c028710b92e1906e7457410693",
-                "reference": "f2300ba8fbb002c028710b92e1906e7457410693",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a7095af4b97a0955f85c8989106c249fa649011f",
+                "reference": "a7095af4b97a0955f85c8989106c249fa649011f",
                 "shasum": ""
             },
             "require": {
@@ -2447,7 +2447,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-18T21:17:59+00:00"
+            "time": "2016-12-10T10:07:06+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -2502,9 +2502,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-school/php-workshop": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
