@@ -55,12 +55,14 @@ return [
     }),
 
     'eventListeners' => [
-        'exercise.selected.hello-world' => [
-            function () {
-                if (!file_exists('hello-world.php')) {
-                    touch('hello-world.php');
+        'create-solution-for-first-exercise' => [
+            'exercise.selected.hello-world' => [
+                function () {
+                    if (!file_exists('hello-world.php')) {
+                        touch('hello-world.php');
+                    }
                 }
-            }
+            ]
         ]
     ]
 ];

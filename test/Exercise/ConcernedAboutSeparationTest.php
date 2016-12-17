@@ -7,6 +7,7 @@ use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\FailureInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -106,7 +107,9 @@ class ConcernedAboutSeparationTest extends PHPUnit_Framework_TestCase
     public function testCheckReturnsFailureIfNoIncludeFoundInSolution()
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
-        $failure = $e->check(__DIR__ . '/../res/concerned-about-separation/no-include.php');
+        $failure = $e->check(
+            new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/no-include.php'])
+        );
         
         $this->assertInstanceOf(Failure::class, $failure);
         $this->assertEquals('No require statement found', $failure->getReason());
@@ -116,7 +119,9 @@ class ConcernedAboutSeparationTest extends PHPUnit_Framework_TestCase
     public function testCheckReturnsSuccessIfIncludeFound()
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
-        $success = $e->check(__DIR__ . '/../res/concerned-about-separation/include.php');
+        $success = $e->check(
+            new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/include.php'])
+        );
 
         $this->assertInstanceOf(Success::class, $success);
         $this->assertEquals('Concerned about Separation?', $success->getCheckName());
