@@ -11,6 +11,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+## [0.4.0]
+### Changed
+ - Updated to php-school/php-workshop 2.0 (#72)
+
 ## [0.3.3]
 ### Fixed
  - Clarified getting started instructions and automatically create first file for students (#70)
