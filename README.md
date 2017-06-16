@@ -21,7 +21,9 @@ The very first PHP School workshop. A revolutionary new way to learn PHP </br> B
     <img src="https://phpschool.herokuapp.com/badge.svg">
 </a>
 </p>
-----
+
+---
+
 <p align="center">
 <img width="500" alt="Learn You PHP Workshop" src="https://cloud.githubusercontent.com/assets/2174476/12734228/2bb56e46-c937-11e5-803a-e94687adfbce.png">
 </p>
