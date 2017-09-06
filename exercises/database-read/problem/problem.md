@@ -45,6 +45,6 @@ foreach ($pdo->query('SELECT * FROM users') as $row) {
 
 You should use prepared statements to perform the updating. You should be most interested in the `prepare` and `execute` methods.
 
-Remember the first argument will be the programs file path and not an argument passed to the program.
+Remember the first argument will be the program's file path and not an argument passed to the program.
 
 ----------------------------------------------------------------------
