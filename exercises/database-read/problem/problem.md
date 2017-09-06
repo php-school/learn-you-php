@@ -1,6 +1,6 @@
 Write a program that receives a database connection string (DSN). Connect to the database, query it and update some data.
 
-Display the information of all the users in the database table `users` who's age is over 30. Print out each row on a new line formatted like:
+Display the information of all the users in the database table `users` whose age is over 30. Print out each row on a new line formatted like:
 
 `User: Jim Morrison Age: 27 Sex: male`
 
