@@ -2,7 +2,7 @@ Write a program that receives a database connection string (DSN). Connect to the
 
 Display the information of all the users in the database table `users` who's age is over 30. Print out each row on a new line formatted like:
 
-`User: Jim Morrison Age: 27 Sex: male`.
+`User: Jim Morrison Age: 27 Sex: male`
 
 Finally you will be given a random name as the second argument to your program, you should update the row in the `users` table which corresponds to this name. You should change the name to `David Attenborough`.
 
