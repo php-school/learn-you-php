@@ -39,7 +39,7 @@ You will also be required to use `danielstjules/stringy` to manipulate the data 
 ----------------------------------------------------------------------
 ## HINTS
 
-Point your browser to [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) which will walk you through **Installing Composer** if you havn't already!
+Point your browser to [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) which will walk you through **Installing Composer** if you haven't already!
 
 Use `composer init` to create your `composer.json` file with interactive search. 
 
