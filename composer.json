@@ -14,7 +14,7 @@
     "require" : {
         "php" : ">=5.6",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "^2.0",
+        "php-school/php-workshop": "^2.2",
         "hoa/socket": "^1.0",
         "php-school/workshop-installer": "^0.1"
     },
@@ -31,11 +31,6 @@
         "psr-4": { "PhpSchool\\LearnYouPhpTest\\": "test/" }
     },
     "bin": ["bin/learnyouphp"],
-    "extra" : {
-        "branch-alias": {
-            "dev-master": "0.1.x-dev"
-        }
-    },
     "scripts" : {
         "test": [
             "phpunit",
