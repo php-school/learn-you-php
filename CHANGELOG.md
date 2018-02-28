@@ -11,6 +11,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+## [0.5.0]
+### Fixed
+ - Updated klein/klein to fix output comparison which causes an exercise to incorrectly fail (#84)
+
+### Changed
+ - Updated to php-school/php-workshop 2.2
+ - Updated to phpunit/phpunit 5.7
+
 ## [0.4.0]
 ### Changed
  - Updated to php-school/php-workshop 2.0 (#72)
