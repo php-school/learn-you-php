@@ -40,5 +40,10 @@
             "phpcs src --standard=PSR2",
             "phpcs test --standard=PSR2"
         ]
+    },
+    "config": {
+        "platform": {
+            "php": "5.6"
+        }
     }
 }
