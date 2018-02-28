@@ -10,16 +10,13 @@ use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
-use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class ExceptionalCodingTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class ExceptionalCodingTest extends PHPUnit_Framework_TestCase
+class ExceptionalCodingTest extends TestCase
 {
 
     /**

@@ -5,15 +5,13 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 
 /**
- * Class BabyStepsTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class BabyStepsTest extends PHPUnit_Framework_TestCase
+class BabyStepsTest extends TestCase
 {
     public function testHelloWorldExercise()
     {

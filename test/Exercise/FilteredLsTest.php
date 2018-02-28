@@ -5,16 +5,14 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class FilteredLsTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class FilteredLsTest extends PHPUnit_Framework_TestCase
+class FilteredLsTest extends TestCase
 {
 
     /**

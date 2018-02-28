@@ -5,15 +5,13 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 
 /**
- * Class HelloWorldTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class HelloWorldTest extends PHPUnit_Framework_TestCase
+class HelloWorldTest extends TestCase
 {
     public function testHelloWorldExercise()
     {

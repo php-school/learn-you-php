@@ -10,14 +10,12 @@ use PhpSchool\PhpWorkshop\Check\DatabaseCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Class DatabaseReadTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class DatabaseReadTest extends PHPUnit_Framework_TestCase
+class DatabaseReadTest extends TestCase
 {
     /**
      * @var Generator

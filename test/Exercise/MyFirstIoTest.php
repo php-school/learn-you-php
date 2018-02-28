@@ -9,16 +9,14 @@ use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class MyFirstIoTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class MyFirstIoTest extends PHPUnit_Framework_TestCase
+class MyFirstIoTest extends TestCase
 {
 
     /**

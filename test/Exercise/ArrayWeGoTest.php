@@ -10,15 +10,13 @@ use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class ArrayWeGoTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class ArrayWeGoTest extends PHPUnit_Framework_TestCase
+class ArrayWeGoTest extends TestCase
 {
 
     /**

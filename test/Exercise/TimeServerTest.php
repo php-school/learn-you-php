@@ -4,20 +4,10 @@
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Colors\Color;
-use Faker\Factory;
-use Faker\Generator;
-use Hoa\Core\Exception\Exception;
-use Hoa\Socket\Client;
-use PhpParser\ParserFactory;
 use PhpSchool\CliMenu\Terminal\TerminalInterface;
-use PhpSchool\CliMenu\Terminal\UnixTerminal;
-use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
-use PhpSchool\PhpWorkshop\Check\CodeParseCheck;
-use PhpSchool\PhpWorkshop\Check\FileExistsCheck;
-use PhpSchool\PhpWorkshop\Check\PhpLintCheck;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
@@ -33,16 +23,12 @@ use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
-use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
-use Symfony\Component\Filesystem\Filesystem;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Class TimeServerTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class TimeServerTest extends PHPUnit_Framework_TestCase
+class TimeServerTest extends TestCase
 {
 
     /**

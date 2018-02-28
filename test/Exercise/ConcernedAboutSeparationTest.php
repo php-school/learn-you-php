@@ -9,18 +9,15 @@ use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\FailureInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class ConcernedAboutSeparationTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class ConcernedAboutSeparationTest extends PHPUnit_Framework_TestCase
+class ConcernedAboutSeparationTest extends TestCase
 {
     /**
      * @var Filesystem

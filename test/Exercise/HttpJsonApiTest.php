@@ -3,23 +3,16 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
-use Faker\Factory;
-use Faker\Generator;
-use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
-use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Class HttpJsonApiTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class HttpJsonApiTest extends PHPUnit_Framework_TestCase
+class HttpJsonApiTest extends TestCase
 {
     public function testHttpJsonApiExercise()
     {

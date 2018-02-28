@@ -9,15 +9,13 @@ use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
 /**
- * Class DependencyHeavenTest
- * @package PhpSchool\LearnYouPhpTest\Exercise
  * @author Michael Woodward <mikeymike.mw@gmail.com>
  */
-class DependencyHeavenTest extends PHPUnit_Framework_TestCase
+class DependencyHeavenTest extends TestCase
 {
 
     /**
