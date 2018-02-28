@@ -136,7 +136,7 @@ class TimeServerTest extends PHPUnit_Framework_TestCase
     {
         $color = new Color;
         $color->setForceStyle(true);
-        $output = new StdOutput($color, $terminal = $this->getMock(TerminalInterface::class));
+        $output = new StdOutput($color, $terminal = $this->createMock(TerminalInterface::class));
         
         $outputRegEx  = "/\n";
         $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';
