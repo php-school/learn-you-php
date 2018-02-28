@@ -8,7 +8,7 @@ php:
 
 install:
   - composer self-update
-  - composer install --dev --prefer-source
+  - composer install
 
 before_script:
   - mkdir -p build/logs
