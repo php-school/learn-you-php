@@ -11,6 +11,10 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+## [0.5.1]
+### Fixed
+ - Fix dev dependency issue
+
 ## [0.5.0]
 ### Fixed
  - Updated klein/klein to fix output comparison which causes an exercise to incorrectly fail (#84)
