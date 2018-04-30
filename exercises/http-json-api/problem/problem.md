@@ -14,7 +14,7 @@ The JSON response should contain only 'hour', 'minute' and 'second' properties. 
 }
 ```
 
-Add a second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch time in milliseconds (the number of milliseconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
+Add a second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch time in seconds (the number of seconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
 
 For example:
 
