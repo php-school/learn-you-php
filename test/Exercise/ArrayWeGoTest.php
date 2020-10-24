@@ -12,9 +12,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @author Michael Woodward <mikeymike.mw@gmail.com>
- */
 class ArrayWeGoTest extends TestCase
 {
 

@@ -15,11 +15,6 @@ use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use Zend\Diactoros\Request;
 
-/**
- * Class DependencyHeaven
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Michael Woodward <mikeymike.mw@gmail.com>
- */
 class DependencyHeaven extends AbstractExercise implements
     ExerciseInterface,
     CgiExercise,

@@ -14,11 +14,6 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class ArrayWeGo
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Michael Woodward <mikeymike.mw@gmail.com>
- */
 class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionRequirementsExerciseCheck, CliExercise
 {
     use TemporaryDirectoryTrait;

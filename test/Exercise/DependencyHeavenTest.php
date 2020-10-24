@@ -12,9 +12,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
-/**
- * @author Michael Woodward <mikeymike.mw@gmail.com>
- */
 class DependencyHeavenTest extends TestCase
 {
 

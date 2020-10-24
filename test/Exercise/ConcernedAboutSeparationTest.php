@@ -14,9 +14,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class ConcernedAboutSeparationTest extends TestCase
 {
     /**

@@ -8,9 +8,6 @@ use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class FilteredLsTest extends TestCase
 {
 

@@ -12,9 +12,6 @@ use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class MyFirstIoTest extends TestCase
 {
 

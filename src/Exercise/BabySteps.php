@@ -8,11 +8,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 
-/**
- * Class BabySteps
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class BabySteps extends AbstractExercise implements ExerciseInterface, CliExercise
 {
 

@@ -9,11 +9,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 
-/**
- * Class HelloWorld
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExercise
 {
 

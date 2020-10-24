@@ -21,11 +21,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use PhpParser\Node\Expr\Include_;
 
-/**
- * Class ConcernedAboutSeparation
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInterface, CliExercise, SelfCheck
 {
     use TemporaryDirectoryTrait;

@@ -6,10 +6,6 @@ use Hoa\Socket\Client;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class TcpSocketFactoryTest
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class TcpSocketFactoryTest extends TestCase
 {
     public function testCreateClient(): void

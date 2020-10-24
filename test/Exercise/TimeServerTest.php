@@ -24,9 +24,6 @@ use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @author Michael Woodward <mikeymike.mw@gmail.com>
- */
 class TimeServerTest extends TestCase
 {
 

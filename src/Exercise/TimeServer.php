@@ -16,11 +16,6 @@ use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
 
-/**
- * Class TimeServer
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
 

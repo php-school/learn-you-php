@@ -10,11 +10,6 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use Psr\Http\Message\RequestInterface;
 use Zend\Diactoros\Request;
 
-/**
- * Class HttpJsonApi
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExercise
 {
     /**

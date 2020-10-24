@@ -11,11 +11,6 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class FilteredLs
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExercise
 {
     use TemporaryDirectoryTrait;

@@ -7,9 +7,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class BabyStepsTest extends TestCase
 {
     public function testBabyStepsExercise(): void

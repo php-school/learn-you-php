@@ -8,9 +8,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HttpJsonApiTest extends TestCase
 {
     public function testHttpJsonApiExercise(): void

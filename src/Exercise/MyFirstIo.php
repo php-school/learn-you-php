@@ -14,11 +14,6 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class MyFirstIo
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class MyFirstIo extends AbstractExercise implements
     ExerciseInterface,
     CliExercise,

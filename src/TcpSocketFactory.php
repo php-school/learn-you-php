@@ -4,11 +4,6 @@ namespace PhpSchool\LearnYouPhp;
 
 use Hoa\Socket\Client;
 
-/**
- * Class SocketFactory
- * @package PhpSchool\LearnYouPhp
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class TcpSocketFactory
 {
     /**

@@ -7,9 +7,6 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
 
-/**
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class HelloWorldTest extends TestCase
 {
     public function testHelloWorldExercise(): void

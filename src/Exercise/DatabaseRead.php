@@ -17,12 +17,6 @@ use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\SubmissionPatch;
 use Symfony\Component\Filesystem\Filesystem;
 
-/**
- * Class DatabaseRead
- * @package PhpSchool\LearnYouPhp\Exercise
- * @author Michael Woodawrd <mikeymike.mw@gmail.com>
- * @author Aydin Hassan <aydin@hotmail.co.uk>
- */
 class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck, CliExercise
 {
 
