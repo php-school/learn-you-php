@@ -34,14 +34,14 @@ class ConcernedAboutSeparationTest extends TestCase
      */
     private $parser;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->filesystem = new Filesystem();
         $this->faker = Factory::create();
         $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     }
 
-    public function testConcernedAboutSeparationExercise()
+    public function testConcernedAboutSeparationExercise(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $this->assertEquals('Concerned about Separation?', $e->getName());
@@ -53,7 +53,7 @@ class ConcernedAboutSeparationTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreatesFilesAndReturnsRandomExt()
+    public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $args = $e->getArgs();
@@ -89,7 +89,7 @@ class ConcernedAboutSeparationTest extends TestCase
         $this->assertTrue(in_array($args[1], $extensions));
     }
 
-    public function testTearDownRemovesFile()
+    public function testTearDownRemovesFile(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $args = $e->getArgs();
@@ -101,7 +101,7 @@ class ConcernedAboutSeparationTest extends TestCase
         $this->assertFileNotExists($path);
     }
 
-    public function testCheckReturnsFailureIfNoIncludeFoundInSolution()
+    public function testCheckReturnsFailureIfNoIncludeFoundInSolution(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $failure = $e->check(
@@ -113,7 +113,7 @@ class ConcernedAboutSeparationTest extends TestCase
         $this->assertEquals('Concerned about Separation?', $failure->getCheckName());
     }
 
-    public function testCheckReturnsSuccessIfIncludeFound()
+    public function testCheckReturnsSuccessIfIncludeFound(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
         $success = $e->check(

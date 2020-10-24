@@ -19,12 +19,12 @@ class FilteredLsTest extends TestCase
      */
     private $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->filesystem = new Filesystem();
     }
 
-    public function testFilteredLsExercise()
+    public function testFilteredLsExercise(): void
     {
         $e = new FilteredLs($this->filesystem);
         $this->assertEquals('Filtered LS', $e->getName());
@@ -36,7 +36,7 @@ class FilteredLsTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreatesFilesAndReturnsRandomExt()
+    public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
     {
         $e = new FilteredLs($this->filesystem);
         $args = $e->getArgs();
@@ -72,7 +72,7 @@ class FilteredLsTest extends TestCase
         $this->assertTrue(in_array($args[1], $extensions));
     }
 
-    public function testTearDownRemovesFile()
+    public function testTearDownRemovesFile(): void
     {
         $e = new FilteredLs($this->filesystem);
         $args = $e->getArgs();

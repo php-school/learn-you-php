@@ -12,7 +12,7 @@ use PhpSchool\LearnYouPhp\Exercise\HelloWorld;
  */
 class HelloWorldTest extends TestCase
 {
-    public function testHelloWorldExercise()
+    public function testHelloWorldExercise(): void
     {
         $e = new HelloWorld();
         $this->assertEquals('Hello World', $e->getName());

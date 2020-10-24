@@ -13,7 +13,7 @@ use Psr\Http\Message\RequestInterface;
  */
 class HttpJsonApiTest extends TestCase
 {
-    public function testHttpJsonApiExercise()
+    public function testHttpJsonApiExercise(): void
     {
         $e = new HttpJsonApi();
         $this->assertEquals('HTTP JSON API', $e->getName());

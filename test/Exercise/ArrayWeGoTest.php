@@ -28,13 +28,13 @@ class ArrayWeGoTest extends TestCase
      */
     private $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create();
         $this->filesystem = new Filesystem();
     }
 
-    public function testArrWeGoExercise()
+    public function testArrWeGoExercise(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $this->assertEquals('Array We Go!', $e->getName());
@@ -46,7 +46,7 @@ class ArrayWeGoTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreateAtLeastOneExistingFile()
+    public function testGetArgsCreateAtLeastOneExistingFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -60,7 +60,7 @@ class ArrayWeGoTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($existingFiles));
     }
 
-    public function testGetArgsHasAtLeastOneNonExistingFile()
+    public function testGetArgsHasAtLeastOneNonExistingFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -76,7 +76,7 @@ class ArrayWeGoTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($nonExistingFiles));
     }
 
-    public function testTearDownRemovesFile()
+    public function testTearDownRemovesFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -90,14 +90,14 @@ class ArrayWeGoTest extends TestCase
         $this->assertFileNotExists($existingFiles[0]);
     }
 
-    public function testFunctionRequirements()
+    public function testFunctionRequirements(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
         $this->assertEquals(['array_shift', 'array_filter', 'array_map'], $e->getRequiredFunctions());
         $this->assertEquals(['basename'], $e->getBannedFunctions());
     }
 
-    public function testConfigure()
+    public function testConfigure(): void
     {
         $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
             ->disableOriginalConstructor()

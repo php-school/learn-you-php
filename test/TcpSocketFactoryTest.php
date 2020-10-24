@@ -4,15 +4,15 @@ namespace PhpSchool\LearnYouPhpTest;
 
 use Hoa\Socket\Client;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class TcpSocketFactoryTest
  * @author Aydin Hassan <aydin@hotmail.co.uk>
  */
-class TcpSocketFactoryTest extends PHPUnit_Framework_TestCase
+class TcpSocketFactoryTest extends TestCase
 {
-    public function testCreateClient()
+    public function testCreateClient(): void
     {
         $factory = new TcpSocketFactory();
         $client = $factory->createClient('127.0.0.1', 65000);
