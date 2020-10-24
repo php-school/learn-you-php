@@ -20,7 +20,7 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'HTTP JSON API';
     }
@@ -28,7 +28,7 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'HTTP JSON API - Servers JSON when it receives a GET request';
     }
@@ -36,7 +36,7 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     /**
      * @return RequestInterface[]
      */
-    public function getRequests()
+    public function getRequests(): array
     {
         $url = 'http://www.time.com/api/%s?iso=%s';
         return [
@@ -50,7 +50,7 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CGI();
     }

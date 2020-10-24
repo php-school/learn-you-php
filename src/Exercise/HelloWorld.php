@@ -20,7 +20,7 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Hello World';
     }
@@ -28,7 +28,7 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Simple Hello World exercise';
     }
@@ -36,7 +36,7 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         return [];
     }
@@ -44,7 +44,7 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }

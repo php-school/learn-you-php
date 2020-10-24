@@ -60,7 +60,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Concerned about Separation?';
     }
@@ -68,7 +68,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Separate code and utilise files and classes';
     }
@@ -76,7 +76,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         $folder = $this->getTemporaryPath();
 
@@ -119,7 +119,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return SolutionInterface
      */
-    public function getSolution()
+    public function getSolution(): SolutionInterface
     {
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/concerned-about-separation/solution');
     }
@@ -127,7 +127,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return null
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
@@ -136,7 +136,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
      * @param Input $input
      * @return ResultInterface
      */
-    public function check(Input $input)
+    public function check(Input $input): ResultInterface
     {
         $statements = $this->parser->parse(file_get_contents($input->getArgument('program')));
 
@@ -158,7 +158,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }

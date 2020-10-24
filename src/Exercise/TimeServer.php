@@ -41,7 +41,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Time Server';
     }
@@ -49,7 +49,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Build a Time Server!';
     }
@@ -57,7 +57,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @param ExerciseDispatcher $exerciseDispatcher
      */
-    public function configure(ExerciseDispatcher $exerciseDispatcher)
+    public function configure(ExerciseDispatcher $exerciseDispatcher): void
     {
         $eventDispatcher = $exerciseDispatcher->getEventDispatcher();
 
@@ -134,7 +134,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string
      */
-    private function getRandomPort()
+    private function getRandomPort(): string
     {
         return (string) mt_rand(1025, 65535);
     }
@@ -142,7 +142,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }
@@ -150,7 +150,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     /**
      * @return string[]
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         return [];
     }

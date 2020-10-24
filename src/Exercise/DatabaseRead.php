@@ -47,7 +47,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Database Read';
     }
@@ -55,7 +55,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Read an SQL databases contents';
     }
@@ -63,7 +63,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         return [$this->randomRecord['name']];
     }
@@ -72,7 +72,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
      * @param PDO $db
      * @return void
      */
-    public function seed(PDO $db)
+    public function seed(PDO $db): void
     {
         $db
             ->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, gender TEXT)');
@@ -97,7 +97,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
      * @param PDO $db
      * @return bool
      */
-    public function verify(PDO $db)
+    public function verify(PDO $db): bool
     {
         $sql = 'SELECT name FROM users WHERE id = :id';
         $stmt = $db->prepare($sql);
@@ -111,7 +111,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }
@@ -119,7 +119,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     /**
      * @param ExerciseDispatcher $dispatcher
      */
-    public function configure(ExerciseDispatcher $dispatcher)
+    public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(DatabaseCheck::class);
     }

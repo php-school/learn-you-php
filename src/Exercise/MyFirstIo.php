@@ -49,7 +49,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'My First IO';
     }
@@ -57,7 +57,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Read a file from the file system';
     }
@@ -65,7 +65,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         $path = $this->getTemporaryPath();
         $paragraphs = $this->faker->paragraphs(rand(5, 50), true);
@@ -77,7 +77,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return null
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
@@ -85,7 +85,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return string[]
      */
-    public function getRequiredFunctions()
+    public function getRequiredFunctions(): array
     {
         return ['file_get_contents'];
     }
@@ -93,7 +93,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return string[]
      */
-    public function getBannedFunctions()
+    public function getBannedFunctions(): array
     {
         return ['file'];
     }
@@ -101,7 +101,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }
@@ -109,7 +109,7 @@ class MyFirstIo extends AbstractExercise implements
     /**
      * @param ExerciseDispatcher $dispatcher
      */
-    public function configure(ExerciseDispatcher $dispatcher)
+    public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);
     }

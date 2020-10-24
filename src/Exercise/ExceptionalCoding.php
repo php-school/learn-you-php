@@ -44,7 +44,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return "Exceptional Coding";
     }
@@ -52,7 +52,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return "Introduction to Exceptions";
     }
@@ -60,7 +60,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         $this->filesystem->mkdir($this->getTemporaryPath());
 
@@ -82,7 +82,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
@@ -90,7 +90,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return string[]
      */
-    public function getRequiredFunctions()
+    public function getRequiredFunctions(): array
     {
         return [];
     }
@@ -98,7 +98,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return string[]
      */
-    public function getBannedFunctions()
+    public function getBannedFunctions(): array
     {
         return ['array_filter', 'file_exists'];
     }
@@ -106,7 +106,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }
@@ -114,7 +114,7 @@ class ExceptionalCoding extends AbstractExercise implements
     /**
      * @param ExerciseDispatcher $dispatcher
      */
-    public function configure(ExerciseDispatcher $dispatcher)
+    public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);
     }
