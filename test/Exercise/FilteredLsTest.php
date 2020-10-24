@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
@@ -22,7 +21,7 @@ class FilteredLsTest extends TestCase
 
     public function setUp()
     {
-        $this->filesystem = new Filesystem;
+        $this->filesystem = new Filesystem();
     }
 
     public function testFilteredLsExercise()

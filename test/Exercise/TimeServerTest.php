@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Colors\Color;
@@ -43,7 +42,7 @@ class TimeServerTest extends TestCase
 
     public function setUp()
     {
-        $results = new ResultAggregator;
+        $results = new ResultAggregator();
         $eventDispatcher = new EventDispatcher($results);
 
         $r = new \ReflectionClass(CliRunner::class);
@@ -51,7 +50,7 @@ class TimeServerTest extends TestCase
         $rp->setAccessible(true);
         $rp->setValue([]);
 
-        $runnerManager = new RunnerManager;
+        $runnerManager = new RunnerManager();
         $runnerManager->addFactory(new CliRunnerFactory($eventDispatcher));
         $this->exerciseDispatcher = new ExerciseDispatcher(
             $runnerManager,
@@ -59,7 +58,7 @@ class TimeServerTest extends TestCase
             $eventDispatcher,
             new CheckRepository()
         );
-        $this->exercise = new TimeServer(new TcpSocketFactory);
+        $this->exercise = new TimeServer(new TcpSocketFactory());
     }
 
     public function testGetters()
@@ -120,10 +119,10 @@ class TimeServerTest extends TestCase
 
     public function testRun()
     {
-        $color = new Color;
+        $color = new Color();
         $color->setForceStyle(true);
         $output = new StdOutput($color, $terminal = $this->createMock(TerminalInterface::class));
-        
+
         $outputRegEx  = "/\n";
         $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';
         $outputRegEx .= "\n";

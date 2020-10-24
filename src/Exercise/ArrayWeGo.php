@@ -22,7 +22,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionRequirementsExerciseCheck, CliExercise
 {
     use TemporaryDirectoryTrait;
-    
+
     /**
      * @var Filesystem
      */

@@ -36,9 +36,9 @@ class ConcernedAboutSeparationTest extends TestCase
 
     public function setUp()
     {
-        $this->filesystem = new Filesystem;
+        $this->filesystem = new Filesystem();
         $this->faker = Factory::create();
-        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     }
 
     public function testConcernedAboutSeparationExercise()
@@ -107,7 +107,7 @@ class ConcernedAboutSeparationTest extends TestCase
         $failure = $e->check(
             new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/no-include.php'])
         );
-        
+
         $this->assertInstanceOf(Failure::class, $failure);
         $this->assertEquals('No require statement found', $failure->getReason());
         $this->assertEquals('Concerned about Separation?', $failure->getCheckName());
