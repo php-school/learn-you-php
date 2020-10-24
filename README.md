@@ -5,17 +5,11 @@ The very first PHP School workshop. A revolutionary new way to learn PHP </br> B
 </p>
 
 <p align="center">
-<a href="https://travis-ci.org/php-school/learn-you-php">
-    <img src="https://img.shields.io/travis/php-school/learn-you-php/master.svg?style=flat-square&label=Linux">
-</a>
-<a href="https://ci.appveyor.com/project/AydinHassan/learn-you-php">
-    <img src="https://img.shields.io/appveyor/ci/AydinHassan/learn-you-php/master.svg?style=flat-square&label=Windows">
+<a href="https://github.com/php-school/learn-you-php/actions">
+    <img src="https://github.com/php-school/workshop-manager/workflows/LearnYouPhp/badge.svg">
 </a>
 <a href="https://codecov.io/github/php-school/learn-you-php">
     <img src="https://img.shields.io/codecov/c/github/php-school/learn-you-php.svg?style=flat-square">
-</a>
-<a href="https://scrutinizer-ci.com/g/php-school/learn-you-php/">
-    <img src="https://img.shields.io/scrutinizer/g/php-school/learn-you-php.svg?style=flat-square">
 </a>
 <a href="https://phpschool-team.slack.com/messages">
     <img src="https://phpschool.herokuapp.com/badge.svg">
