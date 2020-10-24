@@ -37,7 +37,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     {
         $this->socketFactory = $socketFactory;
     }
-    
+
     /**
      * @return string
      */
@@ -102,7 +102,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             //wait for shutdown
             usleep(100000);
 
-            $date = new \DateTime;
+            $date = new \DateTime();
 
             //match the current date but any seconds
             //since we can't mock time in PHP easily

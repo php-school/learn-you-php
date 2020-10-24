@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
@@ -15,7 +14,7 @@ class HelloWorldTest extends TestCase
 {
     public function testHelloWorldExercise()
     {
-        $e = new HelloWorld;
+        $e = new HelloWorld();
         $this->assertEquals('Hello World', $e->getName());
         $this->assertEquals('Simple Hello World exercise', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());

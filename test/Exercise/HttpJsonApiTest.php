@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
@@ -16,7 +15,7 @@ class HttpJsonApiTest extends TestCase
 {
     public function testHttpJsonApiExercise()
     {
-        $e = new HttpJsonApi;
+        $e = new HttpJsonApi();
         $this->assertEquals('HTTP JSON API', $e->getName());
         $this->assertEquals('HTTP JSON API - Servers JSON when it receives a GET request', $e->getDescription());
         $this->assertEquals(ExerciseType::CGI, $e->getType());
@@ -24,10 +23,10 @@ class HttpJsonApiTest extends TestCase
         $requests = $e->getRequests();
         $request1 = $requests[0];
         $request2 = $requests[1];
-        
+
         $this->assertInstanceOf(RequestInterface::class, $request1);
         $this->assertInstanceOf(RequestInterface::class, $request2);
-        
+
         $this->assertSame('GET', $request1->getMethod());
         $this->assertSame('GET', $request2->getMethod());
         $this->assertSame('www.time.com', $request1->getUri()->getHost());

@@ -67,7 +67,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     {
         return [$this->randomRecord['name']];
     }
-    
+
     /**
      * @param PDO $db
      * @return void
@@ -104,7 +104,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
 
         $stmt->execute([':id' => $this->randomRecord['id']]);
         $result = $stmt->fetchColumn();
-        
+
         return $result === 'David Attenborough';
     }
 

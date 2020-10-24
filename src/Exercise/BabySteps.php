@@ -40,7 +40,7 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
         $numArgs = rand(0, 10);
 
         $args = [];
-        for ($i = 0; $i < $numArgs; $i ++) {
+        for ($i = 0; $i < $numArgs; $i++) {
             $args[] = rand(0, 100);
         }
 

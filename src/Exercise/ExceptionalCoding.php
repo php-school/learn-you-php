@@ -20,7 +20,7 @@ class ExceptionalCoding extends AbstractExercise implements
     FunctionRequirementsExerciseCheck
 {
     use TemporaryDirectoryTrait;
-    
+
     /**
      * @var Filesystem
      */

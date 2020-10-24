@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Faker\Factory;
@@ -32,7 +31,7 @@ class MyFirstIoTest extends TestCase
     public function setUp()
     {
         $this->faker = Factory::create();
-        $this->filesystem = new Filesystem;
+        $this->filesystem = new Filesystem();
     }
 
     public function testMyFirstIoExercise()

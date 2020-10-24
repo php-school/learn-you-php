@@ -44,12 +44,12 @@ class DatabaseReadTest extends TestCase
         $db = new PDO('sqlite::memory:');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $e = new DatabaseRead($this->faker);
-        
+
         $e->seed($db);
 
         $args = $e->getArgs();
         $stmt = $db->query('SELECT * FROM users;');
-        
+
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $this->assertTrue(count($users) >= 5);
         $this->assertInternalType('array', $users);
@@ -61,7 +61,7 @@ class DatabaseReadTest extends TestCase
         $db = new PDO('sqlite::memory:');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $e = new DatabaseRead($this->faker);
-        
+
         $rp = new \ReflectionProperty(DatabaseRead::class, 'randomRecord');
         $rp->setAccessible(true);
         $rp->setValue($e, ['id' => 5]);
@@ -70,7 +70,7 @@ class DatabaseReadTest extends TestCase
             ->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, gender TEXT)');
         $stmt = $db->prepare('INSERT INTO users (id, name, age, gender) VALUES (:id, :name, :age, :gender)');
         $stmt->execute([':id' => 5, ':name' => 'David Attenborough', ':age' => 50, ':gender' => 'Male']);
-        
+
         $this->assertTrue($e->verify($db));
     }
 

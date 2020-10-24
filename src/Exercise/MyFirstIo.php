@@ -25,7 +25,7 @@ class MyFirstIo extends AbstractExercise implements
     FunctionRequirementsExerciseCheck
 {
     use TemporaryDirectoryTrait;
-    
+
     /**
      * @var Filesystem
      */

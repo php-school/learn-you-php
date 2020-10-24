@@ -1,6 +1,5 @@
 <?php
 
-
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Faker\Factory;
@@ -32,7 +31,7 @@ class ArrayWeGoTest extends TestCase
     public function setUp()
     {
         $this->faker = Factory::create();
-        $this->filesystem = new Filesystem;
+        $this->filesystem = new Filesystem();
     }
 
     public function testArrWeGoExercise()
@@ -41,7 +40,7 @@ class ArrayWeGoTest extends TestCase
         $this->assertEquals('Array We Go!', $e->getName());
         $this->assertEquals('Filter an array of file paths and map to SplFile objects', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
-        
+
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());

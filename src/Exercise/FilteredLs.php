@@ -19,7 +19,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExercise
 {
     use TemporaryDirectoryTrait;
-    
+
     /**
      * @var Filesystem
      */
@@ -48,7 +48,7 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
     {
         return 'Read files in a folder and filter by a given extension';
     }
-    
+
     /**
      * @return array
      */
