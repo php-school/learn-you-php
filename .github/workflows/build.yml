@@ -1,0 +1,46 @@
+name: LearnYouPhp
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [5.6, 7.0, 7.1, 7.2, 7.3]
+
+    name: PHP ${{ matrix.php }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v1,pecl
+          extensions: pdo_sqlite
+
+      - name: Install Dependencies
+        run: composer update
+
+      - name: Run phpunit tests
+        run: |
+          mkdir -p build/logs
+          vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+
+      - name: Run phpcs
+        run: composer cs
+
+#      - name: Run phpstan
+#        run: composer static
+
+      - name: Coverage upload
+        if: matrix.php == '7.3'
+        run: bash <(curl -s https://codecov.io/bash)
+
