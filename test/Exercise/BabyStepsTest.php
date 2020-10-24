@@ -12,7 +12,7 @@ use PhpSchool\LearnYouPhp\Exercise\BabySteps;
  */
 class BabyStepsTest extends TestCase
 {
-    public function testHelloWorldExercise()
+    public function testBabyStepsExercise(): void
     {
         $e = new BabySteps();
         $this->assertEquals('Baby Steps', $e->getName());
@@ -26,10 +26,9 @@ class BabyStepsTest extends TestCase
         } while (empty($args));
 
         foreach ($args as $arg) {
-            $this->assertInternalType('int', $arg);
+            $this->assertIsInt($arg);
         }
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
         $this->assertNull($e->tearDown());
     }

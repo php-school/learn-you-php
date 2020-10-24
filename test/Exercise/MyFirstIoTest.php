@@ -28,13 +28,13 @@ class MyFirstIoTest extends TestCase
      */
     private $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create();
         $this->filesystem = new Filesystem();
     }
 
-    public function testMyFirstIoExercise()
+    public function testMyFirstIoExercise(): void
     {
         $e = new MyFirstIo($this->filesystem, $this->faker);
         $this->assertEquals('My First IO', $e->getName());
@@ -46,7 +46,7 @@ class MyFirstIoTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreatesFileWithRandomContentFromFake()
+    public function testGetArgsCreatesFileWithRandomContentFromFake(): void
     {
 
         $e = new MyFirstIo($this->filesystem, $this->faker);
@@ -65,7 +65,7 @@ class MyFirstIoTest extends TestCase
         $this->assertNotEquals($content1, $content2);
     }
 
-    public function testTearDownRemovesFile()
+    public function testTearDownRemovesFile(): void
     {
         $e = new MyFirstIo($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -77,14 +77,14 @@ class MyFirstIoTest extends TestCase
         $this->assertFileNotExists($path);
     }
 
-    public function testFunctionRequirements()
+    public function testFunctionRequirements(): void
     {
         $e = new MyFirstIo($this->filesystem, $this->faker);
         $this->assertEquals(['file_get_contents'], $e->getRequiredFunctions());
         $this->assertEquals(['file'], $e->getBannedFunctions());
     }
 
-    public function testConfigure()
+    public function testConfigure(): void
     {
         $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
             ->disableOriginalConstructor()

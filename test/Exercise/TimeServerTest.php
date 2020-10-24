@@ -40,7 +40,7 @@ class TimeServerTest extends TestCase
      */
     private $exerciseDispatcher;
 
-    public function setUp()
+    public function setUp(): void
     {
         $results = new ResultAggregator();
         $eventDispatcher = new EventDispatcher($results);
@@ -61,7 +61,7 @@ class TimeServerTest extends TestCase
         $this->exercise = new TimeServer(new TcpSocketFactory());
     }
 
-    public function testGetters()
+    public function testGetters(): void
     {
         $this->assertEquals('Time Server', $this->exercise->getName());
         $this->assertEquals('Build a Time Server!', $this->exercise->getDescription());
@@ -72,7 +72,7 @@ class TimeServerTest extends TestCase
         $this->assertNull($this->exercise->tearDown());
     }
 
-    public function testFailureIsReturnedIfCannotConnect()
+    public function testFailureIsReturnedIfCannotConnect(): void
     {
         $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/no-server.php']);
         $results = $this->exerciseDispatcher->verify($this->exercise, $input);
@@ -94,7 +94,7 @@ class TimeServerTest extends TestCase
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
 
-    public function testFailureIsReturnedIfOutputWasNotCorrect()
+    public function testFailureIsReturnedIfOutputWasNotCorrect(): void
     {
         $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution-wrong.php']);
         $results = $this->exerciseDispatcher->verify($this->exercise, $input);
@@ -107,7 +107,7 @@ class TimeServerTest extends TestCase
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
 
-    public function testSuccessIsReturnedIfOutputIsCorrect()
+    public function testSuccessIsReturnedIfOutputIsCorrect(): void
     {
         $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution.php']);
         $results = $this->exerciseDispatcher->verify($this->exercise, $input);
@@ -117,7 +117,7 @@ class TimeServerTest extends TestCase
         $this->assertInstanceOf(Success::class, $success);
     }
 
-    public function testRun()
+    public function testRun(): void
     {
         $color = new Color();
         $color->setForceStyle(true);

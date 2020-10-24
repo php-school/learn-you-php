@@ -5,3 +5,4 @@ program.php
 program.js
 /solution
 exercises/*/solution/vendor
+.phpunit.result.cache

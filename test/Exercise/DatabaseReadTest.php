@@ -22,12 +22,12 @@ class DatabaseReadTest extends TestCase
      */
     private $faker;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create();
     }
 
-    public function testDatabaseExercise()
+    public function testDatabaseExercise(): void
     {
         $e = new DatabaseRead($this->faker);
         $this->assertEquals('Database Read', $e->getName());
@@ -39,7 +39,7 @@ class DatabaseReadTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testSeedAddsRandomUsersToDatabaseAndStoresRandomIdAndName()
+    public function testSeedAddsRandomUsersToDatabaseAndStoresRandomIdAndName(): void
     {
         $db = new PDO('sqlite::memory:');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -52,11 +52,11 @@ class DatabaseReadTest extends TestCase
 
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $this->assertTrue(count($users) >= 5);
-        $this->assertInternalType('array', $users);
+        $this->assertIsArray($users);
         $this->assertTrue(in_array($args[0], array_column($users, 'name')));
     }
 
-    public function testVerifyReturnsTrueIfRecordExistsWithNameUsingStoredId()
+    public function testVerifyReturnsTrueIfRecordExistsWithNameUsingStoredId(): void
     {
         $db = new PDO('sqlite::memory:');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -74,7 +74,7 @@ class DatabaseReadTest extends TestCase
         $this->assertTrue($e->verify($db));
     }
 
-    public function testConfigure()
+    public function testConfigure(): void
     {
         $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
             ->disableOriginalConstructor()

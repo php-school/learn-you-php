@@ -23,12 +23,12 @@ class DependencyHeavenTest extends TestCase
      */
     private $faker;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create('Fr_fr');
     }
 
-    public function testDependencyHeavenExercise()
+    public function testDependencyHeavenExercise(): void
     {
         $e = new DependencyHeaven($this->faker);
         $this->assertEquals('Dependency Heaven', $e->getName());
@@ -41,7 +41,7 @@ class DependencyHeavenTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetRequiredPackages()
+    public function testGetRequiredPackages(): void
     {
         $this->assertSame(
             ['klein/klein', 'danielstjules/stringy'],
@@ -49,7 +49,7 @@ class DependencyHeavenTest extends TestCase
         );
     }
 
-    public function testGetRequests()
+    public function testGetRequests(): void
     {
         $e = new DependencyHeaven($this->faker);
 
@@ -63,7 +63,7 @@ class DependencyHeavenTest extends TestCase
         }
     }
 
-    public function testGetRequestsReturnsMultipleRequestsForEachEndpoint()
+    public function testGetRequestsReturnsMultipleRequestsForEachEndpoint(): void
     {
         $e = new DependencyHeaven($this->faker);
 
@@ -78,7 +78,7 @@ class DependencyHeavenTest extends TestCase
         }
     }
 
-    public function testConfigure()
+    public function testConfigure(): void
     {
         $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
             ->disableOriginalConstructor()

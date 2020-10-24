@@ -28,13 +28,13 @@ class ExceptionalCodingTest extends TestCase
      */
     private $filesystem;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->faker = Factory::create();
         $this->filesystem = new Filesystem();
     }
 
-    public function testArrWeGoExercise()
+    public function testArrWeGoExercise(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $this->assertEquals('Exceptional Coding', $e->getName());
@@ -46,7 +46,7 @@ class ExceptionalCodingTest extends TestCase
         $this->assertNull($e->tearDown());
     }
 
-    public function testGetArgsCreateAtleastOneExistingFile()
+    public function testGetArgsCreateAtleastOneExistingFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -60,7 +60,7 @@ class ExceptionalCodingTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($existingFiles));
     }
 
-    public function testGetArgsHasAtleastOneNonExistingFile()
+    public function testGetArgsHasAtleastOneNonExistingFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -76,7 +76,7 @@ class ExceptionalCodingTest extends TestCase
         $this->assertGreaterThanOrEqual(1, count($nonExistingFiles));
     }
 
-    public function testTearDownRemovesFile()
+    public function testTearDownRemovesFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $args = $e->getArgs();
@@ -90,14 +90,14 @@ class ExceptionalCodingTest extends TestCase
         $this->assertFileNotExists($existingFiles[0]);
     }
 
-    public function testFunctionRequirements()
+    public function testFunctionRequirements(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
         $this->assertEquals([], $e->getRequiredFunctions());
         $this->assertEquals(['array_filter', 'file_exists'], $e->getBannedFunctions());
     }
 
-    public function testConfigure()
+    public function testConfigure(): void
     {
         $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
             ->disableOriginalConstructor()
