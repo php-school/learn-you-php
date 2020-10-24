@@ -3,6 +3,7 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use GuzzleHttp\Psr7\Request;
 use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
@@ -13,7 +14,7 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use Zend\Diactoros\Request;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Class DependencyHeaven
@@ -84,8 +85,7 @@ class DependencyHeaven extends AbstractExercise implements
      */
     private function newApiRequest(string $endpoint): RequestInterface
     {
-        $request = (new Request($endpoint))
-            ->withMethod('POST')
+        $request = (new Request('POST', $endpoint))
             ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         $request->getBody()->write(

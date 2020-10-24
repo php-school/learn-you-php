@@ -3,6 +3,7 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpParser\Node\Stmt\Expression;
 use PhpParser\Parser;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
@@ -142,7 +143,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
 
         $include = null;
         foreach ($statements as $statement) {
-            if ($statement instanceof Include_) {
+            if ($statement instanceof Expression && $statement->expr instanceof Include_) {
                 $include = $statement;
                 break;
             }

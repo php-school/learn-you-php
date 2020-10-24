@@ -2,13 +2,13 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
+use GuzzleHttp\Psr7\Request;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use Psr\Http\Message\RequestInterface;
-use Zend\Diactoros\Request;
 
 /**
  * Class HttpJsonApi
@@ -40,10 +40,8 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
     {
         $url = 'http://www.time.com/api/%s?iso=%s';
         return [
-            (new Request(sprintf($url, 'parsetime', urlencode((new \DateTime())->format(DATE_ISO8601)))))
-                ->withMethod('GET'),
-            (new Request(sprintf($url, 'unixtime', urlencode((new \DateTime())->format(DATE_ISO8601)))))
-                ->withMethod('GET'),
+            (new Request('GET', sprintf($url, 'parsetime', urlencode((new \DateTime())->format(DATE_ISO8601))))),
+            (new Request('GET', sprintf($url, 'unixtime', urlencode((new \DateTime())->format(DATE_ISO8601)))))
         ];
     }
 
