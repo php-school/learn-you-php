@@ -23,7 +23,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: composer:v1
+          tools: composer:v1,pecl
+          extensions: pdo_sqlite
 
       - name: Install Dependencies
         run: composer update
