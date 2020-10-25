@@ -16,7 +16,7 @@ class HelloWorldTest extends TestCase
         $this->assertEquals('Simple Hello World exercise', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertEquals([], $e->getArgs());
+        $this->assertEquals([], $e->getArgs()[0]);
 
         $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));

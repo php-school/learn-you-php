@@ -58,7 +58,7 @@ class ExceptionalCoding extends AbstractExercise implements
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
@@ -76,7 +76,7 @@ class ExceptionalCoding extends AbstractExercise implements
             $files[] = $file;
         }
 
-        return $files;
+        return [$files];
     }
 
     /**
@@ -108,7 +108,7 @@ class ExceptionalCoding extends AbstractExercise implements
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 
     /**

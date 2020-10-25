@@ -46,7 +46,7 @@ class ExceptionalCodingTest extends TestCase
     public function testGetArgsCreateAtleastOneExistingFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $existingFiles = array_filter($args, 'file_exists');
 
@@ -60,7 +60,7 @@ class ExceptionalCodingTest extends TestCase
     public function testGetArgsHasAtleastOneNonExistingFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $nonExistingFiles = array_filter($args, function ($arg) {
             return !file_exists($arg);
@@ -76,7 +76,7 @@ class ExceptionalCodingTest extends TestCase
     public function testTearDownRemovesFile(): void
     {
         $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $existingFiles = array_filter($args, 'file_exists');
 

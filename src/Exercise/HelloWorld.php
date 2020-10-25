@@ -29,11 +29,11 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
-        return [];
+        return [[]];
     }
 
     /**
@@ -41,6 +41,6 @@ class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExerc
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 }

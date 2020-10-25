@@ -28,7 +28,7 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
@@ -36,10 +36,10 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
 
         $args = [];
         for ($i = 0; $i < $numArgs; $i++) {
-            $args[] = rand(0, 100);
+            $args[] = (string) rand(0, 100);
         }
 
-        return $args;
+        return [$args];
     }
 
     /**
@@ -47,6 +47,6 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 }

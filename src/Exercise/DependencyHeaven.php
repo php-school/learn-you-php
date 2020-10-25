@@ -91,7 +91,7 @@ class DependencyHeaven extends AbstractExercise implements
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function getRequiredPackages(): array
     {
@@ -106,7 +106,7 @@ class DependencyHeaven extends AbstractExercise implements
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CGI();
+        return new ExerciseType(ExerciseType::CGI);
     }
 
     /**

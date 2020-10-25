@@ -58,27 +58,24 @@ class MyFirstIo extends AbstractExercise implements
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
         $path = $this->getTemporaryPath();
-        $paragraphs = $this->faker->paragraphs(rand(5, 50), true);
+        $paragraphs = implode("\n\n", (array) $this->faker->paragraphs(rand(5, 50)));
         $this->filesystem->dumpFile($path, $paragraphs);
 
-        return [$path];
+        return [[$path]];
     }
 
-    /**
-     * @return null
-     */
     public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function getRequiredFunctions(): array
     {
@@ -86,7 +83,7 @@ class MyFirstIo extends AbstractExercise implements
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function getBannedFunctions(): array
     {
@@ -98,7 +95,7 @@ class MyFirstIo extends AbstractExercise implements
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 
     /**

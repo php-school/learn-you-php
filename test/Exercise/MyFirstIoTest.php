@@ -45,16 +45,15 @@ class MyFirstIoTest extends TestCase
 
     public function testGetArgsCreatesFileWithRandomContentFromFake(): void
     {
-
         $e = new MyFirstIo($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 
         $content1 = file_get_contents($path);
         unlink($path);
 
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 
@@ -65,7 +64,7 @@ class MyFirstIoTest extends TestCase
     public function testTearDownRemovesFile(): void
     {
         $e = new MyFirstIo($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 

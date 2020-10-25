@@ -44,7 +44,7 @@ class DatabaseReadTest extends TestCase
 
         $e->seed($db);
 
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $stmt = $db->query('SELECT * FROM users;');
 
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
