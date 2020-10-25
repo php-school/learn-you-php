@@ -33,9 +33,11 @@
     "bin": ["bin/learnyouphp"],
     "scripts" : {
         "test": [
-            "phpunit",
-            "@cs"
+            "@unit-tests",
+            "@cs",
+            "@static"
         ],
+        "unit-tests": "simple-phpunit",
         "cs" : [
             "phpcs src --standard=PSR12",
             "phpcs test --standard=PSR12"

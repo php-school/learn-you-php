@@ -1,8 +1,9 @@
 <?php
 
+use function DI\create;
 use function DI\factory;
 use function DI\object;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use PhpParser\Parser;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
@@ -22,9 +23,9 @@ use Faker\Factory as FakerFactory;
 
 return [
     //Exercises
-    BabySteps::class    => object(BabySteps::class),
-    HelloWorld::class   => object(HelloWorld::class),
-    HttpJsonApi::class  => object(HttpJsonApi::class),
+    BabySteps::class    => create(BabySteps::class),
+    HelloWorld::class   => create(HelloWorld::class),
+    HttpJsonApi::class  => create(HttpJsonApi::class),
     MyFirstIo::class    => factory(function (ContainerInterface $c) {
         return new MyFirstIo($c->get(Filesystem::class), FakerFactory::create());
     }),
@@ -34,7 +35,6 @@ return [
     ConcernedAboutSeparation::class   => factory(function (ContainerInterface $c) {
         return new ConcernedAboutSeparation(
             $c->get(Filesystem::class),
-            FakerFactory::create(),
             $c->get(Parser::class)
         );
     }),
@@ -57,11 +57,11 @@ return [
     'eventListeners' => [
         'create-solution-for-first-exercise' => [
             'exercise.selected.hello-world' => [
-                function () {
-                    if (!file_exists('hello-world.php')) {
-                        touch('hello-world.php');
+                DI\value(function () {
+                    if (!file_exists(getcwd() . '/hello-world.php')) {
+                        touch(getcwd() . '/hello-world.php');
                     }
-                }
+                })
             ]
         ]
     ]
