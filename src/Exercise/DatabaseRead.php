@@ -26,7 +26,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     private $faker;
 
     /**
-     * @var array
+     * @var array{id: int, name: string}
      */
     private $randomRecord;
 
@@ -55,11 +55,11 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
-        return [$this->randomRecord['name']];
+        return [[$this->randomRecord['name']]];
     }
 
     /**
@@ -79,12 +79,11 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
             $gender = rand(0, 100) % 2 ? 'male' : 'female';
 
             $stmt->execute([':name' => $name, ':age' => $age, ':gender' => $gender]);
-            $id = $db->lastInsertId();
-            $names[$id] = $name;
+            $names[(int) $db->lastInsertId()] = $name;
         }
 
-        $randomId = array_rand($names);
-        $this->randomRecord = ['id' => $randomId, 'name' => $names[$randomId]];
+        $randomId = (int) array_rand($names);
+        $this->randomRecord = ['id' => $randomId, 'name' => (string) $names[$randomId]];
     }
 
     /**
@@ -107,7 +106,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 
     /**

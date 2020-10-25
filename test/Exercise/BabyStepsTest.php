@@ -19,11 +19,11 @@ class BabyStepsTest extends TestCase
         //sometime we don't get any args as number of args is random
         //we need some args for code-coverage, so just try again
         do {
-            $args = $e->getArgs();
+            $args = $e->getArgs()[0];
         } while (empty($args));
 
         foreach ($args as $arg) {
-            $this->assertIsInt($arg);
+            $this->assertIsNumeric($arg);
         }
 
         $this->assertFileExists(realpath($e->getProblem()));

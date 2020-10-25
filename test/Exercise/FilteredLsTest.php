@@ -36,7 +36,7 @@ class FilteredLsTest extends TestCase
     public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
     {
         $e = new FilteredLs($this->filesystem);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 
@@ -72,7 +72,7 @@ class FilteredLsTest extends TestCase
     public function testTearDownRemovesFile(): void
     {
         $e = new FilteredLs($this->filesystem);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 

@@ -55,7 +55,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
@@ -73,12 +73,9 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
             $files[] = $file;
         }
 
-        return $files;
+        return [$files];
     }
 
-    /**
-     * @return null
-     */
     public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
@@ -105,7 +102,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 
     /**

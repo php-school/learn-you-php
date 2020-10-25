@@ -46,7 +46,7 @@ class ArrayWeGoTest extends TestCase
     public function testGetArgsCreateAtLeastOneExistingFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $existingFiles = array_filter($args, 'file_exists');
 
@@ -60,7 +60,7 @@ class ArrayWeGoTest extends TestCase
     public function testGetArgsHasAtLeastOneNonExistingFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $nonExistingFiles = array_filter($args, function ($arg) {
             return !file_exists($arg);
@@ -76,7 +76,7 @@ class ArrayWeGoTest extends TestCase
     public function testTearDownRemovesFile(): void
     {
         $e = new ArrayWeGo($this->filesystem, $this->faker);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
 
         $existingFiles = array_filter($args, 'file_exists');
 

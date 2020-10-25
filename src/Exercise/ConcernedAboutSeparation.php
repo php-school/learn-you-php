@@ -70,7 +70,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
@@ -109,7 +109,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
             $ext = pathinfo($files[$index], PATHINFO_EXTENSION);
         }
 
-        return [$folder, $ext];
+        return [[$folder, $ext]];
     }
 
     /**
@@ -120,9 +120,6 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/concerned-about-separation/solution');
     }
 
-    /**
-     * @return null
-     */
     public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
@@ -134,7 +131,11 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
      */
     public function check(Input $input): ResultInterface
     {
-        $statements = $this->parser->parse(file_get_contents($input->getArgument('program')));
+        $statements = $this->parser->parse((string) file_get_contents($input->getRequiredArgument('program')));
+
+        if (null === $statements) {
+            return Failure::fromNameAndReason($this->getName(), 'No code was found');
+        }
 
         $include = null;
         foreach ($statements as $statement) {
@@ -156,6 +157,6 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 }

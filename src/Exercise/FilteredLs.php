@@ -45,7 +45,7 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
     }
 
     /**
-     * @return array
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {
@@ -84,12 +84,9 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
             $ext = pathinfo($files[$index], PATHINFO_EXTENSION);
         }
 
-        return [$folder, $ext];
+        return [[$folder, $ext]];
     }
 
-    /**
-     * @return null
-     */
     public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
@@ -100,6 +97,6 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 }

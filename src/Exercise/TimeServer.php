@@ -139,11 +139,11 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CLI();
+        return new ExerciseType(ExerciseType::CLI);
     }
 
     /**
-     * @return string[]
+     * @return array<array<string>>
      */
     public function getArgs(): array
     {

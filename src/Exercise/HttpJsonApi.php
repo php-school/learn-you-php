@@ -45,6 +45,6 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
      */
     public function getType(): ExerciseType
     {
-        return ExerciseType::CGI();
+        return new ExerciseType(ExerciseType::CGI);
     }
 }

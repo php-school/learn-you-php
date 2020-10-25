@@ -53,7 +53,7 @@ class ConcernedAboutSeparationTest extends TestCase
     public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 
@@ -89,7 +89,7 @@ class ConcernedAboutSeparationTest extends TestCase
     public function testTearDownRemovesFile(): void
     {
         $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
-        $args = $e->getArgs();
+        $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
 
