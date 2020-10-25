@@ -3,7 +3,6 @@
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Colors\Color;
-use PhpSchool\CliMenu\Terminal\TerminalInterface;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
@@ -22,6 +21,7 @@ use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
+use PhpSchool\Terminal\Terminal;
 use PHPUnit\Framework\TestCase;
 
 class TimeServerTest extends TestCase
@@ -118,7 +118,7 @@ class TimeServerTest extends TestCase
     {
         $color = new Color();
         $color->setForceStyle(true);
-        $output = new StdOutput($color, $terminal = $this->createMock(TerminalInterface::class));
+        $output = new StdOutput($color, $terminal = $this->createMock(Terminal::class));
 
         $outputRegEx  = "/\n";
         $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';

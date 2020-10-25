@@ -3,6 +3,7 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use GuzzleHttp\Psr7\Request;
 use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
@@ -13,7 +14,7 @@ use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use Zend\Diactoros\Request;
+use Psr\Http\Message\RequestInterface;
 
 class DependencyHeaven extends AbstractExercise implements
     ExerciseInterface,
@@ -36,7 +37,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Dependency Heaven';
     }
@@ -44,7 +45,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'An introduction to Composer dependency management';
     }
@@ -52,7 +53,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return SolutionInterface
      */
-    public function getSolution()
+    public function getSolution(): SolutionInterface
     {
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/dependency-heaven/solution');
     }
@@ -60,7 +61,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return RequestInterface[]
      */
-    public function getRequests()
+    public function getRequests(): array
     {
         $requests = [];
 
@@ -77,10 +78,9 @@ class DependencyHeaven extends AbstractExercise implements
      * @param string $endpoint
      * @return RequestInterface
      */
-    private function newApiRequest($endpoint)
+    private function newApiRequest(string $endpoint): RequestInterface
     {
-        $request = (new Request($endpoint))
-            ->withMethod('POST')
+        $request = (new Request('POST', $endpoint))
             ->withHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         $request->getBody()->write(
@@ -93,7 +93,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return array
      */
-    public function getRequiredPackages()
+    public function getRequiredPackages(): array
     {
         return [
             'klein/klein',
@@ -104,7 +104,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CGI();
     }
@@ -112,7 +112,7 @@ class DependencyHeaven extends AbstractExercise implements
     /**
      * @param ExerciseDispatcher $dispatcher
      */
-    public function configure(ExerciseDispatcher $dispatcher)
+    public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(ComposerCheck::class);
     }

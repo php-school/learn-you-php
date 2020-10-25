@@ -14,7 +14,7 @@
     "require" : {
         "php" : ">=7.2",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "2.2",
+        "php-school/php-workshop": "dev-master",
         "hoa/socket": "^1.0"
     },
     "require-dev": {

@@ -3,6 +3,7 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use Faker\Generator;
+use PhpParser\Node\Stmt\Expression;
 use PhpParser\Parser;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
@@ -55,7 +56,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Concerned about Separation?';
     }
@@ -63,7 +64,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Separate code and utilise files and classes';
     }
@@ -71,7 +72,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         $folder = $this->getTemporaryPath();
 
@@ -114,7 +115,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return SolutionInterface
      */
-    public function getSolution()
+    public function getSolution(): SolutionInterface
     {
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/concerned-about-separation/solution');
     }
@@ -122,7 +123,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return null
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
@@ -131,13 +132,13 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
      * @param Input $input
      * @return ResultInterface
      */
-    public function check(Input $input)
+    public function check(Input $input): ResultInterface
     {
         $statements = $this->parser->parse(file_get_contents($input->getArgument('program')));
 
         $include = null;
         foreach ($statements as $statement) {
-            if ($statement instanceof Include_) {
+            if ($statement instanceof Expression && $statement->expr instanceof Include_) {
                 $include = $statement;
                 break;
             }
@@ -153,7 +154,7 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }

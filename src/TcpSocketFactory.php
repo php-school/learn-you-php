@@ -11,7 +11,7 @@ class TcpSocketFactory
      * @param int $port
      * @return Client
      */
-    public function createClient($ip, $port)
+    public function createClient(string $ip, int $port): Client
     {
         return new Client(sprintf('tcp://%s:%d', $ip, $port));
     }

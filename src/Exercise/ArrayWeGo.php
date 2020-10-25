@@ -41,7 +41,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'Array We Go!';
     }
@@ -49,7 +49,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return 'Filter an array of file paths and map to SplFile objects';
     }
@@ -57,7 +57,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return array
      */
-    public function getArgs()
+    public function getArgs(): array
     {
         $this->filesystem->mkdir($this->getTemporaryPath());
 
@@ -79,7 +79,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return null
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
@@ -87,7 +87,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return string[]
      */
-    public function getRequiredFunctions()
+    public function getRequiredFunctions(): array
     {
         return ['array_shift', 'array_filter', 'array_map'];
     }
@@ -95,7 +95,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return string[]
      */
-    public function getBannedFunctions()
+    public function getBannedFunctions(): array
     {
         return ['basename'];
     }
@@ -103,7 +103,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @return ExerciseType
      */
-    public function getType()
+    public function getType(): ExerciseType
     {
         return ExerciseType::CLI();
     }
@@ -111,7 +111,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     /**
      * @param ExerciseDispatcher $dispatcher
      */
-    public function configure(ExerciseDispatcher $dispatcher)
+    public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);
     }
