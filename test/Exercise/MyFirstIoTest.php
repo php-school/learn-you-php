@@ -14,7 +14,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class MyFirstIoTest extends TestCase
 {
-
     /**
      * @var Generator
      */
@@ -38,9 +37,7 @@ class MyFirstIoTest extends TestCase
         $this->assertEquals('Read a file from the file system', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetArgsCreatesFileWithRandomContentFromFake(): void

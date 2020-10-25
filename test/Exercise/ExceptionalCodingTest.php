@@ -14,7 +14,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class ExceptionalCodingTest extends TestCase
 {
-
     /**
      * @var Generator
      */
@@ -38,9 +37,7 @@ class ExceptionalCodingTest extends TestCase
         $this->assertEquals('Introduction to Exceptions', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetArgsCreateAtleastOneExistingFile(): void

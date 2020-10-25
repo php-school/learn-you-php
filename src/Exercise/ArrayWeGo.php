@@ -28,34 +28,24 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
      */
     private $faker;
 
-    /**
-     * @param Filesystem $filesystem
-     * @param Generator $faker
-     */
     public function __construct(Filesystem $filesystem, Generator $faker)
     {
         $this->filesystem   = $filesystem;
         $this->faker        = $faker;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Array We Go!';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Filter an array of file paths and map to SplFile objects';
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
@@ -82,7 +72,7 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     }
 
     /**
-     * @return string[]
+     * @inheritdoc
      */
     public function getRequiredFunctions(): array
     {
@@ -90,24 +80,18 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
     }
 
     /**
-     * @return string[]
+     * @inheritdoc
      */
     public function getBannedFunctions(): array
     {
         return ['basename'];
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
     public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);

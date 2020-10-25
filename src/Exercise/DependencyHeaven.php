@@ -26,40 +26,28 @@ class DependencyHeaven extends AbstractExercise implements
      */
     private $faker;
 
-    /**
-     * @param Generator $faker
-     */
     public function __construct(Generator $faker)
     {
         $this->faker = $faker;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Dependency Heaven';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'An introduction to Composer dependency management';
     }
 
-    /**
-     * @return SolutionInterface
-     */
     public function getSolution(): SolutionInterface
     {
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/dependency-heaven/solution');
     }
 
     /**
-     * @return RequestInterface[]
+     * @inheritdoc
      */
     public function getRequests(): array
     {
@@ -74,10 +62,6 @@ class DependencyHeaven extends AbstractExercise implements
         return $requests;
     }
 
-    /**
-     * @param string $endpoint
-     * @return RequestInterface
-     */
     private function newApiRequest(string $endpoint): RequestInterface
     {
         $request = (new Request('POST', $endpoint))
@@ -91,7 +75,7 @@ class DependencyHeaven extends AbstractExercise implements
     }
 
     /**
-     * @return array<string>
+     * @inheritdoc
      */
     public function getRequiredPackages(): array
     {
@@ -101,17 +85,11 @@ class DependencyHeaven extends AbstractExercise implements
         ];
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CGI);
     }
 
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
     public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(ComposerCheck::class);

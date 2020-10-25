@@ -20,32 +20,23 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
      */
     private $filesystem;
 
-    /**
-     * @param Filesystem $filesystem
-     */
     public function __construct(Filesystem $filesystem)
     {
-        $this->filesystem   = $filesystem;
+        $this->filesystem = $filesystem;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Filtered LS';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Read files in a folder and filter by a given extension';
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
@@ -92,9 +83,6 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
         $this->filesystem->remove($this->getTemporaryPath());
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);

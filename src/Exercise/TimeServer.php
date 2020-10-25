@@ -18,40 +18,26 @@ use PhpSchool\PhpWorkshop\Result\Success;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
-
     /**
      * @var TcpSocketFactory
      */
     private $socketFactory;
 
-    /**
-     * TimeServer constructor.
-     * @param TcpSocketFactory $socketFactory
-     */
     public function __construct(TcpSocketFactory $socketFactory)
     {
         $this->socketFactory = $socketFactory;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Time Server';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Build a Time Server!';
     }
 
-    /**
-     * @param ExerciseDispatcher $exerciseDispatcher
-     */
     public function configure(ExerciseDispatcher $exerciseDispatcher): void
     {
         $eventDispatcher = $exerciseDispatcher->getEventDispatcher();
@@ -126,24 +112,18 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         });
     }
 
-    /**
-     * @return string
-     */
     private function getRandomPort(): string
     {
         return (string) mt_rand(1025, 65535);
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {

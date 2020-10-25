@@ -2,7 +2,6 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
-use Faker\Factory;
 use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
@@ -10,7 +9,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -22,11 +20,6 @@ class ConcernedAboutSeparationTest extends TestCase
     private $filesystem;
 
     /**
-     * @var Generator
-     */
-    private $faker;
-
-    /**
      * @var Parser
      */
     private $parser;
@@ -34,25 +27,22 @@ class ConcernedAboutSeparationTest extends TestCase
     public function setUp(): void
     {
         $this->filesystem = new Filesystem();
-        $this->faker = Factory::create();
         $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     }
 
     public function testConcernedAboutSeparationExercise(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
+        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
         $this->assertEquals('Concerned about Separation?', $e->getName());
         $this->assertEquals('Separate code and utilise files and classes', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
+        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
         $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
@@ -83,12 +73,12 @@ class ConcernedAboutSeparationTest extends TestCase
             return pathinfo($file, PATHINFO_EXTENSION);
         }, $files));
 
-        $this->assertTrue(in_array($args[1], $extensions));
+        $this->assertContains($args[1], $extensions);
     }
 
     public function testTearDownRemovesFile(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
+        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
         $args = $e->getArgs()[0];
         $path = $args[0];
         $this->assertFileExists($path);
@@ -100,7 +90,7 @@ class ConcernedAboutSeparationTest extends TestCase
 
     public function testCheckReturnsFailureIfNoIncludeFoundInSolution(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
+        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
         $failure = $e->check(
             new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/no-include.php'])
         );
@@ -112,7 +102,7 @@ class ConcernedAboutSeparationTest extends TestCase
 
     public function testCheckReturnsSuccessIfIncludeFound(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->faker, $this->parser);
+        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
         $success = $e->check(
             new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/include.php'])
         );

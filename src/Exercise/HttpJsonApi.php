@@ -12,24 +12,18 @@ use Psr\Http\Message\RequestInterface;
 
 class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExercise
 {
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'HTTP JSON API';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'HTTP JSON API - Servers JSON when it receives a GET request';
     }
 
     /**
-     * @return RequestInterface[]
+     * @inheritdoc
      */
     public function getRequests(): array
     {
@@ -40,9 +34,6 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
         ];
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CGI);

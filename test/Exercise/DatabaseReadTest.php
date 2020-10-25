@@ -31,9 +31,7 @@ class DatabaseReadTest extends TestCase
         $this->assertEquals('Read an SQL databases contents', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testSeedAddsRandomUsersToDatabaseAndStoresRandomIdAndName(): void
@@ -50,7 +48,7 @@ class DatabaseReadTest extends TestCase
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $this->assertTrue(count($users) >= 5);
         $this->assertIsArray($users);
-        $this->assertTrue(in_array($args[0], array_column($users, 'name')));
+        $this->assertContains($args[0], array_column($users, 'name'));
     }
 
     public function testVerifyReturnsTrueIfRecordExistsWithNameUsingStoredId(): void
