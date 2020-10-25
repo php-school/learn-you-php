@@ -63,7 +63,7 @@ class ArrayWeGoTest extends TestCase
         });
 
         foreach ($nonExistingFiles as $file) {
-            $this->assertFileNotExists($file);
+            $this->assertFileDoesNotExist($file);
         }
 
         $this->assertGreaterThanOrEqual(1, count($nonExistingFiles));
@@ -80,7 +80,7 @@ class ArrayWeGoTest extends TestCase
 
         $e->tearDown();
 
-        $this->assertFileNotExists($existingFiles[0]);
+        $this->assertFileDoesNotExist($existingFiles[0]);
     }
 
     public function testFunctionRequirements(): void
