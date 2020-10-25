@@ -75,6 +75,6 @@ class FilteredLsTest extends TestCase
 
         $e->tearDown();
 
-        $this->assertFileNotExists($path);
+        $this->assertFileDoesNotExist($path);
     }
 }

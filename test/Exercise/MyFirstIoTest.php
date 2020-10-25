@@ -67,7 +67,7 @@ class MyFirstIoTest extends TestCase
 
         $e->tearDown();
 
-        $this->assertFileNotExists($path);
+        $this->assertFileDoesNotExist($path);
     }
 
     public function testFunctionRequirements(): void

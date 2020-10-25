@@ -83,7 +83,7 @@ class TimeServerTest extends TestCase
             $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
         }
 
-        $this->assertRegExp($reason, $failure->getReason());
+        $this->assertMatchesRegularExpression($reason, $failure->getReason());
         $this->assertEquals('Time Server', $failure->getCheckName());
     }
 
