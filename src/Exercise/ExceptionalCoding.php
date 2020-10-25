@@ -31,34 +31,24 @@ class ExceptionalCoding extends AbstractExercise implements
      */
     private $faker;
 
-    /**
-     * @param Filesystem $filesystem
-     * @param Generator $faker
-     */
     public function __construct(Filesystem $filesystem, Generator $faker)
     {
-        $this->filesystem   = $filesystem;
-        $this->faker        = $faker;
+        $this->filesystem = $filesystem;
+        $this->faker = $faker;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return "Exceptional Coding";
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return "Introduction to Exceptions";
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
@@ -79,16 +69,13 @@ class ExceptionalCoding extends AbstractExercise implements
         return [$files];
     }
 
-    /**
-     * @return void
-     */
     public function tearDown(): void
     {
         $this->filesystem->remove($this->getTemporaryPath());
     }
 
     /**
-     * @return string[]
+     * @inheritdoc
      */
     public function getRequiredFunctions(): array
     {
@@ -96,24 +83,18 @@ class ExceptionalCoding extends AbstractExercise implements
     }
 
     /**
-     * @return string[]
+     * @inheritdoc
      */
     public function getBannedFunctions(): array
     {
         return ['array_filter', 'file_exists'];
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
     public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);

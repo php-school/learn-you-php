@@ -31,8 +31,6 @@ class HttpJsonApiTest extends TestCase
         $this->assertSame('/api/parsetime', $request1->getUri()->getPath());
         $this->assertSame('/api/unixtime', $request2->getUri()->getPath());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 }

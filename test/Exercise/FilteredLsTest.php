@@ -10,7 +10,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class FilteredLsTest extends TestCase
 {
-
     /**
      * @var Filesystem
      */
@@ -28,9 +27,7 @@ class FilteredLsTest extends TestCase
         $this->assertEquals('Read files in a folder and filter by a given extension', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
@@ -66,7 +63,7 @@ class FilteredLsTest extends TestCase
             return pathinfo($file, PATHINFO_EXTENSION);
         }, $files));
 
-        $this->assertTrue(in_array($args[1], $extensions));
+        $this->assertContains($args[1], $extensions);
     }
 
     public function testTearDownRemovesFile(): void

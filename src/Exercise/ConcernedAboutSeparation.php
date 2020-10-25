@@ -12,7 +12,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
@@ -32,45 +31,28 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
     private $filesystem;
 
     /**
-     * @var Generator
-     */
-    private $faker;
-
-    /**
      * @var Parser
      */
     private $parser;
 
-    /**
-     * @param Filesystem $filesystem
-     * @param Generator $faker
-     * @param Parser $parser
-     */
-    public function __construct(Filesystem $filesystem, Generator $faker, Parser $parser)
+    public function __construct(Filesystem $filesystem, Parser $parser)
     {
         $this->filesystem = $filesystem;
-        $this->faker = $faker;
         $this->parser = $parser;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Concerned about Separation?';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Separate code and utilise files and classes';
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
@@ -112,9 +94,6 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         return [[$folder, $ext]];
     }
 
-    /**
-     * @return SolutionInterface
-     */
     public function getSolution(): SolutionInterface
     {
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/concerned-about-separation/solution');
@@ -125,10 +104,6 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         $this->filesystem->remove($this->getTemporaryPath());
     }
 
-    /**
-     * @param Input $input
-     * @return ResultInterface
-     */
     public function check(Input $input): ResultInterface
     {
         $statements = $this->parser->parse((string) file_get_contents($input->getRequiredArgument('program')));
@@ -152,9 +127,6 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         return new Success($this->getName());
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);

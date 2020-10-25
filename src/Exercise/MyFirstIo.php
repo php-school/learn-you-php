@@ -31,34 +31,24 @@ class MyFirstIo extends AbstractExercise implements
      */
     private $faker;
 
-    /**
-     * @param Filesystem $filesystem
-     * @param Generator $faker
-     */
     public function __construct(Filesystem $filesystem, Generator $faker)
     {
-        $this->filesystem   = $filesystem;
-        $this->faker        = $faker;
+        $this->filesystem = $filesystem;
+        $this->faker = $faker;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'My First IO';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Read a file from the file system';
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
@@ -75,7 +65,7 @@ class MyFirstIo extends AbstractExercise implements
     }
 
     /**
-     * @return array<string>
+     * @inheritdoc
      */
     public function getRequiredFunctions(): array
     {
@@ -83,24 +73,18 @@ class MyFirstIo extends AbstractExercise implements
     }
 
     /**
-     * @return array<string>
+     * @inheritdoc
      */
     public function getBannedFunctions(): array
     {
         return ['file'];
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
     public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(FunctionRequirementsCheck::class);

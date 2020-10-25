@@ -3,7 +3,6 @@
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\BabySteps;
 
@@ -27,6 +26,5 @@ class BabyStepsTest extends TestCase
         }
 
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 }

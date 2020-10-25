@@ -18,8 +18,6 @@ class HelloWorldTest extends TestCase
 
         $this->assertEquals([], $e->getArgs()[0]);
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 }

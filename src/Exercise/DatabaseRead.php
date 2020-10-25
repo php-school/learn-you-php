@@ -19,7 +19,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck, CliExercise
 {
-
     /**
      * @var Generator
      */
@@ -30,42 +29,29 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
      */
     private $randomRecord;
 
-    /**
-     * @param Generator $faker
-     */
     public function __construct(Generator $faker)
     {
         $this->faker = $faker;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'Database Read';
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return 'Read an SQL databases contents';
     }
 
     /**
-     * @return array<array<string>>
+     * @inheritdoc
      */
     public function getArgs(): array
     {
         return [[$this->randomRecord['name']]];
     }
 
-    /**
-     * @param PDO $db
-     * @return void
-     */
     public function seed(PDO $db): void
     {
         $db
@@ -86,10 +72,6 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         $this->randomRecord = ['id' => $randomId, 'name' => (string) $names[$randomId]];
     }
 
-    /**
-     * @param PDO $db
-     * @return bool
-     */
     public function verify(PDO $db): bool
     {
         $sql = 'SELECT name FROM users WHERE id = :id';
@@ -101,17 +83,11 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         return $result === 'David Attenborough';
     }
 
-    /**
-     * @return ExerciseType
-     */
     public function getType(): ExerciseType
     {
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @param ExerciseDispatcher $dispatcher
-     */
     public function configure(ExerciseDispatcher $dispatcher): void
     {
         $dispatcher->requireCheck(DatabaseCheck::class);

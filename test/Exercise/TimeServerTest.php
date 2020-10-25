@@ -20,13 +20,11 @@ use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\ResultAggregator;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PhpSchool\Terminal\Terminal;
 use PHPUnit\Framework\TestCase;
 
 class TimeServerTest extends TestCase
 {
-
     /**
      * @var TimeServer
      */
@@ -64,9 +62,7 @@ class TimeServerTest extends TestCase
         $this->assertEquals('Build a Time Server!', $this->exercise->getDescription());
         $this->assertEquals(ExerciseType::CLI, $this->exercise->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $this->exercise->getSolution());
         $this->assertFileExists(realpath($this->exercise->getProblem()));
-        $this->assertNull($this->exercise->tearDown());
     }
 
     public function testFailureIsReturnedIfCannotConnect(): void

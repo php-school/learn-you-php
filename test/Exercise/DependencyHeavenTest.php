@@ -32,10 +32,8 @@ class DependencyHeavenTest extends TestCase
         $this->assertEquals('An introduction to Composer dependency management', $e->getDescription());
         $this->assertEquals(ExerciseType::CGI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getSolution()->getEntryPoint()));
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetRequiredPackages(): void

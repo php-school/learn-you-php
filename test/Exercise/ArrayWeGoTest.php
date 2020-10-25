@@ -8,13 +8,11 @@ use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
 use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ArrayWeGoTest extends TestCase
 {
-
     /**
      * @var Generator
      */
@@ -38,9 +36,7 @@ class ArrayWeGoTest extends TestCase
         $this->assertEquals('Filter an array of file paths and map to SplFile objects', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        $this->assertInstanceOf(SolutionInterface::class, $e->getSolution());
         $this->assertFileExists(realpath($e->getProblem()));
-        $this->assertNull($e->tearDown());
     }
 
     public function testGetArgsCreateAtLeastOneExistingFile(): void
