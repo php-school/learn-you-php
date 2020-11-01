@@ -4,31 +4,32 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b8ceb91aba6cb8a6f6dae132c0bd0dd",
+    "content-hash": "73fc04e11e8747b71d92c2163e4d0139",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AydinHassan/cli-md-renderer.git",
-                "reference": "521f9ace2aeadd58bf8a3910704be8360f5bd7b2"
+                "reference": "de5677b37be91d3d0f6cef5ddd25bc158139990b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AydinHassan/cli-md-renderer/zipball/521f9ace2aeadd58bf8a3910704be8360f5bd7b2",
-                "reference": "521f9ace2aeadd58bf8a3910704be8360f5bd7b2",
+                "url": "https://api.github.com/repos/AydinHassan/cli-md-renderer/zipball/de5677b37be91d3d0f6cef5ddd25bc158139990b",
+                "reference": "de5677b37be91d3d0f6cef5ddd25bc158139990b",
                 "shasum": ""
             },
             "require": {
-                "kadet/keylighter": "^0.8.3",
                 "kevinlebrun/colors.php": "^1.0",
-                "league/commonmark": "^0.13",
-                "php": ">=5.6"
+                "league/commonmark": "^1.5.6",
+                "php": ">=7.1",
+                "php-school/keylighter": "^0.8.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpstan/phpstan": "^0.12.50",
+                "phpunit/phpunit": "^7.0 | ^8.0 | ^9.0",
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -49,9 +50,9 @@
             "description": "A CLI Markdown Render for league/commonmark compatibile AST",
             "support": {
                 "issues": "https://github.com/AydinHassan/cli-md-renderer/issues",
-                "source": "https://github.com/AydinHassan/cli-md-renderer/tree/master"
+                "source": "https://github.com/AydinHassan/cli-md-renderer/tree/2.4.0"
             },
-            "time": "2018-02-28T15:55:32+00:00"
+            "time": "2020-11-01T14:34:39+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -120,33 +121,30 @@
             "time": "2019-12-19T17:51:41+00:00"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.1",
+            "name": "fakerphp/faker",
+            "version": "v1.10.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
+                "url": "https://github.com/FakerPHP/Faker.git",
+                "reference": "f2713a5016faaf6ffc60e9d456dedb5ebf0efcae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/f2713a5016faaf6ffc60e9d456dedb5ebf0efcae",
+                "reference": "f2713a5016faaf6ffc60e9d456dedb5ebf0efcae",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "fzaninotto/faker": "*"
             },
             "require-dev": {
                 "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.4.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
@@ -168,10 +166,10 @@
                 "fixtures"
             ],
             "support": {
-                "issues": "https://github.com/fzaninotto/Faker/issues",
-                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.1"
+                "issues": "https://github.com/FakerPHP/Faker/issues",
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.10.1"
             },
-            "time": "2019-12-12T13:22:17+00:00"
+            "time": "2020-10-28T09:32:46+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -811,59 +809,6 @@
             "time": "2017-02-21T16:01:06+00:00"
         },
         {
-            "name": "kadet/keylighter",
-            "version": "v0.8.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kadet1090/KeyLighter.git",
-                "reference": "3d68a457b9a39d3e12b91e914054a0a310721b4f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kadet1090/KeyLighter/zipball/3d68a457b9a39d3e12b91e914054a0a310721b4f",
-                "reference": "3d68a457b9a39d3e12b91e914054a0a310721b4f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.8.*",
-                "symfony/console": "^2.8|^3.0"
-            },
-            "suggest": {
-                "symfony/console": "Allows usage of keylighters CLI utility."
-            },
-            "bin": [
-                "bin/keylighter"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Kadet\\Highlighter\\": "."
-                },
-                "files": [
-                    "./functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kacper Donat",
-                    "email": "contact@kadet.net"
-                }
-            ],
-            "description": "Yet another syntax highlighter for PHP",
-            "support": {
-                "issues": "https://github.com/kadet1090/KeyLighter/issues",
-                "source": "https://github.com/kadet1090/KeyLighter/tree/0.8"
-            },
-            "time": "2018-02-08T14:33:26+00:00"
-        },
-        {
             "name": "kevinlebrun/colors.php",
             "version": "1.0.3",
             "source": {
@@ -920,50 +865,45 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.13.4",
+            "version": "1.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "83f8210427fb01f671e272bb8d44b4ed3a94d459"
+                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/83f8210427fb01f671e272bb8d44b4ed3a94d459",
-                "reference": "83f8210427fb01f671e272bb8d44b4ed3a94d459",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/11df9b36fd4f1d2b727a73bf14931d81373b9a54",
+                "reference": "11df9b36fd4f1d2b727a73bf14931d81373b9a54",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=5.4.8"
+                "php": "^7.1 || ^8.0"
             },
-            "replace": {
-                "colinodell/commonmark-php": "*"
+            "conflict": {
+                "scrutinizer/ocular": "1.7.*"
             },
             "require-dev": {
                 "cebe/markdown": "~1.0",
+                "commonmark/commonmark.js": "0.29.2",
                 "erusev/parsedown": "~1.0",
-                "jgm/commonmark": "0.25",
+                "ext-json": "*",
+                "github/gfm": "0.29.0",
                 "michelf/php-markdown": "~1.4",
-                "mikehaertl/php-shellcommand": "~1.2.0",
-                "phpunit/phpunit": "~4.3|~5.0",
-                "scrutinizer/ocular": "~1.1",
-                "symfony/finder": "~2.3|~3.0"
-            },
-            "suggest": {
-                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
+                "mikehaertl/php-shellcommand": "^1.4",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.2",
+                "scrutinizer/ocular": "^1.5",
+                "symfony/finder": "^4.2"
             },
             "bin": [
                 "bin/commonmark"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.14-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "League\\CommonMark\\": "src/"
+                    "League\\CommonMark\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -978,18 +918,51 @@
                     "role": "Lead Developer"
                 }
             ],
-            "description": "Markdown parser for PHP based on the CommonMark spec",
-            "homepage": "https://github.com/thephpleague/commonmark",
+            "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and Github-Flavored Markdown (GFM)",
+            "homepage": "https://commonmark.thephpleague.com",
             "keywords": [
                 "commonmark",
+                "flavored",
+                "gfm",
+                "github",
+                "github-flavored",
                 "markdown",
+                "md",
                 "parser"
             ],
             "support": {
+                "docs": "https://commonmark.thephpleague.com/",
                 "issues": "https://github.com/thephpleague/commonmark/issues",
-                "source": "https://github.com/thephpleague/commonmark/tree/master"
+                "rss": "https://github.com/thephpleague/commonmark/releases.atom",
+                "source": "https://github.com/thephpleague/commonmark"
             },
-            "time": "2016-06-14T14:49:29+00:00"
+            "funding": [
+                {
+                    "url": "https://enjoy.gitstore.app/repositories/thephpleague/commonmark",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.colinodell.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.paypal.me/colinpodell/10.00",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/colinodell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/colinodell",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/commonmark",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-31T13:49:32+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -1400,31 +1373,83 @@
             "time": "2020-10-24T09:18:48+00:00"
         },
         {
-            "name": "php-school/php-workshop",
-            "version": "dev-master",
+            "name": "php-school/keylighter",
+            "version": "0.8.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "ea8f34888839732882c55611a1e51bf9b26074e8"
+                "url": "https://github.com/php-school/KeyLighter.git",
+                "reference": "f534f8de4bf99d2a8f54991fa55661940e23210d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/ea8f34888839732882c55611a1e51bf9b26074e8",
-                "reference": "ea8f34888839732882c55611a1e51bf9b26074e8",
+                "url": "https://api.github.com/repos/php-school/KeyLighter/zipball/f534f8de4bf99d2a8f54991fa55661940e23210d",
+                "reference": "f534f8de4bf99d2a8f54991fa55661940e23210d",
                 "shasum": ""
             },
             "require": {
-                "aydin-hassan/cli-md-renderer": "^2.3",
+                "php": "^7.1.3 | ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "symfony/console": "^2.8|^3.0"
+            },
+            "suggest": {
+                "symfony/console": "Allows usage of keylighters CLI utility."
+            },
+            "bin": [
+                "bin/keylighter"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kadet\\Highlighter\\": "."
+                },
+                "files": [
+                    "./functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kacper Donat",
+                    "email": "contact@kadet.net"
+                }
+            ],
+            "description": "Yet another syntax highlighter for PHP",
+            "support": {
+                "source": "https://github.com/php-school/KeyLighter/tree/0.8.4"
+            },
+            "time": "2020-11-01T14:21:30+00:00"
+        },
+        {
+            "name": "php-school/php-workshop",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-school/php-workshop.git",
+                "reference": "ec3462277ee8daa732a6b8555c8f3f403dfc575f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/ec3462277ee8daa732a6b8555c8f3f403dfc575f",
+                "reference": "ec3462277ee8daa732a6b8555c8f3f403dfc575f",
+                "shasum": ""
+            },
+            "require": {
+                "aydin-hassan/cli-md-renderer": "^2.4",
                 "ext-pdo": "*",
                 "ext-pdo_sqlite": "*",
-                "fzaninotto/faker": "^1.5",
+                "fakerphp/faker": "^1.10.1",
                 "guzzlehttp/guzzle": "^7.2",
-                "kadet/keylighter": "^0.8.3",
                 "myclabs/php-enum": "^1.4",
                 "nikic/php-parser": "^4.0",
                 "php": ">=7.2",
                 "php-di/php-di": "^6.0",
                 "php-school/cli-menu": "^4.1",
+                "php-school/keylighter": "^0.8.4",
                 "psr/container": "^1.0",
                 "psr/http-message": "^1.0",
                 "symfony/filesystem": "^4.0 | ^5.0",
@@ -1438,7 +1463,6 @@
                 "squizlabs/php_codesniffer": "^3.4",
                 "symfony/phpunit-bridge": "^5.1"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1477,9 +1501,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-school/php-workshop/issues",
-                "source": "https://github.com/php-school/php-workshop/tree/master"
+                "source": "https://github.com/php-school/php-workshop/tree/3.0.1"
             },
-            "time": "2020-10-24T21:45:40+00:00"
+            "time": "2020-11-01T15:42:20+00:00"
         },
         {
             "name": "php-school/terminal",
@@ -1540,16 +1564,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.52",
+            "version": "0.12.53",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "e96dd5e7ae9aefed663bc7e285ad96792b67eadc"
+                "reference": "dbbdb0d7c2434ecd5289f6114d16473e694caa67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e96dd5e7ae9aefed663bc7e285ad96792b67eadc",
-                "reference": "e96dd5e7ae9aefed663bc7e285ad96792b67eadc",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/dbbdb0d7c2434ecd5289f6114d16473e694caa67",
+                "reference": "dbbdb0d7c2434ecd5289f6114d16473e694caa67",
                 "shasum": ""
             },
             "require": {
@@ -1580,7 +1604,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.52"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.53"
             },
             "funding": [
                 {
@@ -1596,7 +1620,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-25T07:23:44+00:00"
+            "time": "2020-11-01T14:51:50+00:00"
         },
         {
             "name": "psr/container",
@@ -1802,16 +1826,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "1a8697545a8d87b9f2f6b1d32414199cc5e20aae"
+                "reference": "df08650ea7aee2d925380069c131a66124d79177"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1a8697545a8d87b9f2f6b1d32414199cc5e20aae",
-                "reference": "1a8697545a8d87b9f2f6b1d32414199cc5e20aae",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/df08650ea7aee2d925380069c131a66124d79177",
+                "reference": "df08650ea7aee2d925380069c131a66124d79177",
                 "shasum": ""
             },
             "require": {
@@ -1819,11 +1843,6 @@
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Filesystem\\": ""
@@ -1849,7 +1868,7 @@
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v5.1.7"
+                "source": "https://github.com/symfony/filesystem/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -1865,7 +1884,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-27T14:02:37+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2031,16 +2050,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "d3a2e64866169586502f0cd9cab69135ad12cee9"
+                "reference": "f00872c3f6804150d6a0f73b4151daab96248101"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/d3a2e64866169586502f0cd9cab69135ad12cee9",
-                "reference": "d3a2e64866169586502f0cd9cab69135ad12cee9",
+                "url": "https://api.github.com/repos/symfony/process/zipball/f00872c3f6804150d6a0f73b4151daab96248101",
+                "reference": "f00872c3f6804150d6a0f73b4151daab96248101",
                 "shasum": ""
             },
             "require": {
@@ -2048,11 +2067,6 @@
                 "symfony/polyfill-php80": "^1.15"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Process\\": ""
@@ -2078,7 +2092,7 @@
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/5.1"
+                "source": "https://github.com/symfony/process/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2094,7 +2108,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T16:23:27+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         }
     ],
     "packages-dev": [
@@ -2156,16 +2170,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "150aeb91dd9dafe13ec8416abd62e435330ca12d"
+                "reference": "61744927348cd391ac12f7c6b70544991275845c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/150aeb91dd9dafe13ec8416abd62e435330ca12d",
-                "reference": "150aeb91dd9dafe13ec8416abd62e435330ca12d",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/61744927348cd391ac12f7c6b70544991275845c",
+                "reference": "61744927348cd391ac12f7c6b70544991275845c",
                 "shasum": ""
             },
             "require": {
@@ -2185,9 +2199,6 @@
             ],
             "type": "symfony-bridge",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                },
                 "thanks": {
                     "name": "phpunit/phpunit",
                     "url": "https://github.com/sebastianbergmann/phpunit"
@@ -2221,7 +2232,7 @@
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/phpunit-bridge/tree/v5.1.7"
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2237,14 +2248,12 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-02T12:57:56+00:00"
+            "time": "2020-10-24T15:53:55+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-school/php-workshop": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
