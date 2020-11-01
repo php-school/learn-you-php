@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.2, 7.3, 7.4]
+        php: [7.2, 7.3, 7.4, 8.0]
 
     name: PHP ${{ matrix.php }}
     steps:
@@ -37,8 +37,8 @@ jobs:
       - name: Run phpcs
         run: composer cs
 
-#      - name: Run phpstan
-#        run: composer static
+      - name: Run phpstan
+        run: composer static
 
       - name: Coverage upload
         if: matrix.php == '7.3'
