@@ -58,6 +58,10 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
             ->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, gender TEXT)');
         $stmt = $db->prepare('INSERT INTO users (name, age, gender) VALUES (:name, :age, :gender)');
 
+        if ($stmt == false) {
+            return;
+        }
+
         $names = [];
         for ($i = 0; $i < $this->faker->numberBetween(5, 15); $i++) {
             $name   = $this->faker->name;
@@ -76,6 +80,10 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
     {
         $sql = 'SELECT name FROM users WHERE id = :id';
         $stmt = $db->prepare($sql);
+
+        if ($stmt == false) {
+            return false;
+        }
 
         $stmt->execute([':id' => $this->randomRecord['id']]);
         $result = $stmt->fetchColumn();
