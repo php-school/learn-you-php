@@ -11,6 +11,14 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Removed
 
+## [0.6.0]
+### Added
+ - Support for PHP 7.4 & PHP 8.0
+ - Modernised code base (static analysis, type hints, phpunit, update dependencies)
+ 
+### Removed
+ - Support for PHP 7.1 and lower
+
 ## [0.5.1]
 ### Fixed
  - Fix dev dependency issue
