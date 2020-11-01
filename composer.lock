@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d58b290410dd3c9fca28151698b4b001",
+    "content-hash": "73fc04e11e8747b71d92c2163e4d0139",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -121,33 +121,30 @@
             "time": "2019-12-19T17:51:41+00:00"
         },
         {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.1",
+            "name": "fakerphp/faker",
+            "version": "v1.10.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
+                "url": "https://github.com/FakerPHP/Faker.git",
+                "reference": "f2713a5016faaf6ffc60e9d456dedb5ebf0efcae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
-                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/f2713a5016faaf6ffc60e9d456dedb5ebf0efcae",
+                "reference": "f2713a5016faaf6ffc60e9d456dedb5ebf0efcae",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "fzaninotto/faker": "*"
             },
             "require-dev": {
                 "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.4.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
@@ -169,10 +166,10 @@
                 "fixtures"
             ],
             "support": {
-                "issues": "https://github.com/fzaninotto/Faker/issues",
-                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.1"
+                "issues": "https://github.com/FakerPHP/Faker/issues",
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.10.1"
             },
-            "time": "2019-12-12T13:22:17+00:00"
+            "time": "2020-10-28T09:32:46+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1429,23 +1426,23 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "a582c5aa6bcbe4eacd3d17dde594cd83ad9082d8"
+                "reference": "ec3462277ee8daa732a6b8555c8f3f403dfc575f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/a582c5aa6bcbe4eacd3d17dde594cd83ad9082d8",
-                "reference": "a582c5aa6bcbe4eacd3d17dde594cd83ad9082d8",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/ec3462277ee8daa732a6b8555c8f3f403dfc575f",
+                "reference": "ec3462277ee8daa732a6b8555c8f3f403dfc575f",
                 "shasum": ""
             },
             "require": {
                 "aydin-hassan/cli-md-renderer": "^2.4",
                 "ext-pdo": "*",
                 "ext-pdo_sqlite": "*",
-                "fzaninotto/faker": "^1.5",
+                "fakerphp/faker": "^1.10.1",
                 "guzzlehttp/guzzle": "^7.2",
                 "myclabs/php-enum": "^1.4",
                 "nikic/php-parser": "^4.0",
@@ -1504,9 +1501,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-school/php-workshop/issues",
-                "source": "https://github.com/php-school/php-workshop/tree/3.0.0"
+                "source": "https://github.com/php-school/php-workshop/tree/3.0.1"
             },
-            "time": "2020-11-01T15:28:07+00:00"
+            "time": "2020-11-01T15:42:20+00:00"
         },
         {
             "name": "php-school/terminal",
