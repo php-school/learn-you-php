@@ -40,6 +40,22 @@ jobs:
       - name: Run phpstan
         run: composer static
 
+      - name: Install with workshop-manager (PR)
+        if: github.ref != 'refs/heads/master'
+        run: |
+          curl -O https://php-school.github.io/workshop-manager/workshop-manager.phar
+          chmod +x workshop-manager.phar
+          ./workshop-manager.phar install learnyouphp ${{ github.head_ref }} ${{github.event.pull_request.head.repo.html_url}}
+          ./workshop-manager.phar installed
+
+      - name: Install with workshop-manager (push)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          curl -O https://php-school.github.io/workshop-manager/workshop-manager.phar
+          chmod +x workshop-manager.phar
+          ./workshop-manager.phar install learnyouphp master
+          ./workshop-manager.phar installed
+
       - name: Coverage upload
         if: matrix.php == '7.3'
         run: bash <(curl -s https://codecov.io/bash)

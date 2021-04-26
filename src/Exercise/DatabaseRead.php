@@ -64,7 +64,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
 
         $names = [];
         for ($i = 0; $i < $this->faker->numberBetween(5, 15); $i++) {
-            $name   = $this->faker->name;
+            $name   = $this->faker->name();
             $age    = rand(18, 90);
             $gender = rand(0, 100) % 2 ? 'male' : 'female';
 
