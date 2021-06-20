@@ -2,9 +2,8 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
-use Hoa\Socket\Exception\Exception;
-use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
+use PhpSchool\PhpWorkshop\Exception\RuntimeException;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
@@ -13,21 +12,11 @@ use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\StdOutFailure;
 use PhpSchool\PhpWorkshop\Result\Success;
+use Socket;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
-    /**
-     * @var TcpSocketFactory
-     */
-    private $socketFactory;
-
-    public function __construct(TcpSocketFactory $socketFactory)
-    {
-        $this->socketFactory = $socketFactory;
-    }
-
     public function getName(): string
     {
         return 'Time Server';
@@ -52,33 +41,37 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         $eventDispatcher->listen('cli.run.student-execute.pre', $appendArgsListener);
 
         $eventDispatcher->listen('cli.verify.reference.executing', function (CliExecuteEvent $event) {
-            $args   = $event->getArgs()->getArrayCopy();
-            $client = $this->socketFactory->createClient(...$args);
+            $args = $event->getArgs()->getArrayCopy();
 
             //wait for server to boot
             usleep(100000);
 
-            $client->connect();
-            $client->readAll();
+            $socket = $this->createSocket();
+            socket_connect($socket, $args[0], (int) $args[1]);
+            socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
             usleep(100000);
         });
 
         $eventDispatcher->insertVerifier('cli.verify.student.executing', function (CliExecuteEvent $event) {
-            $args   = $event->getArgs()->getArrayCopy();
-            $client = $this->socketFactory->createClient(...$args);
+            $args = $event->getArgs()->getArrayCopy();
 
             //wait for server to boot
             usleep(100000);
 
-            try {
-                $client->connect();
-            } catch (Exception $e) {
-                return Failure::fromNameAndReason($this->getName(), $e->getMessage());
+            $socket = $this->createSocket();
+            $connectResult = @socket_connect($socket, $args[0], (int) $args[1]);
+
+            if (!$connectResult) {
+                return Failure::fromNameAndReason($this->getName(), sprintf(
+                    "Client returns an error (number %d): Connection refused while trying to join tcp://127.0.0.1:%d.",
+                    socket_last_error($socket),
+                    $args[1]
+                ));
             }
 
-            $out = $client->readAll();
+            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
             usleep(100000);
@@ -97,13 +90,13 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             /** @var OutputInterface $output */
             $output = $event->getParameter('output');
             $args   = $event->getArgs()->getArrayCopy();
-            $client = $this->socketFactory->createClient(...$args);
 
             //wait for server to boot
             usleep(100000);
 
-            $client->connect();
-            $out = $client->readAll();
+            $socket = $this->createSocket();
+            socket_connect($socket, $args[0], (int) $args[1]);
+            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
             usleep(100000);
@@ -128,5 +121,19 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     public function getArgs(): array
     {
         return [];
+    }
+
+    /**
+     * @return resource
+     */
+    private function createSocket()
+    {
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+
+        if ($socket === false) {
+            throw new RuntimeException('Cannot create socket');
+        }
+
+        return $socket;
     }
 }
