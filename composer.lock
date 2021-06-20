@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ef8e16563be4a583e700d786918f291",
+    "content-hash": "e99d8d0362500fe0191e61f89a8567b9",
     "packages": [
         {
             "name": "aydin-hassan/cli-md-renderer",
@@ -1048,10 +1048,16 @@
         {
             "name": "php-school/php-workshop",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-school/php-workshop.git",
+                "reference": "bddd9a7e0366fcb3003ed313f4bf99184c05b0ac"
+            },
             "dist": {
-                "type": "path",
-                "url": "../php-workshop",
-                "reference": "b71ef922884902839f01888198f877c864e77083"
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/bddd9a7e0366fcb3003ed313f4bf99184c05b0ac",
+                "reference": "bddd9a7e0366fcb3003ed313f4bf99184c05b0ac",
+                "shasum": ""
             },
             "require": {
                 "aydin-hassan/cli-md-renderer": "^2.4",
@@ -1081,6 +1087,7 @@
                 "squizlabs/php_codesniffer": "^3.4",
                 "yoast/phpunit-polyfills": "^0.2.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -1091,24 +1098,7 @@
                     "src/functions.php"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "PhpSchool\\PhpWorkshopTest\\": "test"
-                }
-            },
-            "scripts": {
-                "cs": [
-                    "phpcs src --standard=PSR12 --encoding=UTF-8",
-                    "phpcs test --standard=PSR12 --encoding=UTF-8"
-                ],
-                "cs-fix": [
-                    "phpcbf src --standard=PSR12 --encoding=UTF-8",
-                    "phpcbf test --standard=PSR12 --encoding=UTF-8"
-                ],
-                "static": [
-                    "phpstan --ansi analyse --level max src"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1134,9 +1124,11 @@
                 "terminal",
                 "workshop"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/php-school/php-workshop/issues",
+                "source": "https://github.com/php-school/php-workshop/tree/master"
+            },
+            "time": "2021-06-15T20:37:26+00:00"
         },
         {
             "name": "php-school/terminal",

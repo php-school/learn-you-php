@@ -47,11 +47,5 @@
             "phpcbf test --standard=PSR12 --encoding=UTF-8"
         ],
         "static": "phpstan --ansi analyse --level max src"
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../php-workshop"
-        }
-    ]
+    }
 }
