@@ -1,3 +1,4 @@
 parameters:
 	bootstrapFiles:
 		- phpstan-bootstrap.php
+	phpVersion: 70200
