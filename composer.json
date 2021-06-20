@@ -14,9 +14,9 @@
     "require" : {
         "php" : ">=7.2",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "^3.0.1",
-        "hoa/socket": "^1.17.05",
-        "phpstan/phpstan": "^0.12.52"
+        "php-school/php-workshop": "dev-master",
+        "phpstan/phpstan": "^0.12.52",
+        "ext-sockets": "*"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^5.1",
@@ -47,5 +47,11 @@
             "phpcbf test --standard=PSR12 --encoding=UTF-8"
         ],
         "static": "phpstan --ansi analyse --level max src"
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../php-workshop"
+        }
+    ]
 }
