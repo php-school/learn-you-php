@@ -3,6 +3,7 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
+use PhpSchool\PhpWorkshop\Exception\RuntimeException;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
@@ -12,6 +13,7 @@ use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
+use Socket;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
@@ -39,13 +41,13 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         $eventDispatcher->listen('cli.run.student-execute.pre', $appendArgsListener);
 
         $eventDispatcher->listen('cli.verify.reference.executing', function (CliExecuteEvent $event) {
-            $args   = $event->getArgs()->getArrayCopy();
+            $args = $event->getArgs()->getArrayCopy();
 
             //wait for server to boot
             usleep(100000);
 
-            $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_connect($socket, $args[0], $args[1]);
+            $socket = $this->createSocket();
+            socket_connect($socket, $args[0], (int) $args[1]);
             socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
@@ -53,13 +55,13 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         });
 
         $eventDispatcher->insertVerifier('cli.verify.student.executing', function (CliExecuteEvent $event) {
-            $args   = $event->getArgs()->getArrayCopy();
+            $args = $event->getArgs()->getArrayCopy();
 
             //wait for server to boot
             usleep(100000);
 
-            $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            $connectResult = @socket_connect($socket, $args[0], $args[1]);
+            $socket = $this->createSocket();
+            $connectResult = @socket_connect($socket, $args[0], (int) $args[1]);
 
             if (!$connectResult) {
                 return Failure::fromNameAndReason($this->getName(), sprintf(
@@ -69,7 +71,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
                 ));
             }
 
-            $out = socket_read($socket, 2048, PHP_NORMAL_READ);
+            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
             usleep(100000);
@@ -92,9 +94,9 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             //wait for server to boot
             usleep(100000);
 
-            $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_connect($socket, $args[0], $args[1]);
-            $out = socket_read($socket, 2048, PHP_NORMAL_READ);
+            $socket = $this->createSocket();
+            socket_connect($socket, $args[0], (int) $args[1]);
+            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
 
             //wait for shutdown
             usleep(100000);
@@ -119,5 +121,19 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     public function getArgs(): array
     {
         return [];
+    }
+
+    /**
+     * @return resource
+     */
+    private function createSocket()
+    {
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+
+        if ($socket === false) {
+            throw new RuntimeException('Cannot create socket');
+        }
+
+        return $socket;
     }
 }
