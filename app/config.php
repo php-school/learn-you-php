@@ -1,8 +1,5 @@
 <?php
 
-use function DI\create;
-use function DI\factory;
-use function DI\object;
 use Psr\Container\ContainerInterface;
 use PhpParser\Parser;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
@@ -21,7 +18,12 @@ use PhpSchool\PhpWorkshop\Event\Event;
 use Symfony\Component\Filesystem\Filesystem;
 use Faker\Factory as FakerFactory;
 
+use function DI\create;
+use function DI\factory;
+
 return [
+    'basePath' => __DIR__ . '/../',
+
     //Exercises
     BabySteps::class    => create(BabySteps::class),
     HelloWorld::class   => create(HelloWorld::class),
