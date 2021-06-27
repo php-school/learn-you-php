@@ -6,7 +6,7 @@ The very first PHP School workshop. A revolutionary new way to learn PHP </br> B
 
 <p align="center">
 <a href="https://github.com/php-school/learn-you-php/actions">
-    <img src="https://github.com/php-school/workshop-manager/workflows/LearnYouPhp/badge.svg">
+    <img src="https://github.com/php-school/learn-you-php/actions/workflows/build.yml/badge.svg">
 </a>
 <a href="https://codecov.io/github/php-school/learn-you-php">
     <img src="https://img.shields.io/codecov/c/github/php-school/learn-you-php.svg?style=flat-square">
