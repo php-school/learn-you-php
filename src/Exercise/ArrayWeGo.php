@@ -56,7 +56,6 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
 
         $files = [];
         foreach (range(1, $fileCount) as $index) {
-            /** @phpstan-ignore-next-line */
             $file = sprintf('%s/%s.txt', $this->getTemporaryPath(), $this->faker->uuid());
             if ($index <= $realFiles) {
                 $this->filesystem->touch($file);

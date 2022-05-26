@@ -14,7 +14,6 @@ use Psr\Http\Message\RequestInterface;
 
 class DependencyHeavenTest extends TestCase
 {
-
     /**
      * @var Generator
      */
