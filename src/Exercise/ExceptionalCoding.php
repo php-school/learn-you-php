@@ -59,7 +59,6 @@ class ExceptionalCoding extends AbstractExercise implements
 
         $files = [];
         foreach (range(1, $fileCount) as $index) {
-            /** @phpstan-ignore-next-line */
             $file = sprintf('%s/%s.txt', $this->getTemporaryPath(), $this->faker->uuid());
             if ($index <= $realFiles) {
                 $this->filesystem->touch($file);
