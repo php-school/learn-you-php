@@ -1,8 +1,5 @@
 <?php
 
-use function DI\create;
-use function DI\factory;
-use function DI\object;
 use Psr\Container\ContainerInterface;
 use PhpParser\Parser;
 use PhpSchool\LearnYouPhp\Exercise\ArrayWeGo;
@@ -16,12 +13,16 @@ use PhpSchool\LearnYouPhp\Exercise\HttpJsonApi;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
-use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Event\Event;
 use Symfony\Component\Filesystem\Filesystem;
 use Faker\Factory as FakerFactory;
 
+use function DI\create;
+use function DI\factory;
+
 return [
+    'basePath' => __DIR__ . '/../',
+
     //Exercises
     BabySteps::class    => create(BabySteps::class),
     HelloWorld::class   => create(HelloWorld::class),
@@ -48,7 +49,7 @@ return [
         return new DatabaseRead(FakerFactory::create());
     }),
     TimeServer::class   => factory(function (ContainerInterface $c) {
-        return new TimeServer(new TcpSocketFactory);
+        return new TimeServer();
     }),
     DependencyHeaven::class  => factory(function (ContainerInterface $c) {
         return new DependencyHeaven(FakerFactory::create('fr_FR'));
