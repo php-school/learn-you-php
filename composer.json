@@ -14,7 +14,7 @@
     "require" : {
         "php" : ">=7.2",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "dev-master",
+        "php-school/php-workshop": "^4.0",
         "phpstan/phpstan": "^0.12.52",
         "ext-sockets": "*"
     },
