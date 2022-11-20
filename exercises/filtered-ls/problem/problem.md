@@ -2,7 +2,7 @@ Create a program that prints a list of files in a given directory, filtered by t
 
 For example, if you get 'txt' as the second argument then you will need to filter the list to only files that **end with .txt**. Note that the second argument _will not_ come prefixed with a '.'.
 
-The list of files should be printed to the console, one file per line.
+The list of files should be printed out, one file per line.
 
 ----------------------------------------------------------------------
 ## HINTS
@@ -16,13 +16,10 @@ foreach (new DirectoryIterator('/some/path') as $file) {
 }
 ```
 
-Documentation on the `SplFileInfo` class can be found by pointing your browser here:
-
-[http://php.net/manual/en/class.splfileinfo.php]()
+{{ doc SplFileInfo en class.splfileinfo.php }}
 
 You may also find `SplFileInfo`'s `getExtension()` method helpful
 
-Documentation on the `getExtension()` method can be found by pointing your browser here:
-[http://php.net/manual/en/splfileinfo.getextension.php]()
+{{ doc getExtension() en splfileinfo.getextension.php }}
 
 ----------------------------------------------------------------------

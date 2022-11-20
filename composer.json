@@ -5,6 +5,7 @@
     "homepage": "https://www.phpschool.io",
     "license": "MIT",
     "type": "php-school-workshop",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Aydin Hassan",

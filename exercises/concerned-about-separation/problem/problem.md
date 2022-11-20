@@ -11,6 +11,7 @@ The benefit of having a contract like this is that your class can be used by any
 ----------------------------------------------------------------------
 ## HINTS
 
+[//]: # (TODO: create ?! ... e.g create a new file in you IDE, touch etc, or create a new file in the cloud file explorer)
 Create a new class by creating a new file that just contains your directory reading and filtering code in a class method. To define a *single method* *class*, use the following syntax:
 
 ```php
@@ -41,12 +42,8 @@ $myFilter = new DirectoryFilter;
 
 You can then call the method you defined with its required arguments.
 
-Documentation on class basics can be found here:
+{{ doc 'class basics' en language.oop5.basic.php }}
 
-[http://php.net/manual/en/language.oop5.basic.php]()
-
-Documentation on `require_once` can be found here:
-
-[http://php.net/manual/en/function.require-once.php]()
+{{ doc require_once en function.require-once.php }}
 
 ----------------------------------------------------------------------

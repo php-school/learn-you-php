@@ -41,12 +41,11 @@ You can read and write to the socket by using `socket_read` and `socket_write`. 
 
 Use `socket_write($client, $data, strlen($data))` to write data to the socket and then `socket_close($socket)` to close the socket.
 
-Documentation on PHP streams can be found by pointing your browser here:
-    [http://php.net/manual/en/sockets.examples.php]()
-    [http://php.net/manual/en/function.stream-socket-server.php]()
+{{ doc 'PHP streams' en sockets.examples.php function.stream-socket-server.php }}
 
 To create the date you'll need to create a custom format from the PHP `DateTime` object. The various parameters to `format()` will 
-help you. You can find the documentation here:
-    [http://php.net/manual/en/class.datetime.php]()
+help you. 
+
+{{ doc DateTime en class.datetime.php }}
 
 ----------------------------------------------------------------------

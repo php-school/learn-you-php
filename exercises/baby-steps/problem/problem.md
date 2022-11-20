@@ -11,6 +11,9 @@ To get started, write a program that simply contains:
 var_dump($argv);
 ```
 
+[//]: # (TODO: RUN?!?! e.g run on the CLI or click run in the cloud sidebar?!)
+{{ run program.php 1 2 3 }} ?? !!!?!?!?
+
 Run it with `php program.php` and some numbers as arguments. e.g:
 
 ```sh
@@ -36,6 +39,6 @@ You'll need to think about how to loop through the number of arguments so you ca
 
 Also be aware that all elements of `$argv` are strings and you may need to *coerce* them into numbers. You can do this by prefixing the property with a cast `(int)` or just adding them. PHP will coerce it for you.
 
-`{appname}` will be supplying arguments to your program when you run `{appname} verify program.php` so you don't need to supply them yourself. To test your program without verifying it, you can invoke it with `{appname} run program.php`. When you use `run`, you are invoking the test environment that `{appname}` sets up for each exercise.
+{{ appname ` }} will be supplying arguments to your program when you run {{ appname ` }} `verify program.php` so you don't need to supply them yourself. To test your program without verifying it, you can invoke it with {{ appname ` }} `run program.php`. When you use `run`, you are invoking the test environment that {{ appname ` }} sets up for each exercise.
 
 ----------------------------------------------------------------------

@@ -91,7 +91,13 @@ Finally, you will also be required to use `symfony/string` to manipulate the dat
 ----------------------------------------------------------------------
 ## HINTS
 
+{{ cli }}
 Point your browser to [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) which will walk you through **Installing Composer** if you haven't already!
+{{ cli }}
+
+{{ cloud }}
+Composer is installed and ready to go on cloud, user the commands tab to execute composer directly on your solution
+{{ cloud }} 
 
 Use `composer init` to create your `composer.json` file with interactive search. 
 

@@ -13,7 +13,6 @@ The full path of the files to read will be provided as the command line argument
 
 You are urged to use `try... catch` logic here along with the SplFileObject contruct which throws a `RuntimeException` when a file does not exist.
 
-Documentation on the `SplFileObject` class can be found by pointing your browser here:
-  [http://php.net/manual/en/class.splfileobject.php]()
+{{ doc SplFileObject en class.splfileobject.php }}
 
 ----------------------------------------------------------------------
