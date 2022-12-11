@@ -2,7 +2,7 @@ Write an HTTP **server** that serves JSON data when it receives a POST request t
 
 The POST data will contain a single parameter `data` which you will need to manipulate depending on the endpoint.
 
-## /reverse  
+### /reverse  
 
 A request with `data = "PHP School is awesome!"` should return the response:
 
@@ -12,7 +12,7 @@ A request with `data = "PHP School is awesome!"` should return the response:
 }
 ```
 
-## /swapcase  
+### /swapcase  
 
 A request with `data = "No, It Really Is..."` should return the response:
 
@@ -22,7 +22,7 @@ A request with `data = "No, It Really Is..."` should return the response:
 }
 ```
 
-## /titleize  
+### /titleize  
 
 A request with `data = "you know you love it, don't you?"` should return the response:
 
@@ -45,9 +45,9 @@ Use `composer init` to create your `composer.json` file with interactive search.
 
 For more details look at the docs for...
 
-**Composer** - [https://getcomposer.org/doc/01-basic-usage.md](https://getcomposer.org/doc/01-basic-usage.md) 
-**Klein** - [https://github.com/chriso/klein.php](https://github.com/chriso/klein.php)
-**Stringy** - [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
+* **Composer** - [https://getcomposer.org/doc/01-basic-usage.md](https://getcomposer.org/doc/01-basic-usage.md) 
+* **Klein** - [https://github.com/chriso/klein.php](https://github.com/chriso/klein.php)
+* **Stringy** - [https://github.com/danielstjules/Stringy](https://github.com/danielstjules/Stringy)
   
 Oh, and don't forget to use the Composer autoloader with:
 
