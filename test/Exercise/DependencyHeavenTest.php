@@ -11,11 +11,13 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Result\Cgi\CgiResult;
 use PhpSchool\PhpWorkshop\Result\Cgi\ResultInterface;
+use PhpSchool\PhpWorkshop\Result\ComposerFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 use Psr\Http\Message\RequestInterface;
 use PhpSchool\PhpWorkshop\Result\Cgi\GenericFailure;
+use function PhpSchool\PhpWorkshop\collect;
 
 class DependencyHeavenTest extends WorkshopExerciseTest
 {
@@ -108,7 +110,12 @@ class DependencyHeavenTest extends WorkshopExerciseTest
         $this->runExercise('no-composer/solution.php');
 
         $this->assertVerifyWasNotSuccessful();
-        $this->assertResultsHasFailure(Failure::class, 'No composer.json file found');
+        $this->assertResultsHasFailureAndMatches(
+            ComposerFailure::class,
+            function (ComposerFailure $failure) {
+                return $failure->getMissingComponent() === 'composer.json';
+            }
+        );
     }
 
     public function testWithNoCode(): void
