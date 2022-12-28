@@ -6,4 +6,5 @@ program.js
 /solution
 exercises/*/solution/vendor
 /test/solutions/*/*/vendor
+/test/solutions/*/*/composer.lock
 .phpunit.result.cache
