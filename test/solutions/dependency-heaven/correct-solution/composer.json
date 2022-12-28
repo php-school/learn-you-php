@@ -1,0 +1,10 @@
+{
+  "name": "learn-you-php/dependency-heaven",
+  "description": "An introduction to Composer dependency management",
+  "require": {
+    "symfony/string": "^6.2",
+    "league/route": "^5.1",
+    "laminas/laminas-diactoros": "^2.24",
+    "laminas/laminas-httphandlerrunner": "^2.4"
+  }
+}

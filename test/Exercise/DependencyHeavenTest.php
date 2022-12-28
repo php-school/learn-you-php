@@ -5,14 +5,19 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\DependencyHeaven;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\Result\Cgi\CgiResult;
+use PhpSchool\PhpWorkshop\Result\Cgi\ResultInterface;
+use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit\Framework\TestCase;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 use Psr\Http\Message\RequestInterface;
+use PhpSchool\PhpWorkshop\Result\Cgi\GenericFailure;
 
-class DependencyHeavenTest extends TestCase
+class DependencyHeavenTest extends WorkshopExerciseTest
 {
     /**
      * @var Generator
@@ -22,6 +27,7 @@ class DependencyHeavenTest extends TestCase
     public function setUp(): void
     {
         $this->faker = Factory::create('Fr_fr');
+        parent::setUp();
     }
 
     public function testDependencyHeavenExercise(): void
@@ -38,7 +44,7 @@ class DependencyHeavenTest extends TestCase
     public function testGetRequiredPackages(): void
     {
         $this->assertSame(
-            ['klein/klein', 'danielstjules/stringy'],
+            ['league/route', 'laminas/laminas-diactoros', 'laminas/laminas-httphandlerrunner', 'symfony/string'],
             (new DependencyHeaven($this->faker))->getRequiredPackages()
         );
     }
@@ -66,7 +72,7 @@ class DependencyHeavenTest extends TestCase
         }, $e->getRequests());
 
         $counts = array_count_values($endPoints);
-        foreach (['/reverse', '/swapcase', '/titleize'] as $endPoint) {
+        foreach (['/reverse', '/snake', '/titleize'] as $endPoint) {
             $this->assertTrue(isset($counts[$endPoint]));
             $this->assertGreaterThan(1, $counts[$endPoint]);
         }
@@ -85,5 +91,69 @@ class DependencyHeavenTest extends TestCase
 
         $e = new DependencyHeaven($this->faker);
         $e->configure($dispatcher);
+    }
+
+    public function getExerciseClass(): string
+    {
+        return DependencyHeaven::class;
+    }
+
+    public function getApplication(): Application
+    {
+        return require __DIR__ . '/../../app/bootstrap.php';
+    }
+
+    public function testWithNoComposerFile(): void
+    {
+        $this->runExercise('no-composer/solution.php');
+
+        $this->assertVerifyWasNotSuccessful();
+        $this->assertResultsHasFailure(Failure::class, 'No composer.json file found');
+    }
+
+    public function testWithNoCode(): void
+    {
+        $this->runExercise('no-code/solution.php');
+
+        $this->assertVerifyWasNotSuccessful();
+
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
+    }
+
+    public function testWithWrongEndpoint(): void
+    {
+        $this->runExercise('wrong-endpoint/solution.php');
+
+        $this->assertVerifyWasNotSuccessful();
+
+        $result = $this->getOutputResult();
+
+        $reverseRequests = collect($result->getResults())
+            ->filter(function (ResultInterface $result) {
+                return $result->getRequest()->getUri()->getPath() === '/reverse';
+            });
+
+        $this->assertGreaterThan(1, $reverseRequests->count());
+
+        $fails = collect($result->getResults())
+            ->filter(function ($result) {
+                return $result instanceof GenericFailure;
+            });
+
+        $this->assertSame($reverseRequests->count(), $fails->count());
+
+        $fails->each(function (GenericFailure $failure) {
+            $this->assertStringContainsString(
+                'Uncaught League\Route\Http\Exception\NotFoundException',
+                $failure->getReason()
+            );
+        });
+    }
+
+    public function testWithCorrectSolution(): void
+    {
+        $this->runExercise('correct-solution/solution.php');
+
+        $this->assertVerifyWasSuccessful();
     }
 }

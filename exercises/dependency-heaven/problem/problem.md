@@ -12,7 +12,7 @@ A request with `data = "PHP School is awesome!"` should return the response:
 }
 ```
 
-### /swapcase  
+### /snake  
 
 A request with `data = "No, It Really Is..."` should return the response:
 

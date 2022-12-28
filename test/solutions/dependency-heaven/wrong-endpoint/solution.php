@@ -14,7 +14,7 @@ $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
 
 $router = new Router();
 
-$router->post('/reverse', function (ServerRequestInterface $request): ResponseInterface {
+$router->post('/wat', function (ServerRequestInterface $request): ResponseInterface {
     $str = $request->getQueryParams()['data'] ?? '';
 
     return new \Laminas\Diactoros\Response\JsonResponse([

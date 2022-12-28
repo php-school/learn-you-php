@@ -9,7 +9,6 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
@@ -55,7 +54,7 @@ class DependencyHeaven extends AbstractExercise implements
 
         for ($i = 0; $i < rand(2, 5); $i++) {
             $requests[] = $this->newApiRequest('/reverse');
-            $requests[] = $this->newApiRequest('/swapcase');
+            $requests[] = $this->newApiRequest('/snake');
             $requests[] = $this->newApiRequest('/titleize');
         }
 
@@ -80,8 +79,10 @@ class DependencyHeaven extends AbstractExercise implements
     public function getRequiredPackages(): array
     {
         return [
-            'klein/klein',
-            'danielstjules/stringy'
+            'league/route',
+            'laminas/laminas-diactoros',
+            'laminas/laminas-httphandlerrunner',
+            'symfony/string'
         ];
     }
 
