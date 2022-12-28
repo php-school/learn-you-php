@@ -9,14 +9,13 @@ use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Check\ComposerCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\Result\Cgi\CgiResult;
 use PhpSchool\PhpWorkshop\Result\Cgi\ResultInterface;
 use PhpSchool\PhpWorkshop\Result\ComposerFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 use Psr\Http\Message\RequestInterface;
 use PhpSchool\PhpWorkshop\Result\Cgi\GenericFailure;
+
 use function PhpSchool\PhpWorkshop\collect;
 
 class DependencyHeavenTest extends WorkshopExerciseTest
