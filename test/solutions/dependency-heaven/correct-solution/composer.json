@@ -2,9 +2,9 @@
   "name": "learn-you-php/dependency-heaven",
   "description": "An introduction to Composer dependency management",
   "require": {
-    "symfony/string": "^6.0",
+    "symfony/string": "^5.0 | ^6.0",
     "league/route": "^5.1",
     "laminas/laminas-diactoros": "^2.4",
-    "laminas/laminas-httphandlerrunner": "^1.2"
+    "laminas/laminas-httphandlerrunner": "^1.2 | ^2.4"
   }
 }
