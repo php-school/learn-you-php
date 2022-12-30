@@ -20,9 +20,12 @@ use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\Terminal\Terminal;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class TimeServerTest extends TestCase
 {
+    use AssertionRenames;
+
     /**
      * @var TimeServer
      */

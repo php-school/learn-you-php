@@ -8,12 +8,14 @@ use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
 use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class ExceptionalCodingTest extends TestCase
 {
+    use AssertionRenames;
+
     /**
      * @var Generator
      */

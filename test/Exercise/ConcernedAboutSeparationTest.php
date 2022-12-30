@@ -11,9 +11,12 @@ use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class ConcernedAboutSeparationTest extends TestCase
 {
+    use AssertionRenames;
+
     /**
      * @var Filesystem
      */

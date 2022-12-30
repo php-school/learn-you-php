@@ -7,9 +7,12 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
 use Symfony\Component\Filesystem\Filesystem;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class FilteredLsTest extends TestCase
 {
+    use AssertionRenames;
+
     /**
      * @var Filesystem
      */
