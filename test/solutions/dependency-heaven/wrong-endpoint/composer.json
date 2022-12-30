@@ -5,6 +5,6 @@
     "symfony/string": "^6.0",
     "league/route": "^5.1",
     "laminas/laminas-diactoros": "^2.4",
-    "laminas/laminas-httphandlerrunner": "^2.4"
+    "laminas/laminas-httphandlerrunner": "^1.2"
   }
 }
