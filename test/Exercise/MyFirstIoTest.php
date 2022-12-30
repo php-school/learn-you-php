@@ -11,9 +11,12 @@ use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
 use PHPUnit\Framework\TestCase;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
 use Symfony\Component\Filesystem\Filesystem;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class MyFirstIoTest extends TestCase
 {
+    use AssertionRenames;
+
     /**
      * @var Generator
      */
