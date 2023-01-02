@@ -34,7 +34,7 @@ A request with `data = "you know you love it, don't you?"` should return the res
 
 You should use the routing library `league/route` for this task, pulling it in as a dependency through Composer. `league/route` allows us to define actions which respond to requests based on the request URI and HTTP method.
 
-The library works by accepting a PSR7 request and returns to you a PSR7 response. It is up to you to marshall the request object and output the response to the browser.
+The library works by accepting a PSR7 request and returns to you a PSR7 response. It is up to you to marshal the request object and output the response to the browser.
 
 There are a few other components we need, in order to use `league/route`:
 
