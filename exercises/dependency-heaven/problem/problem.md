@@ -41,7 +41,7 @@ There are a few other components we need, in order to use `league/route`:
  * **laminas/laminas-diactoros** - For the PSR7 requests and responses.
  * **laminas/laminas-httphandlerrunner** - For outputting the PSR7 response to the browser.
 
-`laminas/laminas-diactoros` is a PSR7 implementation. PSR's are standards defined by the PHP-FIG, a committee of PHP projects, attempting to increase interoperability in the PHP ecosystem. PSR7 is a standard for modelling HTTP requests. We can use the `laminas/laminas-diactoros` package to marshall a PSR7 request object from the PHP super globals like so:
+`laminas/laminas-diactoros` is a PSR7 implementation. PSR's are standards defined by the PHP-FIG, a committee of PHP projects, attempting to increase interoperability in the PHP ecosystem. PSR7 is a standard for modelling HTTP requests. We can use the `laminas/laminas-diactoros` package to marshal a PSR7 request object from the PHP super globals like so:
 
 ```php
 $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
