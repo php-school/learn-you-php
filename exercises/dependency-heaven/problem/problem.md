@@ -59,7 +59,7 @@ Where `$response` is a PSR7 response.
 
 In between this, you will need to define your routes and execute the dispatching mechanism to receive a response. Refer to the `league\route` [documentation](https://route.thephpleague.com/5.x/usage/).
 
-Each route action will be passed the PSR7 requestx§x where you can access the request parameters and body. To access the `data` key from the request body, you would use the following:
+Each route action will be passed the PSR7 request where you can access the request parameters and body. To access the `data` key from the request body, you would use the following:
 
 ```php
 $data = $request->getParsedBody()['data'] ?? '';
