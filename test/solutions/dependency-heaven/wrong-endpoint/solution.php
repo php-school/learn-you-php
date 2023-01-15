@@ -15,7 +15,7 @@ $request = ServerRequestFactory::fromGlobals();
 
 $router = new Router();
 
-$router->post('/reverse', function (ServerRequestInterface $request): ResponseInterface {
+$router->post('/wat', function (ServerRequestInterface $request): ResponseInterface {
     $str = $request->getParsedBody()['data'] ?? '';
 
     return new JsonResponse([

@@ -41,11 +41,10 @@
         "unit-tests": "phpunit",
         "cs" : [
             "phpcs src --standard=PSR12",
-            "phpcs test --standard=PSR12"
-        ],
+            "phpcs test --standard=PSR12 --ignore='test/solutions'"        ],
         "cs-fix" : [
             "phpcbf src --standard=PSR12 --encoding=UTF-8",
-            "phpcbf test --standard=PSR12 --encoding=UTF-8"
+            "phpcbf test --standard=PSR12 --encoding=UTF-8 --ignore='test/solutions'"
         ],
         "static": "phpstan --ansi analyse --level max src"
     }
