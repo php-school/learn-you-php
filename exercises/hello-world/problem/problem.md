@@ -39,7 +39,7 @@ $ php program.php
 {{ cli }}
 
 {{ cloud }}
-Try hitting the *Run* button.
+Try hitting the *Run* button to execute your program.
 {{ cloud }}
 
 [//]: # (TODO: Contextual words ??? e.g. console <-> browser)
@@ -47,7 +47,9 @@ You should see the word "text" printed out on the console.
 
 Now you must adapt the code to pass the challenge presented. Remember the challenge was: Write a program that prints the text "Hello World" to the console (stdout).
 
+{{ cli }}
 We have created you a file named `hello-world.php` in your current working directory, feel free to use it!
+{{ cli }}
 
 [//]: # (TODO: Verify...)
 {{ verify ... ... ... }}
@@ -56,6 +58,14 @@ When you have finished and saved the file you must run the following (substituti
 ```sh
 $ {appname} verify program.php
 ```
+
+When you have finished editing your program {cli}and saved the file{cli} you must verify your program. 
+
+{{ verify program.php }}
+
+{{ cli }}
+Don't forget to substitute program.php for the name of the file you created which contains your code.
+{{ cli }}
 
 to proceed. Your program will be tested, a report will be generated, and the lesson will be marked 'completed' if you are successful.
 
