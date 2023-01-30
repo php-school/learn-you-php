@@ -93,13 +93,13 @@ Finally, you will also be required to use `symfony/string` to manipulate the dat
 
 {{ cli }}
 Point your browser to [https://getcomposer.org/doc/00-intro.md](https://getcomposer.org/doc/00-intro.md) which will walk you through **Installing Composer** if you haven't already!
+
+Use `composer init` to create your `composer.json` file with interactive search.
 {{ cli }}
 
 {{ cloud }}
-Composer is installed and ready to go on cloud, user the commands tab to execute composer directly on your solution
-{{ cloud }} 
-
-Use `composer init` to create your `composer.json` file with interactive search. 
+Composer is installed and ready to go on cloud, use the Composer Deps button in the editor to search for and install your dependencies. While you should read the documentation for [Composer](https://getcomposer.org/doc/00-intro.md), it's important to note that the way we manage dependencies on PHP School cloud, is not how you would manage them in your own projects. We abstract away the `composer.json` file to keep it simple. 
+{{ cloud }}
 
 For more details look at the docs for...
 

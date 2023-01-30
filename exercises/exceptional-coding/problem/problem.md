@@ -11,7 +11,7 @@ The full path of the files to read will be provided as the command line argument
 ----------------------------------------------------------------------
 ## HINTS
 
-You are urged to use `try... catch` logic here along with the SplFileObject contruct which throws a `RuntimeException` when a file does not exist.
+You are urged to use `try... catch` logic here along with the `SplFileObject` contruct which throws a `RuntimeException` when a file does not exist.
 
 {{ doc SplFileObject en class.splfileobject.php }}
 

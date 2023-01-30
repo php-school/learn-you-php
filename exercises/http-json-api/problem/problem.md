@@ -2,7 +2,9 @@ Write an HTTP **server** that serves JSON data when it receives a GET request to
 
 For example:
 
-  /api/parsetime?iso=2015-11-15T20:18:04+0000
+```
+/api/parsetime?iso=2015-11-15T20:18:04+0000
+```
 
 The JSON response should contain only 'hour', 'minute' and 'second' properties. For example:
 

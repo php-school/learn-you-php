@@ -6,12 +6,11 @@ You must write a *class* file to do most of the work. The file must *define* a s
 
 You **must** not print directly to the console from your class, only from your original program.
 
-The benefit of having a contract like this is that your class can be used by anyone who expects this contract. So your class could be used by anyone else who does learnyouphp, or the verifier, and just work.
+The benefit of having a contract like this is that your class can be used by anyone who expects this contract. So your class could be used by anyone else who attempts this exercise, or the verifier, and just work.
 
 ----------------------------------------------------------------------
 ## HINTS
 
-[//]: # (TODO: create ?! ... e.g create a new file in you IDE, touch etc, or create a new file in the cloud file explorer)
 Create a new class by creating a new file that just contains your directory reading and filtering code in a class method. To define a *single method* *class*, use the following syntax:
 
 ```php

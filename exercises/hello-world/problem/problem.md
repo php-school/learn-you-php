@@ -12,7 +12,9 @@ $ php program.php
 {{ cli }}
 
 {{ cloud }}
-Your first solution file is waiting for you, notice the `.php` extension in it's name. We'll execute your solution file for you when you hit `Run` or `Verify`. 
+
+Your first solution file is waiting for you, notice the `.php` extension in it's name. We'll execute your solution file for you when you press the `Run` or `Verify` buttons. 
+
 {{ cloud }}
 
 You can write to the console from a PHP program with the following code:
@@ -22,7 +24,7 @@ You can write to the console from a PHP program with the following code:
 echo "text";
 ```
 
-The first line tells the PHP to interpret the code following it. It is required before any PHP code is written. Read more here: [http://php.net/manual/en/language.basic-syntax.phptags.php]()
+The first line tells the PHP to interpret the code following it. It is required before any PHP code is written. Read more here:  {{ doc 'class basics' en language.basic-syntax.phptags.php }}
 The second line is the instruction to print out some text.
 
 {{ cli }}
@@ -39,34 +41,33 @@ $ php program.php
 {{ cli }}
 
 {{ cloud }}
-Try hitting the *Run* button to execute your program.
+Try pressing the `Run` button in the bottom right to execute your program.
 {{ cloud }}
 
-[//]: # (TODO: Contextual words ??? e.g. console <-> browser)
 You should see the word "text" printed out on the console.
 
-Now you must adapt the code to pass the challenge presented. Remember the challenge was: Write a program that prints the text "Hello World" to the console (stdout).
+{{ cloud }}
+In the cloud version of PHP School we capture the console out and display it in the browser when you click `Run`.
+{{ cloud }}
+
+Now you must adapt the code to pass the presented challenge. Remember, the challenge was: Write a program that prints the text "Hello World" to the console (stdout).
 
 {{ cli }}
 We have created you a file named `hello-world.php` in your current working directory, feel free to use it!
 {{ cli }}
 
-[//]: # (TODO: Verify...)
-{{ verify ... ... ... }}
-When you have finished and saved the file you must run the following (substituting program.php to the name of the file you created which contains your code)
+{{ cli }}
+When you have finished editing your program and saved the file you must run the following (substituting program.php to the name of the file you created which contains your code)
 
 ```sh
 $ {appname} verify program.php
 ```
-
-When you have finished editing your program {cli}and saved the file{cli} you must verify your program. 
-
-{{ verify program.php }}
-
-{{ cli }}
-Don't forget to substitute program.php for the name of the file you created which contains your code.
 {{ cli }}
 
-to proceed. Your program will be tested, a report will be generated, and the lesson will be marked 'completed' if you are successful.
+{{ cloud }}
+When you have finished editing your program you must verify it. Click the `Verify` button in the bottom right corner.
+{{ cloud }}
+
+Your program will be tested, a report will be generated, and the lesson will be marked 'completed' if you are successful.
 
 ----------------------------------------------------------------------

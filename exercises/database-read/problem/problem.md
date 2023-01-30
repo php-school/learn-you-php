@@ -4,7 +4,7 @@ Display the information of all the users in the database table `users` whose age
 
 `User: Jim Morrison Age: 27 Sex: male`
 
-Finally you will be given a random name as the second argument to your program, you should update the row in the `users` table which corresponds to this name. You should change the name to `David Attenborough`.
+Finally, you will be given a random name as the second argument to your program, you should update the row in the `users` table which corresponds to this name. You should change the name to `David Attenborough`.
 
 ----------------------------------------------------------------------
 ## HINTS
@@ -40,7 +40,7 @@ foreach ($pdo->query('SELECT * FROM users') as $row) {
 }
 ```
 
-`$row` is now an array of data. The key will be the columns and the value is the database value
+`$row` is now an array of data. The key will be the column name and the value is the database value
 
 
 You should use prepared statements to perform the updating. You should be most interested in the `prepare` and `execute` methods.
