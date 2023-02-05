@@ -13,7 +13,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class ArrayWeGoTest extends TestCase
 {
-
     /**
      * @var Generator
      */

@@ -22,7 +22,6 @@ use PHPUnit\Framework\TestCase;
 
 class TimeServerTest extends TestCase
 {
-
     /**
      * @var TimeServer
      */

@@ -9,7 +9,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class FilteredLsTest extends TestCase
 {
-
     /**
      * @var Filesystem
      */

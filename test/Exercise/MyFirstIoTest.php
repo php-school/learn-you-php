@@ -14,7 +14,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class MyFirstIoTest extends TestCase
 {
-
     /**
      * @var Generator
      */
