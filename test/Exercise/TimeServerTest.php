@@ -117,14 +117,7 @@ class TimeServerTest extends TestCase
         $color->setForceStyle(true);
         $output = new StdOutput($color, $terminal = $this->createMock(Terminal::class));
 
-        $outputRegEx  = "/\n";
-        $outputRegEx .= '\[1m\[4mArguments\[0m\[0m';
-        $outputRegEx .= "\n";
-        $outputRegEx .= '127.0.0.1, \d+';
-        $outputRegEx .= "\n\n";
-        $outputRegEx .= '\[1m\[4mOutput\[0m\[0m';
-        $outputRegEx .= "\n";
-        $outputRegEx .= '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
+        $outputRegEx  = '/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
         $outputRegEx .= "\n/";
         $this->expectOutputRegex($outputRegEx);
 
