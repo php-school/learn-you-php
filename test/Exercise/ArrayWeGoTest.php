@@ -10,11 +10,9 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class ArrayWeGoTest extends TestCase
 {
-    use AssertionRenames;
 
     /**
      * @var Generator

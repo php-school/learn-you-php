@@ -4,7 +4,6 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Colors\Color;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
-use PhpSchool\LearnYouPhp\TcpSocketFactory;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
@@ -20,11 +19,9 @@ use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\ResultAggregator;
 use PhpSchool\Terminal\Terminal;
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 class TimeServerTest extends TestCase
 {
-    use AssertionRenames;
 
     /**
      * @var TimeServer
