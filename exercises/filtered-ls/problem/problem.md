@@ -1,13 +1,15 @@
-Create a program that prints a list of files in a given directory, filtered by the extension of the files. You will be provided a directory name as the first argument to your program (e.g. '/path/to/dir/') and a file extension to filter by as the second argument.
+Create a program that prints a list of files in a given directory, filtered by the extension of the files. You will be provided a directory name as the first argument to your program (e.g. `/path/to/dir/`) and a file extension to filter by as the second argument.
 
-For example, if you get 'txt' as the second argument then you will need to filter the list to only files that **end with .txt**. Note that the second argument _will not_ come prefixed with a '.'.
+For example, if you get `txt` as the second argument then you will need to filter the list to only files that **end with .txt**. Note that the second argument _will not_ come prefixed with a full stop (`.`).
 
 The list of files should be printed out, one file per line.
 
 ----------------------------------------------------------------------
 ## HINTS
 
-The `DirectoryIterator` class takes a pathname as its first argument. Using an iterator in a `foreach` loop will provide you with a `SplFileInfo` object for each file.
+The `DirectoryIterator` class takes a pathname as its first argument.
+
+Using an iterator in a `foreach` loop will provide you with a `SplFileInfo` object for each file.
 
 ```php
 <?php
@@ -18,7 +20,7 @@ foreach (new DirectoryIterator('/some/path') as $file) {
 
 {{ doc SplFileInfo en class.splfileinfo.php }}
 
-You may also find `SplFileInfo`'s `getExtension()` method helpful
+You may also find `SplFileInfo`'s `getExtension()` method helpful.
 
 {{ doc getExtension() en splfileinfo.getextension.php }}
 
