@@ -6,7 +6,7 @@ Every file should exist but under exceptional circumstances some files may not. 
 Unable to open file at path '/file/path'
 ```
 
-The full path of the files to read will be provided as the command line arguments. You do not need to make your own test files. 
+The full path of the files to read will be provided as command line arguments. You do not need to make your own test files. 
 
 ----------------------------------------------------------------------
 ## HINTS
