@@ -11,11 +11,11 @@ Finally, you will be given a random name as the second argument to your program,
 
 This is an exercise introducing databases and PDO. PDO is a powerful abstraction library for dealing with different database vendors in a consistent manner. You can read the PDO manual here:
 
-  [http://php.net/manual/en/book.pdo.php]()
+  [http://php.net/manual/en/book.pdo.php](http://php.net/manual/en/book.pdo.php)
   
 A short introduction can be found here:
   
-  [http://www.phptherightway.com/#pdo_extension]()
+  [http://www.phptherightway.com/#pdo_extension](http://www.phptherightway.com/#pdo_extension)
   
 The most interesting class will be `\PDO`. The first parameter is the DSN string. The second and third are the username and password for the database. They are not needed for this exercise and can be left out.
   
