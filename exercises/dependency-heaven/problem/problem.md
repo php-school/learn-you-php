@@ -38,8 +38,8 @@ The library works by accepting a PSR7 request and returns to you a PSR7 response
 
 There are a few other components we need, in order to use `league/route`:
 
- * **laminas/laminas-diactoros** - For the PSR7 requests and responses.
- * **laminas/laminas-httphandlerrunner** - For outputting the PSR7 response to the browser.
+ * `laminas/laminas-diactoros` - For the PSR7 requests and responses.
+ * `laminas/laminas-httphandlerrunner` - For outputting the PSR7 response to the browser.
 
 `laminas/laminas-diactoros` is a PSR7 implementation. PSR's are standards defined by the PHP-FIG, a committee of PHP projects, attempting to increase interoperability in the PHP ecosystem. PSR7 is a standard for modelling HTTP requests. We can use the `laminas/laminas-diactoros` package to marshal a PSR7 request object from the PHP super globals like so:
 
@@ -98,7 +98,7 @@ Use `composer init` to create your `composer.json` file with interactive search.
 {{ cli }}
 
 {{ cloud }}
-Composer is installed and ready to go on cloud, use the Composer Deps button in the editor to search for and install your dependencies. While you should read the documentation for [Composer](https://getcomposer.org/doc/00-intro.md), it's important to note that the way we manage dependencies on PHP School cloud, is not how you would manage them in your own projects. We abstract away the `composer.json` file to keep it simple. 
+Composer is installed and ready to go on cloud, use the `Composer Deps` button in the editor to search for and install your dependencies. While you should read the documentation for [Composer](https://getcomposer.org/doc/00-intro.md), it's important to note that the way we manage dependencies on PHP School cloud, is not how you would manage them in your own projects. We abstract away the `composer.json` file to keep it simple. 
 {{ cloud }}
 
 For more details look at the docs for...

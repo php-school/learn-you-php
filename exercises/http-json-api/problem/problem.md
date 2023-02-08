@@ -1,4 +1,4 @@
-Write an HTTP **server** that serves JSON data when it receives a GET request to the path '/api/parsetime'. Expect the request to contain a query string with a key 'iso' and an ISO-format time as the value.
+Write an HTTP **server** that serves JSON data when it receives a GET request to the path `/api/parsetime`. Expect the request to contain a query string with a key `iso` and an ISO-format time as the value.
 
 For example:
 
@@ -6,7 +6,7 @@ For example:
 /api/parsetime?iso=2015-11-15T20:18:04+0000
 ```
 
-The JSON response should contain only 'hour', 'minute' and 'second' properties. For example:
+The JSON response should contain only `hour`, `minute` and `second` properties. For example:
 
 ```json
 {
@@ -16,7 +16,7 @@ The JSON response should contain only 'hour', 'minute' and 'second' properties. 
 }
 ```
 
-Add a second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch time in seconds (the number of seconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
+Add a second endpoint for the path `/api/unixtime` which accepts the same query string but returns UNIX epoch time in seconds (the number of seconds since 1 Jan 1970 00:00:00 UTC) under the property `unixtime`.
 
 For example:
 

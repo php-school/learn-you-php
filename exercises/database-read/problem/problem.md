@@ -19,7 +19,7 @@ A short introduction can be found here:
   
 The most interesting class will be `\PDO`. The first parameter is the DSN string. The second and third are the username and password for the database. They are not needed for this exercise and can be left out.
   
-The `users` table is structured as follows
+The `users` table is structured as follows:
 
 ```
 +----+-----------------+-----+--------+
@@ -40,11 +40,11 @@ foreach ($pdo->query('SELECT * FROM users') as $row) {
 }
 ```
 
-`$row` is now an array of data. The key will be the column name and the value is the database value
+`$row` is now an array of data. The key will be the column name and the value is the database value.
 
 
 You should use prepared statements to perform the updating. You should be most interested in the `prepare` and `execute` methods.
 
-Remember the first argument will be the program's file path and not an argument passed to the program.
+Remember, the first argument will be the program's file path and not an argument passed to the program.
 
 ----------------------------------------------------------------------

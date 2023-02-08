@@ -6,7 +6,7 @@ Your server should listen to TCP connections on the IP address provided as the f
 "YYYY-MM-DD hh:mm:ss"
 ```
 
-followed by a **newline** character. Month, day, hour, minute and second must be *zero-filled* to 2 integers. For example:
+Followed by a **newline** character. Month, day, hour, minute and second must be *zero-filled* to 2 integers. For example:
 
 ```
 "2013-07-06 17:42:30"
@@ -15,7 +15,7 @@ followed by a **newline** character. Month, day, hour, minute and second must be
 ----------------------------------------------------------------------
 ## HINTS
 
-For this exercise we'll be creating a raw TCP server. We will be using the core PHP `socket_*` functions. These functions are a thin wrapper around the C libraries.
+For this exercise we'll be creating a raw TCP server. We will be using the core PHP `socket_*` functions. These functions are a thin wrapper around the respective C libraries.
 
 To create a server you need to use the functions `socket_create`, `socket_bind` & `socket_listen`. Once the socket is 
 listening, you can accept connections from it, which will return a new socket connected to the client whenever a client
