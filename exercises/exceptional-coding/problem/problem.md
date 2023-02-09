@@ -6,14 +6,13 @@ Every file should exist but under exceptional circumstances some files may not. 
 Unable to open file at path '/file/path'
 ```
 
-The full path of the files to read will be provided as the command line arguments. You do not need to make your own test files. 
+The full path of the files to read will be provided as command line arguments. You do not need to make your own test files. 
 
 ----------------------------------------------------------------------
 ## HINTS
 
-You are urged to use `try... catch` logic here along with the SplFileObject contruct which throws a `RuntimeException` when a file does not exist.
+You are urged to use `try... catch` logic here along with the `SplFileObject` contruct which throws a `RuntimeException` when a file does not exist.
 
-Documentation on the `SplFileObject` class can be found by pointing your browser here:
-  [http://php.net/manual/en/class.splfileobject.php]()
+{{ doc SplFileObject en class.splfileobject.php }}
 
 ----------------------------------------------------------------------

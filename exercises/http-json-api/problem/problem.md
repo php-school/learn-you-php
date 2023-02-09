@@ -1,10 +1,12 @@
-Write an HTTP **server** that serves JSON data when it receives a GET request to the path '/api/parsetime'. Expect the request to contain a query string with a key 'iso' and an ISO-format time as the value.
+Write an HTTP **server** that serves JSON data when it receives a GET request to the path `/api/parsetime`. Expect the request to contain a query string with a key `iso` and an ISO-format time as the value.
 
 For example:
 
-  /api/parsetime?iso=2015-11-15T20:18:04+0000
+```
+/api/parsetime?iso=2015-11-15T20:18:04+0000
+```
 
-The JSON response should contain only 'hour', 'minute' and 'second' properties. For example:
+The JSON response should contain only `hour`, `minute` and `second` properties. For example:
 
 ```json
 {
@@ -14,7 +16,7 @@ The JSON response should contain only 'hour', 'minute' and 'second' properties. 
 }
 ```
 
-Add a second endpoint for the path '/api/unixtime' which accepts the same query string but returns UNIX epoch time in seconds (the number of seconds since 1 Jan 1970 00:00:00 UTC) under the property 'unixtime'.
+Add a second endpoint for the path `/api/unixtime` which accepts the same query string but returns UNIX epoch time in seconds (the number of seconds since 1 Jan 1970 00:00:00 UTC) under the property `unixtime`.
 
 For example:
 
@@ -30,8 +32,7 @@ The `$_SERVER` super global array has a `REQUEST_URI` property that you will nee
 You can parse the URL using the global `parse_url` function. The result will be an array of helpful properties.
 You can access the query string properties via the `$_GET` super global array.
 
-Documentation on the `parse_url` function can be found by pointing your browser here:
-    [http://php.net/manual/en/function.parse-url.php]()
+{{ doc parse_url en function.parse-url.php }}
   
 Your response should be in a JSON string format. Look at `json_encode` for more information.
 
@@ -42,7 +43,8 @@ header('Content-Type: application/json');
 ```
 
 The PHP `DateTime` object can print dates as a UNIX timestamp, e.g. `(new \DateTime())->format('U');`. It can also parse this format if you pass the string into the `\DateTime` constructor. The various parameters to `format()` will also
-come in handy. You can find the documentation here:
-    [http://php.net/manual/en/class.datetime.php]()
+come in handy. 
+
+{{ doc DateTime en  class.datetime.php}}
 
 ----------------------------------------------------------------------

@@ -1,12 +1,12 @@
-This problem is the same as the previous but introduces the concept of **classes**. You will need to create two files to solve this.
+This problem is the same as the previous but introduces the concept of **classes**. You will need to create two files to solve this problem.
 
 Create a program that prints a list of files in a given directory, filtered by the extension of the files. The first argument is the directory name and the second argument is the extension filter. Print the list of files (one file per line) to the console.
 
-You must write a *class* file to do most of the work. The file must *define* a single class with a single function that takes **two** arguments: the directory name and the filename extension string in that order. The filename extension argument must be the same as what was passed to your program. Don't turn it into a regular expression or prefix with "." or do anything except pass it to your class method where you can do what you need to make your filter work.
+You must write a *class* in a file to do most of the work. The file must *define* a single class with a single function that takes **two** arguments: the directory name and the filename extension, in that order. The filename extension argument must be the same as what was passed to your program. Don't turn it into a regular expression or prefix with `.` or do anything except pass it to your class method where you can do what you need to make your filter work.
 
 You **must** not print directly to the console from your class, only from your original program.
 
-The benefit of having a contract like this is that your class can be used by anyone who expects this contract. So your class could be used by anyone else who does learnyouphp, or the verifier, and just work.
+The benefit of having a contract like this is that your class can be used by anyone who expects this contract. So your class could be used by anyone else who attempts this exercise, or the verifier, and just work.
 
 ----------------------------------------------------------------------
 ## HINTS
@@ -25,7 +25,7 @@ class DirectoryFilter
 }
 ```
 
-To use your new class in your original program file, use the `require_once` construct with the filename. So, if your file is named mymodule.php then:
+To use your new class in your original program file, use the `require_once` construct with the filename. So, if your file is named `mymodule.php` then use:
 
 ```php
 <?php
@@ -41,12 +41,7 @@ $myFilter = new DirectoryFilter;
 
 You can then call the method you defined with its required arguments.
 
-Documentation on class basics can be found here:
-
-[http://php.net/manual/en/language.oop5.basic.php]()
-
-Documentation on `require_once` can be found here:
-
-[http://php.net/manual/en/function.require-once.php]()
+* {{ doc 'class basics' en language.oop5.basic.php }}
+* {{ doc require_once en function.require-once.php }}
 
 ----------------------------------------------------------------------

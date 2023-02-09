@@ -4,22 +4,22 @@ Display the information of all the users in the database table `users` whose age
 
 `User: Jim Morrison Age: 27 Sex: male`
 
-Finally you will be given a random name as the second argument to your program, you should update the row in the `users` table which corresponds to this name. You should change the name to `David Attenborough`.
+Finally, you will be given a random name as the second argument to your program, you should update the row in the `users` table which corresponds to this name. You should change the name to `David Attenborough`.
 
 ----------------------------------------------------------------------
 ## HINTS
 
 This is an exercise introducing databases and PDO. PDO is a powerful abstraction library for dealing with different database vendors in a consistent manner. You can read the PDO manual here:
 
-  [http://php.net/manual/en/book.pdo.php]()
+  [http://php.net/manual/en/book.pdo.php](http://php.net/manual/en/book.pdo.php)
   
 A short introduction can be found here:
   
-  [http://www.phptherightway.com/#pdo_extension]()
+  [http://www.phptherightway.com/#pdo_extension](http://www.phptherightway.com/#pdo_extension)
   
 The most interesting class will be `\PDO`. The first parameter is the DSN string. The second and third are the username and password for the database. They are not needed for this exercise and can be left out.
   
-The `users` table is structured as follows
+The `users` table is structured as follows:
 
 ```
 +----+-----------------+-----+--------+
@@ -40,11 +40,11 @@ foreach ($pdo->query('SELECT * FROM users') as $row) {
 }
 ```
 
-`$row` is now an array of data. The key will be the columns and the value is the database value
+`$row` is now an array of data. The key will be the column name and the value is the database value.
 
 
 You should use prepared statements to perform the updating. You should be most interested in the `prepare` and `execute` methods.
 
-Remember the first argument will be the program's file path and not an argument passed to the program.
+Remember, the first argument will be the program's file path and not an argument passed to the program.
 
 ----------------------------------------------------------------------
