@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  runtime:
+    image: learn-you-php-runtime
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ${SOLUTION}
+        target: '/solution'
+    networks:
+      - runtime
+    cap_drop:
+      - ALL
+
+networks:
+  runtime:
+    internal: true
+
