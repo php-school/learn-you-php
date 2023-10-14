@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57d1c979e3eefb0bba24687f6eaacf9b",
+    "content-hash": "b8c6baf32f2df051b29190aa9380a597",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1137,16 +1137,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "dev-master",
+            "version": "dev-cloud-runtime",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "426548cd33cae97e0eddbd561ea0a01f5d64104d"
+                "reference": "b32e63aabbba9606cacb3173e31df61dea56d136"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/426548cd33cae97e0eddbd561ea0a01f5d64104d",
-                "reference": "426548cd33cae97e0eddbd561ea0a01f5d64104d",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/b32e63aabbba9606cacb3173e31df61dea56d136",
+                "reference": "b32e63aabbba9606cacb3173e31df61dea56d136",
                 "shasum": ""
             },
             "require": {
@@ -1176,7 +1176,6 @@
                 "squizlabs/php_codesniffer": "^3.7",
                 "yoast/phpunit-polyfills": "^0.2.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -1215,9 +1214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-school/php-workshop/issues",
-                "source": "https://github.com/php-school/php-workshop/tree/master"
+                "source": "https://github.com/php-school/php-workshop/tree/cloud-runtime"
             },
-            "time": "2023-02-02T07:53:25+00:00"
+            "time": "2023-10-14T14:42:56+00:00"
         },
         {
             "name": "php-school/terminal",

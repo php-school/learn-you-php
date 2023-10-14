@@ -14,7 +14,7 @@
     "require" : {
         "php" : ">=7.3",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "dev-master",
+        "php-school/php-workshop": "dev-cloud-runtime",
         "ext-sockets": "*"
     },
     "require-dev": {
