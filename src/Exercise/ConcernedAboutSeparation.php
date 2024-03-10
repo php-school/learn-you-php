@@ -2,7 +2,6 @@
 
 namespace PhpSchool\LearnYouPhp\Exercise;
 
-use Faker\Generator;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Parser;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
@@ -11,7 +10,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
@@ -25,15 +23,8 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
 {
     use TemporaryDirectoryTrait;
 
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    /**
-     * @var Parser
-     */
-    private $parser;
+    private Filesystem $filesystem;
+    private Parser $parser;
 
     public function __construct(Filesystem $filesystem, Parser $parser)
     {

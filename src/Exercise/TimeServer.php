@@ -123,10 +123,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         return [];
     }
 
-    /**
-     * @return resource
-     */
-    private function createSocket()
+    private function createSocket(): Socket
     {
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 

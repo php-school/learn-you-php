@@ -18,15 +18,8 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
 {
     use TemporaryDirectoryTrait;
 
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Filesystem $filesystem;
+    private Generator $faker;
 
     public function __construct(Filesystem $filesystem, Generator $faker)
     {

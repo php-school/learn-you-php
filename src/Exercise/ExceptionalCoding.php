@@ -10,7 +10,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -21,15 +20,8 @@ class ExceptionalCoding extends AbstractExercise implements
 {
     use TemporaryDirectoryTrait;
 
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Filesystem $filesystem;
+    private Generator $faker;
 
     public function __construct(Filesystem $filesystem, Generator $faker)
     {

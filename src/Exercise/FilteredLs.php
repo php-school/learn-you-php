@@ -7,18 +7,13 @@ use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
 class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExercise
 {
     use TemporaryDirectoryTrait;
 
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
+    private Filesystem $filesystem;
 
     public function __construct(Filesystem $filesystem)
     {
