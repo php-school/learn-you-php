@@ -5,6 +5,7 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Colors\Color;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
 use PhpSchool\PhpWorkshop\Check\CheckRepository;
+use PhpSchool\PhpWorkshop\Check\PhpLintCheck;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
@@ -37,20 +38,24 @@ class TimeServerTest extends TestCase
         $results = new ResultAggregator();
         $eventDispatcher = new EventDispatcher($results);
 
-        $r = new \ReflectionClass(CliRunner::class);
+        $this->exercise = new TimeServer();
+        $runner = new CliRunner($this->exercise, $eventDispatcher);
+
+        $r = new \ReflectionClass($runner);
         $rp = $r->getProperty('requiredChecks');
         $rp->setAccessible(true);
-        $rp->setValue([]);
+        $rp->setValue($runner, []);
 
+        $runnerFactory = $this->createPartialMock(CliRunnerFactory::class, ['create']);
+        $runnerFactory->method('create')->willReturn($runner);
         $runnerManager = new RunnerManager();
-        $runnerManager->addFactory(new CliRunnerFactory($eventDispatcher));
+        $runnerManager->addFactory($runnerFactory);
         $this->exerciseDispatcher = new ExerciseDispatcher(
             $runnerManager,
             $results,
             $eventDispatcher,
-            new CheckRepository()
+            new CheckRepository([new PhpLintCheck()])
         );
-        $this->exercise = new TimeServer();
     }
 
     public function testGetters(): void

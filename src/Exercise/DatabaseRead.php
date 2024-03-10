@@ -14,20 +14,16 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\ExerciseCheck\DatabaseExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\SubmissionPatch;
 use Symfony\Component\Filesystem\Filesystem;
 
 class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck, CliExercise
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Generator $faker;
 
     /**
      * @var array{id: int, name: string}
      */
-    private $randomRecord;
+    private array $randomRecord;
 
     public function __construct(Generator $faker)
     {

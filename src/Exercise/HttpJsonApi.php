@@ -7,7 +7,6 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseCheck\CgiOutputExerciseCheck;
 use Psr\Http\Message\RequestInterface;
 
 class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExercise

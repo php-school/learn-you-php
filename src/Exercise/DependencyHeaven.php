@@ -20,10 +20,7 @@ class DependencyHeaven extends AbstractExercise implements
     CgiExercise,
     ComposerExerciseCheck
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Generator $faker;
 
     public function __construct(Generator $faker)
     {

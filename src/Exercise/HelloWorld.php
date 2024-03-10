@@ -6,8 +6,6 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 
 class HelloWorld extends AbstractExercise implements ExerciseInterface, CliExercise
 {
