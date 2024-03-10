@@ -1130,12 +1130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "d2c68e0dd4f934b911a369df2a36d6ce1fea55f2"
+                "reference": "11911b2157e80480a8cc272b56f417f5ba4903bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/d2c68e0dd4f934b911a369df2a36d6ce1fea55f2",
-                "reference": "d2c68e0dd4f934b911a369df2a36d6ce1fea55f2",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/11911b2157e80480a8cc272b56f417f5ba4903bf",
+                "reference": "11911b2157e80480a8cc272b56f417f5ba4903bf",
                 "shasum": ""
             },
             "require": {
@@ -1206,7 +1206,7 @@
                 "issues": "https://github.com/php-school/php-workshop/issues",
                 "source": "https://github.com/php-school/php-workshop/tree/master"
             },
-            "time": "2024-03-10T10:22:38+00:00"
+            "time": "2024-03-10T13:04:10+00:00"
         },
         {
             "name": "php-school/terminal",
