@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "205aa5b5714933bfd2300ccbfdadbd28",
+    "content-hash": "6c6ac0e6333aeeee959f1080ff6b2a90",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1130,12 +1130,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "065947216d954289c70826afe27ccf0b6f49f109"
+                "reference": "353e5e35602719dcf133996a06bf6ee1c322d097"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/065947216d954289c70826afe27ccf0b6f49f109",
-                "reference": "065947216d954289c70826afe27ccf0b6f49f109",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/353e5e35602719dcf133996a06bf6ee1c322d097",
+                "reference": "353e5e35602719dcf133996a06bf6ee1c322d097",
                 "shasum": ""
             },
             "require": {
@@ -1211,7 +1211,7 @@
                 "issues": "https://github.com/php-school/php-workshop/issues",
                 "source": "https://github.com/php-school/php-workshop/tree/docker-fixes"
             },
-            "time": "2024-05-25T13:59:57+00:00"
+            "time": "2024-05-25T21:10:47+00:00"
         },
         {
             "name": "php-school/terminal",
@@ -3755,6 +3755,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.0",
+        "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
         "ext-sockets": "*"
     },
