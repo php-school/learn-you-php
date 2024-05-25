@@ -32,8 +32,9 @@ jobs:
       - name: Run phpunit tests
         run: |
           mkdir -p build/logs
-          vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
-
+          PROCESS_FACTORY=host vendor/bin/phpunit
+          PROCESS_FACTORY=docker vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
+          
       - name: Run phpcs
         run: composer cs
 

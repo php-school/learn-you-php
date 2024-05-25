@@ -3,11 +3,13 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
+use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exception\RuntimeException;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
@@ -27,10 +29,8 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         return 'Build a Time Server!';
     }
 
-    public function configure(ExerciseDispatcher $exerciseDispatcher): void
+    public function defineListeners(EventDispatcher $eventDispatcher): void
     {
-        $eventDispatcher = $exerciseDispatcher->getEventDispatcher();
-
         $appendArgsListener = function (CliExecuteEvent $event) {
             $event->appendArg('127.0.0.1');
             $event->appendArg($this->getRandomPort());
@@ -115,12 +115,9 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        return [];
+        return (new CliScenario())->withExecution();
     }
 
     private function createSocket(): Socket

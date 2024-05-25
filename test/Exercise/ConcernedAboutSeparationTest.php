@@ -2,37 +2,28 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
-use PhpParser\Parser;
 use PhpParser\ParserFactory;
 use PhpSchool\LearnYouPhp\Exercise\ConcernedAboutSeparation;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\Input\Input;
 use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\Success;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\Filesystem\Filesystem;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 
-class ConcernedAboutSeparationTest extends TestCase
+class ConcernedAboutSeparationTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    /**
-     * @var Parser
-     */
-    private $parser;
-
-    public function setUp(): void
+    public function getApplication(): Application
     {
-        $this->filesystem = new Filesystem();
-        $this->parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+        return require __DIR__ . '/../../app/bootstrap.php';
     }
 
-    public function testConcernedAboutSeparationExercise(): void
+    public function getExerciseClass(): string
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
+        return ConcernedAboutSeparation::class;
+    }
+
+    public function testExerciseMeta(): void
+    {
+        $e = new ConcernedAboutSeparation((new ParserFactory())->create(ParserFactory::PREFER_PHP7));
         $this->assertEquals('Concerned about Separation?', $e->getName());
         $this->assertEquals('Separate code and utilise files and classes', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
@@ -40,74 +31,31 @@ class ConcernedAboutSeparationTest extends TestCase
         $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
+    public function testWithNoCode(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('solution-no-code.php');
 
-        $files = [
-            "learnyouphp.dat",
-            "learnyouphp.txt",
-            "learnyouphp.sql",
-            "api.html",
-            "README.md",
-            "CHANGELOG.md",
-            "LICENCE.md",
-            "md",
-            "data.json",
-            "data.dat",
-            "words.dat",
-            "w00t.dat",
-            "w00t.txt",
-            "wrrrrongdat",
-            "dat",
-        ];
+        $this->assertVerifyWasNotSuccessful();
 
-        array_walk($files, function ($file) use ($path) {
-            $this->assertFileExists(sprintf('%s/%s', $path, $file));
-        });
-
-        $extensions = array_unique(array_map(function ($file) {
-            return pathinfo($file, PATHINFO_EXTENSION);
-        }, $files));
-
-        $this->assertContains($args[1], $extensions);
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
     }
 
-    public function testTearDownRemovesFile(): void
+    public function testFailureWhenNotUsingInclude(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('no-include.php');
 
-        $e->tearDown();
+        $this->assertVerifyWasNotSuccessful();
 
-        $this->assertFileDoesNotExist($path);
-    }
-
-    public function testCheckReturnsFailureIfNoIncludeFoundInSolution(): void
-    {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
-        $failure = $e->check(
-            new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/no-include.php'])
+        $this->assertResultsHasFailure(
+            Failure::class,
+            'No require statement found'
         );
-
-        $this->assertInstanceOf(Failure::class, $failure);
-        $this->assertEquals('No require statement found', $failure->getReason());
-        $this->assertEquals('Concerned about Separation?', $failure->getCheckName());
     }
 
-    public function testCheckReturnsSuccessIfIncludeFound(): void
+    public function testWithCorrectSolution(): void
     {
-        $e = new ConcernedAboutSeparation($this->filesystem, $this->parser);
-        $success = $e->check(
-            new Input('learnyouphp', ['program' => __DIR__ . '/../res/concerned-about-separation/include.php'])
-        );
+        $this->runExercise('correct/solution.php', self::DIRECTORY_SOLUTION);
 
-        $this->assertInstanceOf(Success::class, $success);
-        $this->assertEquals('Concerned about Separation?', $success->getCheckName());
+        $this->assertVerifyWasSuccessful();
     }
 }

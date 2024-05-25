@@ -13,8 +13,9 @@
     ],
     "require" : {
         "php" : ">=8.0",
+        "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "dev-master",
+        "php-school/php-workshop": "dev-docker-fixes",
         "ext-sockets": "*"
     },
     "require-dev": {

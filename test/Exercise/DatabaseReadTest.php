@@ -6,22 +6,39 @@ use Faker\Factory;
 use Faker\Generator;
 use PDO;
 use PhpSchool\LearnYouPhp\Exercise\DatabaseRead;
-use PhpSchool\PhpWorkshop\Check\DatabaseCheck;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit\Framework\TestCase;
+use PhpSchool\PhpWorkshop\Result\Failure;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 
-class DatabaseReadTest extends TestCase
+class DatabaseReadTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Generator $faker;
 
     public function setUp(): void
     {
         $this->faker = Factory::create();
+        parent::setUp();
+    }
+
+    public function getApplication(): Application
+    {
+        return require __DIR__ . '/../../app/bootstrap.php';
+    }
+
+    public function getExerciseClass(): string
+    {
+        return DatabaseRead::class;
+    }
+
+    public function testExerciseMeta(): void
+    {
+        $e = new DatabaseRead($this->faker);
+        $this->assertEquals('Database Read', $e->getName());
+        $this->assertEquals('Read an SQL databases contents', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
+
+        $this->assertFileExists(realpath($e->getProblem()));
     }
 
     public function testDatabaseExercise(): void
@@ -42,13 +59,13 @@ class DatabaseReadTest extends TestCase
 
         $e->seed($db);
 
-        $args = $e->getArgs()[0];
+        $scenario = $e->defineTestScenario();
         $stmt = $db->query('SELECT * FROM users;');
 
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $this->assertTrue(count($users) >= 5);
         $this->assertIsArray($users);
-        $this->assertContains($args[0], array_column($users, 'name'));
+        $this->assertContains($scenario->getExecutions()[0]->get(0), array_column($users, 'name'));
     }
 
     public function testVerifyReturnsTrueIfRecordExistsWithNameUsingStoredId(): void
@@ -69,18 +86,37 @@ class DatabaseReadTest extends TestCase
         $this->assertTrue($e->verify($db));
     }
 
-    public function testConfigure(): void
+    public function testWithNoCode(): void
     {
-        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->runExercise('solution-no-code.php');
 
-        $dispatcher
-            ->expects($this->once())
-            ->method('requireCheck')
-            ->with(DatabaseCheck::class);
+        $this->assertVerifyWasNotSuccessful();
 
-        $e = new DatabaseRead($this->faker);
-        $e->configure($dispatcher);
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
+    }
+
+    public function testWithIncorrectOutput(): void
+    {
+        $this->runExercise('solution-wrong-output.php');
+
+        $this->assertVerifyWasNotSuccessful();
+
+        $this->assertOutputWasIncorrect();
+    }
+
+    public function testFailureWhenNameIsNotUpdated(): void
+    {
+        $this->runExercise('solution-wrong-update.php');
+
+        $this->assertVerifyWasNotSuccessful();
+
+        $this->assertResultsHasFailure(Failure::class, 'Database verification failed');
+    }
+
+    public function testWithCorrectSolution(): void
+    {
+        $this->runExercise('solution-correct.php');
+
+        $this->assertVerifyWasSuccessful();
     }
 }

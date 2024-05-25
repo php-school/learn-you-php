@@ -5,29 +5,22 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 use Faker\Generator;
 use PDO;
 use PhpSchool\PhpWorkshop\Check\DatabaseCheck;
-use PhpSchool\PhpWorkshop\Check\ListenableCheckInterface;
-use PhpSchool\PhpWorkshop\Event\Event;
-use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\ExerciseCheck\DatabaseExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use Symfony\Component\Filesystem\Filesystem;
 
 class DatabaseRead extends AbstractExercise implements ExerciseInterface, DatabaseExerciseCheck, CliExercise
 {
-    private Generator $faker;
-
     /**
      * @var array{id: int, name: string}
      */
     private array $randomRecord;
 
-    public function __construct(Generator $faker)
+    public function __construct(private Generator $faker)
     {
-        $this->faker = $faker;
     }
 
     public function getName(): string
@@ -40,12 +33,10 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         return 'Read an SQL databases contents';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        return [[$this->randomRecord['name']]];
+        return (new CliScenario())
+            ->withExecution([$this->randomRecord['name']]);
     }
 
     public function seed(PDO $db): void
@@ -77,7 +68,7 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         $sql = 'SELECT name FROM users WHERE id = :id';
         $stmt = $db->prepare($sql);
 
-        if ($stmt == false) {
+        if (!$stmt) {
             return false;
         }
 
@@ -92,8 +83,8 @@ class DatabaseRead extends AbstractExercise implements ExerciseInterface, Databa
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    public function configure(ExerciseDispatcher $dispatcher): void
+    public function getRequiredChecks(): array
     {
-        $dispatcher->requireCheck(DatabaseCheck::class);
+        return [DatabaseCheck::class];
     }
 }
