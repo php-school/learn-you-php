@@ -11,6 +11,6 @@
         <exclude>./test/solutions</exclude>
     </testsuite>
     <php>
-        <env name="process_factory" value="docker" force="true" />
+        <env name="PROCESS_FACTORY" value="docker" />
     </php>
 </phpunit>
