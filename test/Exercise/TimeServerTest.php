@@ -48,14 +48,8 @@ class TimeServerTest extends WorkshopExerciseTest
 
         $this->assertVerifyWasNotSuccessful();
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $reason  = '/^Client returns an error \(number \d+\): No connection could be made because';
-            $reason .= ' the target machine actively refused it\.\r\n';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
-        } else {
-            $reason  = '/^Client returns an error \(number \d+\): Connection refused';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
-        }
+        $reason  = '/^Client returns an error \(number \d+\): Connection refused';
+        $reason .= ' while trying to join tcp:\/\/0\.0\.0\.0:\d+\.$/';
 
         $this->assertResultsHasFailureAndMatches(Failure::class, function (Failure $failure) use ($reason) {
             $this->assertMatchesRegularExpression($reason, $failure->getReason());
