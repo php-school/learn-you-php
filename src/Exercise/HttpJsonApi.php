@@ -7,6 +7,7 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CgiScenario;
 use Psr\Http\Message\RequestInterface;
 
 class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExercise
@@ -21,16 +22,17 @@ class HttpJsonApi extends AbstractExercise implements ExerciseInterface, CgiExer
         return 'HTTP JSON API - Servers JSON when it receives a GET request';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getRequests(): array
+    public function defineTestScenario(): CgiScenario
     {
         $url = 'http://www.time.com/api/%s?iso=%s';
-        return [
-            (new Request('GET', sprintf($url, 'parsetime', urlencode((new \DateTime())->format(DATE_ISO8601))))),
-            (new Request('GET', sprintf($url, 'unixtime', urlencode((new \DateTime())->format(DATE_ISO8601)))))
-        ];
+
+        return (new CgiScenario())
+            ->withExecution(
+                new Request('GET', sprintf($url, 'parsetime', urlencode((new \DateTime())->format(DATE_ISO8601))))
+            )
+            ->withExecution(
+                new Request('GET', sprintf($url, 'unixtime', urlencode((new \DateTime())->format(DATE_ISO8601))))
+            );
     }
 
     public function getType(): ExerciseType

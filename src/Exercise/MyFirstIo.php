@@ -8,6 +8,7 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
@@ -18,15 +19,8 @@ class MyFirstIo extends AbstractExercise implements
     CliExercise,
     FunctionRequirementsExerciseCheck
 {
-    use TemporaryDirectoryTrait;
-
-    private Filesystem $filesystem;
-    private Generator $faker;
-
-    public function __construct(Filesystem $filesystem, Generator $faker)
+    public function __construct(private Generator $faker)
     {
-        $this->filesystem = $filesystem;
-        $this->faker = $faker;
     }
 
     public function getName(): string
@@ -39,21 +33,14 @@ class MyFirstIo extends AbstractExercise implements
         return 'Read a file from the file system';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        $path = $this->getTemporaryPath();
+        $filename = bin2hex(random_bytes(4)) . '.txt';
         $paragraphs = implode("\n\n", (array) $this->faker->paragraphs(rand(5, 50)));
-        $this->filesystem->dumpFile($path, $paragraphs);
 
-        return [[$path]];
-    }
-
-    public function tearDown(): void
-    {
-        $this->filesystem->remove($this->getTemporaryPath());
+        return (new CliScenario())
+            ->withExecution([$filename])
+            ->withFile($filename, $paragraphs);
     }
 
     /**
@@ -77,8 +64,8 @@ class MyFirstIo extends AbstractExercise implements
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    public function configure(ExerciseDispatcher $dispatcher): void
+    public function getRequiredChecks(): array
     {
-        $dispatcher->requireCheck(FunctionRequirementsCheck::class);
+        return [FunctionRequirementsCheck::class];
     }
 }

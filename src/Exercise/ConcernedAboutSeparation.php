@@ -8,28 +8,20 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\ExerciseCheck\SelfCheck;
-use PhpSchool\PhpWorkshop\Input\Input;
+use PhpSchool\PhpWorkshop\ExerciseRunner\Context\ExecutionContext;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\ResultInterface;
 use PhpSchool\PhpWorkshop\Result\Success;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
 use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use PhpParser\Node\Expr\Include_;
 
 class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInterface, CliExercise, SelfCheck
 {
-    use TemporaryDirectoryTrait;
-
-    private Filesystem $filesystem;
-    private Parser $parser;
-
-    public function __construct(Filesystem $filesystem, Parser $parser)
+    public function __construct(private Parser $parser)
     {
-        $this->filesystem = $filesystem;
-        $this->parser = $parser;
     }
 
     public function getName(): string
@@ -42,13 +34,8 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         return 'Separate code and utilise files and classes';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        $folder = $this->getTemporaryPath();
-
         $files = [
             "learnyouphp.dat",
             "learnyouphp.txt",
@@ -71,18 +58,20 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
             "dat",
         ];
 
-        $this->filesystem->mkdir($folder);
-        array_walk($files, function ($file) use ($folder) {
-            $this->filesystem->dumpFile(sprintf('%s/%s', $folder, $file), '');
-        });
-
         $ext = '';
         while ($ext === '') {
             $index = array_rand($files);
             $ext = pathinfo($files[$index], PATHINFO_EXTENSION);
         }
 
-        return [[$folder, $ext]];
+        $scenario = (new CliScenario())
+            ->withExecution(['files', $ext]);
+
+        array_walk($files, function (string $file) use ($scenario) {
+            $scenario->withFile('files/' . $file, '');
+        });
+
+        return $scenario;
     }
 
     public function getSolution(): SolutionInterface
@@ -90,14 +79,9 @@ class ConcernedAboutSeparation extends AbstractExercise implements ExerciseInter
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/concerned-about-separation/solution');
     }
 
-    public function tearDown(): void
+    public function check(ExecutionContext $context): ResultInterface
     {
-        $this->filesystem->remove($this->getTemporaryPath());
-    }
-
-    public function check(Input $input): ResultInterface
-    {
-        $statements = $this->parser->parse((string) file_get_contents($input->getRequiredArgument('program')));
+        $statements = $this->parser->parse((string) file_get_contents($context->getEntryPoint()));
 
         if (null === $statements) {
             return Failure::fromNameAndReason($this->getName(), 'No code was found');

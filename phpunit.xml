@@ -10,4 +10,7 @@
         <directory>./test</directory>
         <exclude>./test/solutions</exclude>
     </testsuite>
+    <php>
+        <env name="PROCESS_FACTORY" value="docker" />
+    </php>
 </phpunit>

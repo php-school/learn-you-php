@@ -4,35 +4,36 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 
 use Faker\Factory;
 use Faker\Generator;
-use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\Solution\SolutionInterface;
-use PHPUnit\Framework\TestCase;
+use PhpSchool\PhpWorkshop\Result\Failure;
+use PhpSchool\PhpWorkshop\Result\FunctionRequirementsFailure;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 use PhpSchool\LearnYouPhp\Exercise\MyFirstIo;
-use Symfony\Component\Filesystem\Filesystem;
 
-class MyFirstIoTest extends TestCase
+class MyFirstIoTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
-
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
+    private Generator $faker;
 
     public function setUp(): void
     {
         $this->faker = Factory::create();
-        $this->filesystem = new Filesystem();
+        parent::setUp();
     }
 
-    public function testMyFirstIoExercise(): void
+    public function getApplication(): Application
     {
-        $e = new MyFirstIo($this->filesystem, $this->faker);
+        return require __DIR__ . '/../../app/bootstrap.php';
+    }
+
+    public function getExerciseClass(): string
+    {
+        return MyFirstIo::class;
+    }
+
+    public function testExerciseMeta(): void
+    {
+        $e = new MyFirstIo($this->faker);
         $this->assertEquals('My First IO', $e->getName());
         $this->assertEquals('Read a file from the file system', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
@@ -40,55 +41,47 @@ class MyFirstIoTest extends TestCase
         $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testGetArgsCreatesFileWithRandomContentFromFake(): void
+    public function testWithNoCode(): void
     {
-        $e = new MyFirstIo($this->filesystem, $this->faker);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('solution-no-code.php');
 
-        $content1 = file_get_contents($path);
-        unlink($path);
+        $this->assertVerifyWasNotSuccessful();
 
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
-
-        $content2 = file_get_contents($path);
-        $this->assertNotEquals($content1, $content2);
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
     }
 
-    public function testTearDownRemovesFile(): void
+    public function testWithIncorrectOutput(): void
     {
-        $e = new MyFirstIo($this->filesystem, $this->faker);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('solution-wrong-output.php');
 
-        $e->tearDown();
+        $this->assertVerifyWasNotSuccessful();
 
-        $this->assertFileDoesNotExist($path);
+        $this->assertOutputWasIncorrect();
     }
 
-    public function testFunctionRequirements(): void
+    public function testFailureWhenNotUsingRequiredFunctions(): void
     {
-        $e = new MyFirstIo($this->filesystem, $this->faker);
-        $this->assertEquals(['file_get_contents'], $e->getRequiredFunctions());
-        $this->assertEquals(['file'], $e->getBannedFunctions());
+        $this->runExercise('wrong-function-requirements.php');
+
+        $this->assertVerifyWasNotSuccessful();
+
+        $this->assertOutputWasCorrect();
+
+        $this->assertResultsHasFailureAndMatches(
+            FunctionRequirementsFailure::class,
+            function (FunctionRequirementsFailure $failure) {
+                self::assertEquals(['file_get_contents'], $failure->getMissingFunctions());
+                self::assertEquals([['function' => 'file', 'line' => 3]], $failure->getBannedFunctions());
+
+                return true;
+            }
+        );
     }
 
-    public function testConfigure(): void
+    public function testWithCorrectSolution(): void
     {
-        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->runExercise('solution-correct.php');
 
-        $dispatcher
-            ->expects($this->once())
-            ->method('requireCheck')
-            ->with(FunctionRequirementsCheck::class);
-
-        $e = new MyFirstIo($this->filesystem, $this->faker);
-        $e->configure($dispatcher);
+        $this->assertVerifyWasSuccessful();
     }
 }
