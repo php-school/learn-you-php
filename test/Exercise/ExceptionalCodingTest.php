@@ -5,33 +5,36 @@ namespace PhpSchool\LearnYouPhpTest\Exercise;
 use Faker\Factory;
 use Faker\Generator;
 use PhpSchool\LearnYouPhp\Exercise\ExceptionalCoding;
-use PhpSchool\PhpWorkshop\Check\FunctionRequirementsCheck;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\Filesystem\Filesystem;
+use PhpSchool\PhpWorkshop\Result\Failure;
+use PhpSchool\PhpWorkshop\Result\FunctionRequirementsFailure;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 
-class ExceptionalCodingTest extends TestCase
+class ExceptionalCodingTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Generator $faker;
 
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
 
     public function setUp(): void
     {
         $this->faker = Factory::create();
-        $this->filesystem = new Filesystem();
+        parent::setUp();
     }
 
-    public function testArrWeGoExercise(): void
+    public function getApplication(): Application
     {
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
+        return require __DIR__ . '/../../app/bootstrap.php';
+    }
+
+    public function getExerciseClass(): string
+    {
+        return ExceptionalCoding::class;
+    }
+
+    public function testExerciseMeta(): void
+    {
+        $e = new ExceptionalCoding($this->faker);
         $this->assertEquals('Exceptional Coding', $e->getName());
         $this->assertEquals('Introduction to Exceptions', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
@@ -39,69 +42,46 @@ class ExceptionalCodingTest extends TestCase
         $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testGetArgsCreateAtleastOneExistingFile(): void
+    public function testWithNoCode(): void
     {
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs()[0];
+        $this->runExercise('solution-no-code.php');
 
-        $existingFiles = array_filter($args, 'file_exists');
+        $this->assertVerifyWasNotSuccessful();
 
-        foreach ($existingFiles as $file) {
-            $this->assertFileExists($file);
-        }
-
-        $this->assertGreaterThanOrEqual(1, count($existingFiles));
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
     }
 
-    public function testGetArgsHasAtleastOneNonExistingFile(): void
+    public function testWithIncorrectOutput(): void
     {
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs()[0];
+        $this->runExercise('solution-wrong-output.php');
 
-        $nonExistingFiles = array_filter($args, function ($arg) {
-            return !file_exists($arg);
-        });
+        $this->assertVerifyWasNotSuccessful();
 
-        foreach ($nonExistingFiles as $file) {
-            $this->assertFileDoesNotExist($file);
-        }
-
-        $this->assertGreaterThanOrEqual(1, count($nonExistingFiles));
+        $this->assertOutputWasIncorrect();
     }
 
-    public function testTearDownRemovesFile(): void
+    public function testFailureWhenNotUsingRequiredFunctions(): void
     {
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $args = $e->getArgs()[0];
+        $this->runExercise('solution-banned-functions.php');
 
-        $existingFiles = array_filter($args, 'file_exists');
+        $this->assertVerifyWasNotSuccessful();
 
-        $this->assertFileExists($existingFiles[0]);
+        $this->assertOutputWasCorrect();
 
-        $e->tearDown();
+        $this->assertResultsHasFailureAndMatches(
+            FunctionRequirementsFailure::class,
+            function (FunctionRequirementsFailure $failure) {
+                self::assertEquals([['function' => 'file_exists', 'line' => 7]], $failure->getBannedFunctions());
 
-        $this->assertFileDoesNotExist($existingFiles[0]);
+                return true;
+            }
+        );
     }
 
-    public function testFunctionRequirements(): void
+    public function testWithCorrectSolution(): void
     {
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $this->assertEquals([], $e->getRequiredFunctions());
-        $this->assertEquals(['array_filter', 'file_exists'], $e->getBannedFunctions());
-    }
+        $this->runExercise('solution-correct.php');
 
-    public function testConfigure(): void
-    {
-        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $dispatcher
-            ->expects($this->once())
-            ->method('requireCheck')
-            ->with(FunctionRequirementsCheck::class);
-
-        $e = new ExceptionalCoding($this->filesystem, $this->faker);
-        $e->configure($dispatcher);
+        $this->assertVerifyWasSuccessful();
     }
 }

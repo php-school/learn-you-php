@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit colors="true" bootstrap="test/bootstrap.php">
-    <coverage includeUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
-    </coverage>
-    <testsuite name="My PHP Workshop Test Suite">
-        <directory>./test</directory>
-        <exclude>./test/solutions</exclude>
-    </testsuite>
+  <testsuite name="Learn You PHP! Test Suite">
+    <directory>./test</directory>
+    <exclude>./test/solutions</exclude>
+  </testsuite>
+  <php>
+    <env name="PROCESS_FACTORY" value="docker"/>
+  </php>
+  <source>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+  </source>
 </phpunit>

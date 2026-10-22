@@ -2,26 +2,27 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PHPUnit\Framework\TestCase;
+use PhpSchool\PhpWorkshop\Result\Failure;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 use PhpSchool\LearnYouPhp\Exercise\FilteredLs;
-use Symfony\Component\Filesystem\Filesystem;
 
-class FilteredLsTest extends TestCase
+class FilteredLsTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Filesystem
-     */
-    private $filesystem;
-
-    public function setUp(): void
+    public function getApplication(): Application
     {
-        $this->filesystem = new Filesystem();
+        return require __DIR__ . '/../../app/bootstrap.php';
     }
 
-    public function testFilteredLsExercise(): void
+    public function getExerciseClass(): string
     {
-        $e = new FilteredLs($this->filesystem);
+        return FilteredLs::class;
+    }
+
+    public function testExerciseMeta(): void
+    {
+        $e = new FilteredLs();
         $this->assertEquals('Filtered LS', $e->getName());
         $this->assertEquals('Read files in a folder and filter by a given extension', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
@@ -29,51 +30,28 @@ class FilteredLsTest extends TestCase
         $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testGetArgsCreatesFilesAndReturnsRandomExt(): void
+    public function testWithNoCode(): void
     {
-        $e = new FilteredLs($this->filesystem);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('solution-no-code.php');
 
-        $files = [
-            "learnyouphp.dat",
-            "learnyouphp.txt",
-            "learnyouphp.sql",
-            "api.html",
-            "README.md",
-            "CHANGELOG.md",
-            "LICENCE.md",
-            "md",
-            "data.json",
-            "data.dat",
-            "words.dat",
-            "w00t.dat",
-            "w00t.txt",
-            "wrrrrongdat",
-            "dat",
-        ];
+        $this->assertVerifyWasNotSuccessful();
 
-        array_walk($files, function ($file) use ($path) {
-            $this->assertFileExists(sprintf('%s/%s', $path, $file));
-        });
-
-        $extensions = array_unique(array_map(function ($file) {
-            return pathinfo($file, PATHINFO_EXTENSION);
-        }, $files));
-
-        $this->assertContains($args[1], $extensions);
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
     }
 
-    public function testTearDownRemovesFile(): void
+    public function testWithIncorrectOutput(): void
     {
-        $e = new FilteredLs($this->filesystem);
-        $args = $e->getArgs()[0];
-        $path = $args[0];
-        $this->assertFileExists($path);
+        $this->runExercise('solution-wrong-output.php');
 
-        $e->tearDown();
+        $this->assertVerifyWasNotSuccessful();
 
-        $this->assertFileDoesNotExist($path);
+        $this->assertOutputWasIncorrect();
+    }
+
+    public function testWithCorrectSolution(): void
+    {
+        $this->runExercise('solution-correct.php');
+
+        $this->assertVerifyWasSuccessful();
     }
 }

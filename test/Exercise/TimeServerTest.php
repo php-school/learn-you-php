@@ -2,127 +2,86 @@
 
 namespace PhpSchool\LearnYouPhpTest\Exercise;
 
-use Colors\Color;
 use PhpSchool\LearnYouPhp\Exercise\TimeServer;
-use PhpSchool\PhpWorkshop\Check\CheckRepository;
-use PhpSchool\PhpWorkshop\Check\PhpLintCheck;
-use PhpSchool\PhpWorkshop\Event\EventDispatcher;
+use PhpSchool\PhpWorkshop\Application;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
-use PhpSchool\PhpWorkshop\ExerciseRunner\CliRunner;
-use PhpSchool\PhpWorkshop\ExerciseRunner\Factory\CliRunnerFactory;
-use PhpSchool\PhpWorkshop\ExerciseRunner\RunnerManager;
 use PhpSchool\PhpWorkshop\Input\Input;
-use PhpSchool\PhpWorkshop\Output\StdOutput;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
-use PhpSchool\PhpWorkshop\Result\Success;
-use PhpSchool\PhpWorkshop\ResultAggregator;
-use PhpSchool\Terminal\Terminal;
-use PHPUnit\Framework\TestCase;
+use PhpSchool\PhpWorkshop\TestUtils\WorkshopExerciseTest;
 
-class TimeServerTest extends TestCase
+class TimeServerTest extends WorkshopExerciseTest
 {
-    /**
-     * @var TimeServer
-     */
-    private $exercise;
-
-    /**
-     * @var ExerciseDispatcher
-     */
-    private $exerciseDispatcher;
-
-    public function setUp(): void
+    public function getApplication(): Application
     {
-        $results = new ResultAggregator();
-        $eventDispatcher = new EventDispatcher($results);
-
-        $this->exercise = new TimeServer();
-        $runner = new CliRunner($this->exercise, $eventDispatcher);
-
-        $r = new \ReflectionClass($runner);
-        $rp = $r->getProperty('requiredChecks');
-        $rp->setAccessible(true);
-        $rp->setValue($runner, []);
-
-        $runnerFactory = $this->createPartialMock(CliRunnerFactory::class, ['create']);
-        $runnerFactory->method('create')->willReturn($runner);
-        $runnerManager = new RunnerManager();
-        $runnerManager->addFactory($runnerFactory);
-        $this->exerciseDispatcher = new ExerciseDispatcher(
-            $runnerManager,
-            $results,
-            $eventDispatcher,
-            new CheckRepository([new PhpLintCheck()])
-        );
+        return require __DIR__ . '/../../app/bootstrap.php';
     }
 
-    public function testGetters(): void
+    public function getExerciseClass(): string
     {
-        $this->assertEquals('Time Server', $this->exercise->getName());
-        $this->assertEquals('Build a Time Server!', $this->exercise->getDescription());
-        $this->assertEquals(ExerciseType::CLI, $this->exercise->getType());
-
-        $this->assertFileExists(realpath($this->exercise->getProblem()));
+        return TimeServer::class;
     }
 
-    public function testFailureIsReturnedIfCannotConnect(): void
+    public function testExerciseMeta(): void
     {
-        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/no-server.php']);
-        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
-        $this->assertCount(2, $results);
+        $e = new TimeServer();
 
-        $failure = iterator_to_array($results)[0];
-        $this->assertInstanceOf(Failure::class, $failure);
+        $this->assertEquals('Time Server', $e->getName());
+        $this->assertEquals('Build a Time Server!', $e->getDescription());
+        $this->assertEquals(ExerciseType::CLI, $e->getType());
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $reason  = '/^Client returns an error \(number \d+\): No connection could be made because';
-            $reason .= ' the target machine actively refused it\.\r\n';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
-        } else {
-            $reason  = '/^Client returns an error \(number \d+\): Connection refused';
-            $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
-        }
-
-        $this->assertMatchesRegularExpression($reason, $failure->getReason());
-        $this->assertEquals('Time Server', $failure->getCheckName());
+        $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testFailureIsReturnedIfOutputWasNotCorrect(): void
+    public function testWithNoCode(): void
     {
-        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution-wrong.php']);
-        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
+        $this->runExercise('solution-no-code.php');
 
-        $this->assertCount(2, $results);
-        $failure = iterator_to_array($results)[0];
+        $this->assertVerifyWasNotSuccessful();
 
-        $this->assertInstanceOf(ComparisonFailure::class, $failure);
-        $this->assertNotEquals($failure->getExpectedValue(), $failure->getActualValue());
-        $this->assertEquals('Time Server', $failure->getCheckName());
+        $this->assertResultsHasFailure(Failure::class, 'No code was found');
     }
 
-    public function testSuccessIsReturnedIfOutputIsCorrect(): void
+    public function testFailureWhenCannotConnect(): void
     {
-        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution.php']);
-        $results = $this->exerciseDispatcher->verify($this->exercise, $input);
+        $this->runExercise('solution-no-server.php');
 
-        $this->assertCount(2, $results);
-        $success = iterator_to_array($results)[0];
-        $this->assertInstanceOf(Success::class, $success);
+        $this->assertVerifyWasNotSuccessful();
+
+        $reason  = '/^Client returns an error \(number \d+\): Connection refused';
+        $reason .= ' while trying to join tcp:\/\/0\.0\.0\.0:\d+\.$/';
+
+        $this->assertResultsHasFailureAndMatches(Failure::class, function (Failure $failure) use ($reason) {
+            $this->assertMatchesRegularExpression($reason, $failure->getReason());
+
+            return true;
+        });
     }
 
-    public function testRun(): void
+    public function testWithIncorrectOutput(): void
     {
-        $color = new Color();
-        $color->setForceStyle(true);
-        $output = new StdOutput($color, $terminal = $this->createMock(Terminal::class));
+        $this->runExercise('solution-wrong-output.php');
 
-        $outputRegEx  = '/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}';
-        $outputRegEx .= "\n/";
-        $this->expectOutputRegex($outputRegEx);
+        $this->assertVerifyWasNotSuccessful();
 
-        $input = new Input('learnyouphp', ['program' => __DIR__ . '/../res/time-server/solution.php']);
-        $this->exerciseDispatcher->run($this->exercise, $input, $output);
+        $this->assertResultsHasFailureAndMatches(ComparisonFailure::class, function (ComparisonFailure $failure) {
+            static::assertMatchesRegularExpression(
+                '/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\\n$/',
+                $failure->getExpectedValue()
+            );
+            static::assertMatchesRegularExpression(
+                '/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}\\n$/',
+                $failure->getActualValue()
+            );
+
+            return true;
+        });
+    }
+
+    public function testWithCorrectSolution(): void
+    {
+        $this->runExercise('solution-correct.php');
+
+        $this->assertVerifyWasSuccessful();
     }
 }
