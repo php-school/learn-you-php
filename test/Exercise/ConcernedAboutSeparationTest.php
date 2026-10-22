@@ -58,12 +58,4 @@ class ConcernedAboutSeparationTest extends WorkshopExerciseTest
 
         $this->assertVerifyWasSuccessful();
     }
-
-    public function tearDown(): void
-    {
-        //the workshop application installs a global error handler when it boots
-        restore_error_handler();
-
-        parent::tearDown();
-    }
 }
