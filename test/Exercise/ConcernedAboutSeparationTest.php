@@ -23,7 +23,7 @@ class ConcernedAboutSeparationTest extends WorkshopExerciseTest
 
     public function testExerciseMeta(): void
     {
-        $e = new ConcernedAboutSeparation((new ParserFactory())->create(ParserFactory::PREFER_PHP7));
+        $e = new ConcernedAboutSeparation((new ParserFactory())->createForNewestSupportedVersion());
         $this->assertEquals('Concerned about Separation?', $e->getName());
         $this->assertEquals('Separate code and utilise files and classes', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());
@@ -57,5 +57,13 @@ class ConcernedAboutSeparationTest extends WorkshopExerciseTest
         $this->runExercise('correct/solution.php', self::DIRECTORY_SOLUTION);
 
         $this->assertVerifyWasSuccessful();
+    }
+
+    public function tearDown(): void
+    {
+        //the workshop application installs a global error handler when it boots
+        restore_error_handler();
+
+        parent::tearDown();
     }
 }
