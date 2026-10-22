@@ -142,8 +142,13 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             throw new RuntimeException('Cannot create socket');
         }
 
+        $port = 0;
         socket_getsockname($sock, $addr, $port);
         socket_close($sock);
+
+        if (!is_int($port)) {
+            throw new RuntimeException('Cannot determine socket port');
+        }
 
         return $port;
     }

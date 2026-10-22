@@ -1,11 +1,11 @@
-FROM php:8.3-alpine as build
+FROM php:8.3-alpine AS build
 
 RUN apk add --no-cache $PHPIZE_DEPS && \
     apk add --no-cache linux-headers
 
 RUN docker-php-ext-install sockets
 
-FROM php:8.3-alpine as final
+FROM php:8.3-alpine AS final
 
 COPY --from=build /usr/local/lib/php /usr/local/lib/php
 COPY --from=build /usr/local/etc/php /usr/local/etc/php

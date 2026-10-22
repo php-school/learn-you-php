@@ -4,37 +4,41 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        php: [8.0, 8.1, 8.2, 8.3]
+        php: ['8.2', '8.3', '8.4', '8.5']
 
     name: PHP ${{ matrix.php }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: composer:v2,pecl
-          extensions: pdo_sqlite
+          tools: composer:v2
+          extensions: pdo_sqlite, sockets
+          coverage: none
 
       - name: Install Dependencies
-        run: composer update
+        run: composer update --prefer-dist --no-progress
 
-      - name: Run phpunit tests
-        run: |
-          mkdir -p build/logs
-          PROCESS_FACTORY=host vendor/bin/phpunit
-          PROCESS_FACTORY=docker vendor/bin/phpunit --coverage-clover ./build/logs/clover.xml
-          
+      - name: Build runtime image
+        run: docker build -t phpunit-runtime .docker/runtime
+
+      - name: Run phpunit tests (docker)
+        run: PROCESS_FACTORY=docker vendor/bin/phpunit --stop-on-error
+
+      - name: Run phpunit tests (host)
+        run: PROCESS_FACTORY=host vendor/bin/phpunit --stop-on-error
+
       - name: Run phpcs
         run: composer cs
 
@@ -56,8 +60,3 @@ jobs:
           chmod +x workshop-manager.phar
           ./workshop-manager.phar install learnyouphp master
           ./workshop-manager.phar installed
-
-      - name: Coverage upload
-        if: matrix.php == '7.3'
-        run: bash <(curl -s https://codecov.io/bash)
-

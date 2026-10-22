@@ -23,7 +23,7 @@ class ConcernedAboutSeparationTest extends WorkshopExerciseTest
 
     public function testExerciseMeta(): void
     {
-        $e = new ConcernedAboutSeparation((new ParserFactory())->create(ParserFactory::PREFER_PHP7));
+        $e = new ConcernedAboutSeparation((new ParserFactory())->createForNewestSupportedVersion());
         $this->assertEquals('Concerned about Separation?', $e->getName());
         $this->assertEquals('Separate code and utilise files and classes', $e->getDescription());
         $this->assertEquals(ExerciseType::CLI, $e->getType());

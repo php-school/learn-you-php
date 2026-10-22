@@ -36,7 +36,9 @@ class MyFirstIo extends AbstractExercise implements
     public function defineTestScenario(): CliScenario
     {
         $filename = bin2hex(random_bytes(4)) . '.txt';
-        $paragraphs = implode("\n\n", (array) $this->faker->paragraphs(rand(5, 50)));
+        /** @var list<string> $paragraphList */
+        $paragraphList = $this->faker->paragraphs(rand(5, 50));
+        $paragraphs = implode("\n\n", $paragraphList);
 
         return (new CliScenario())
             ->withExecution([$filename])
