@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb69a1205f1b84dd86484681da939f7a",
+    "content-hash": "7367d15b81ae88706747db7299e4cdd0",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1253,16 +1253,16 @@
         },
         {
             "name": "php-school/cli-md-renderer",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/cli-md-renderer.git",
-                "reference": "6254a3d486f9dcf120a06fd10fcd85b3ff2bc8fb"
+                "reference": "6b7cfa63b268866aa78da3612cf75c7a6e78f1b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/cli-md-renderer/zipball/6254a3d486f9dcf120a06fd10fcd85b3ff2bc8fb",
-                "reference": "6254a3d486f9dcf120a06fd10fcd85b3ff2bc8fb",
+                "url": "https://api.github.com/repos/php-school/cli-md-renderer/zipball/6b7cfa63b268866aa78da3612cf75c7a6e78f1b2",
+                "reference": "6b7cfa63b268866aa78da3612cf75c7a6e78f1b2",
                 "shasum": ""
             },
             "require": {
@@ -1295,9 +1295,9 @@
             ],
             "description": "A CLI Markdown Render for league/commonmark compatible AST",
             "support": {
-                "source": "https://github.com/php-school/cli-md-renderer/tree/2.0.0"
+                "source": "https://github.com/php-school/cli-md-renderer/tree/2.0.1"
             },
-            "time": "2026-10-22T12:41:24+00:00"
+            "time": "2026-10-22T19:29:37+00:00"
         },
         {
             "name": "php-school/cli-menu",
@@ -1417,16 +1417,16 @@
         },
         {
             "name": "php-school/php-workshop",
-            "version": "dev-docker-fixes",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-school/php-workshop.git",
-                "reference": "cfd75436bb91c91fb2795a0b598480ddb15db71e"
+                "reference": "0c5a98369c317d6b8a67740bd6e8b6260832ede4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/cfd75436bb91c91fb2795a0b598480ddb15db71e",
-                "reference": "cfd75436bb91c91fb2795a0b598480ddb15db71e",
+                "url": "https://api.github.com/repos/php-school/php-workshop/zipball/0c5a98369c317d6b8a67740bd6e8b6260832ede4",
+                "reference": "0c5a98369c317d6b8a67740bd6e8b6260832ede4",
                 "shasum": ""
             },
             "require": {
@@ -1439,7 +1439,7 @@
                 "nikic/php-parser": "^5.0",
                 "php": "^8.2",
                 "php-di/php-di": "^6.4 | ^7.0",
-                "php-school/cli-md-renderer": "^2.0",
+                "php-school/cli-md-renderer": "^2.0.1",
                 "php-school/cli-menu": "^4.5",
                 "php-school/keylighter": "^0.8.5",
                 "psr/container": "^1.1 | ^2.0",
@@ -1455,6 +1455,7 @@
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^11.5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "bamarni-bin": {
@@ -1499,9 +1500,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-school/php-workshop/issues",
-                "source": "https://github.com/php-school/php-workshop/tree/docker-fixes"
+                "source": "https://github.com/php-school/php-workshop/tree/master"
             },
-            "time": "2026-10-22T15:29:57+00:00"
+            "time": "2026-10-22T20:06:14+00:00"
         },
         {
             "name": "php-school/terminal",
@@ -1945,26 +1946,25 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v8.1.9",
+            "version": "v7.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2"
+                "reference": "fd0e3462be6d32a0d130e8423e4940a7688162d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/43d109c803d22c00bb820ed45df250b6a8792ca2",
-                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/fd0e3462be6d32a0d130e8423e4940a7688162d8",
+                "reference": "fd0e3462be6d32a0d130e8423e4940a7688162d8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.4.1",
-                "symfony/deprecation-contracts": "^2.5|^3",
+                "php": ">=8.2",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.8"
             },
             "require-dev": {
-                "symfony/process": "^7.4|^8.0"
+                "symfony/process": "^6.4|^7.0|^8.0"
             },
             "type": "library",
             "autoload": {
@@ -1992,7 +1992,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v8.1.9"
+                "source": "https://github.com/symfony/filesystem/tree/v7.4.21"
             },
             "funding": [
                 {
@@ -2012,7 +2012,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-06T20:05:50+00:00"
+            "time": "2026-10-06T20:05:19+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2348,20 +2348,20 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.9",
+            "version": "v7.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
+                "reference": "e5247f4a5e0797d232ad8e8e6803aeb341843c83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
-                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "url": "https://api.github.com/repos/symfony/process/zipball/e5247f4a5e0797d232ad8e8e6803aeb341843c83",
+                "reference": "e5247f4a5e0797d232ad8e8e6803aeb341843c83",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.4.1"
+                "php": ">=8.2"
             },
             "type": "library",
             "autoload": {
@@ -2389,7 +2389,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.9"
+                "source": "https://github.com/symfony/process/tree/v7.4.21"
             },
             "funding": [
                 {
@@ -2409,7 +2409,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-08T16:57:43+00:00"
+            "time": "2026-10-08T16:56:12+00:00"
         }
     ],
     "packages-dev": [
@@ -4278,5 +4278,8 @@
         "ext-sockets": "*"
     },
     "platform-dev": {},
+    "platform-overrides": {
+        "php": "8.2.0"
+    },
     "plugin-api-version": "2.9.0"
 }

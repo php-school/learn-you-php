@@ -15,7 +15,7 @@
         "php": ">=8.2",
         "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
-        "php-school/php-workshop": "dev-docker-fixes",
+        "php-school/php-workshop": "dev-master",
         "ext-sockets": "*"
     },
     "require-dev": {
@@ -52,5 +52,10 @@
             "phpcbf test --standard=PSR12 --encoding=UTF-8 --ignore='test/solutions'"
         ],
         "static": "phpstan --ansi analyse --level max src"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.0"
+        }
     }
 }
