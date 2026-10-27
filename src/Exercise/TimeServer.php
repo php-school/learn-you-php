@@ -30,12 +30,14 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
     public function defineListeners(EventDispatcher $eventDispatcher): void
     {
-        $referencePort = $this->getRandomPort();
-        $studentPort = $this->getRandomPort();
+        //picked once the sandbox host is known, a port must be free where the code runs
+        $referencePort = 0;
+        $studentPort = 0;
 
         $eventDispatcher->listen(
             'cli.verify.reference-execute.pre',
-            function (CliExecuteEvent $event) use ($referencePort) {
+            function (CliExecuteEvent $event) use (&$referencePort) {
+                $referencePort = $event->getContext()->getSandboxHost()->getFreePort();
                 $event->appendArg('0.0.0.0');
                 $event->appendArg((string) $referencePort);
                 $event->getScenario()->exposePort($referencePort);
@@ -43,7 +45,8 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         );
         $eventDispatcher->listen(
             ['cli.verify.student-execute.pre', 'cli.run.student-execute.pre'],
-            function (CliExecuteEvent $event) use ($studentPort) {
+            function (CliExecuteEvent $event) use (&$studentPort) {
+                $studentPort = $event->getContext()->getSandboxHost()->getFreePort();
                 $event->appendArg('0.0.0.0');
                 $event->appendArg((string) $studentPort);
                 $event->getScenario()->exposePort($studentPort);
@@ -52,12 +55,12 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
         $eventDispatcher->listen(
             'cli.verify.reference.executing',
-            function (CliExecuteEvent $event) use ($referencePort) {
+            function (CliExecuteEvent $event) use (&$referencePort) {
                 //wait for server to boot
                 sleep(1);
 
                 $socket = $this->createSocket();
-                @socket_connect($socket, '0.0.0.0', $referencePort);
+                @socket_connect($socket, $event->getContext()->getSandboxHost()->getAddress(), $referencePort);
                 @socket_read($socket, 2048, PHP_NORMAL_READ);
 
                 socket_close($socket);
@@ -69,21 +72,23 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
         $eventDispatcher->insertVerifier(
             'cli.verify.student.executing',
-            function (CliExecuteEvent $event) use ($studentPort) {
+            function (CliExecuteEvent $event) use (&$studentPort) {
                 //wait for server to boot
                 sleep(1);
 
                 $socket = $this->createSocket();
 
-                $result = @socket_connect($socket, '0.0.0.0', $studentPort);
+                $address = $event->getContext()->getSandboxHost()->getAddress();
+                $result = @socket_connect($socket, $address, $studentPort);
 
                 if (!$result) {
                     $error  =  "Client returns an error (number %d): Connection refused ";
-                    $error .= "while trying to join tcp://0.0.0.0:%d.";
+                    $error .= "while trying to join tcp://%s:%d.";
 
                     return Failure::fromNameAndReason($this->getName(), sprintf(
                         $error,
                         socket_last_error($socket),
+                        $address,
                         $studentPort
                     ));
                 }
@@ -106,7 +111,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             }
         );
 
-        $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) use ($studentPort) {
+        $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) use (&$studentPort) {
             /** @var OutputInterface $output */
             $output = $event->getParameter('output');
 
@@ -114,8 +119,9 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             sleep(1);
 
             $socket = $this->createSocket();
+            $address = $event->getContext()->getSandboxHost()->getAddress();
             try {
-                $connectResult = @socket_connect($socket, '0.0.0.0', $studentPort);
+                $connectResult = @socket_connect($socket, $address, $studentPort);
             } catch (\ErrorException $e) {
                 $output->write('Cannot connect');
                 return;
@@ -132,25 +138,6 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
             $output->write($out);
         });
-    }
-
-    private function getRandomPort(): int
-    {
-        $sock = socket_create_listen(0);
-
-        if ($sock === false) {
-            throw new RuntimeException('Cannot create socket');
-        }
-
-        $port = 0;
-        socket_getsockname($sock, $addr, $port);
-        socket_close($sock);
-
-        if (!is_int($port)) {
-            throw new RuntimeException('Cannot determine socket port');
-        }
-
-        return $port;
     }
 
     public function getType(): ExerciseType
