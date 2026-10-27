@@ -12,5 +12,5 @@ COPY --from=build /usr/local/etc/php /usr/local/etc/php
 
 RUN apk add git
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-#owned by whichever user the sandbox runs as. /composer seeds the composer cache volume
-RUN mkdir -m 1777 /solution /composer
+#owned by whichever user the sandbox runs as. /composer and /solution/vendor seed their volumes
+RUN mkdir -m 1777 /solution /solution/vendor /composer
