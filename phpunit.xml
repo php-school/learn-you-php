@@ -5,7 +5,7 @@
     <exclude>./test/solutions</exclude>
   </testsuite>
   <php>
-    <env name="PROCESS_FACTORY" value="docker"/>
+    <env name="SANDBOX" value="docker"/>
   </php>
   <source>
     <include>

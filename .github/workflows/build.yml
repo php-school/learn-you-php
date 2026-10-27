@@ -34,10 +34,10 @@ jobs:
         run: docker build -t phpunit-runtime .docker/runtime
 
       - name: Run phpunit tests (docker)
-        run: PROCESS_FACTORY=docker vendor/bin/phpunit --stop-on-error
+        run: SANDBOX=docker vendor/bin/phpunit --stop-on-error
 
       - name: Run phpunit tests (host)
-        run: PROCESS_FACTORY=host vendor/bin/phpunit --stop-on-error
+        run: SANDBOX=host vendor/bin/phpunit --stop-on-error
 
       - name: Run phpcs
         run: composer cs
