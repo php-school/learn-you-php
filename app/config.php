@@ -28,22 +28,21 @@ return [
     HelloWorld::class   => create(HelloWorld::class),
     HttpJsonApi::class  => create(HttpJsonApi::class),
     MyFirstIo::class    => factory(function (ContainerInterface $c) {
-        return new MyFirstIo($c->get(Filesystem::class), FakerFactory::create());
+        return new MyFirstIo(FakerFactory::create());
     }),
     FilteredLs::class   => factory(function (ContainerInterface $c) {
         return new FilteredLs($c->get(Filesystem::class));
     }),
     ConcernedAboutSeparation::class   => factory(function (ContainerInterface $c) {
         return new ConcernedAboutSeparation(
-            $c->get(Filesystem::class),
             $c->get(Parser::class)
         );
     }),
     ArrayWeGo::class    => factory(function (ContainerInterface $c) {
-        return new ArrayWeGo($c->get(Filesystem::class), FakerFactory::create());
+        return new ArrayWeGo(FakerFactory::create());
     }),
     ExceptionalCoding::class => factory(function (ContainerInterface $c) {
-        return new ExceptionalCoding($c->get(Filesystem::class), FakerFactory::create());
+        return new ExceptionalCoding(FakerFactory::create());
     }),
     DatabaseRead::class => factory(function (ContainerInterface $c) {
         return new DatabaseRead(FakerFactory::create());

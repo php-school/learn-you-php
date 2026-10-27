@@ -6,20 +6,10 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
-use Symfony\Component\Filesystem\Filesystem;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 
 class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExercise
 {
-    use TemporaryDirectoryTrait;
-
-    private Filesystem $filesystem;
-
-    public function __construct(Filesystem $filesystem)
-    {
-        $this->filesystem = $filesystem;
-    }
-
     public function getName(): string
     {
         return 'Filtered LS';
@@ -30,13 +20,8 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
         return 'Read files in a folder and filter by a given extension';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        $folder = $this->getTemporaryPath();
-
         $files = [
             "learnyouphp.dat",
             "learnyouphp.txt",
@@ -59,23 +44,20 @@ class FilteredLs extends AbstractExercise implements ExerciseInterface, CliExerc
             "dat",
         ];
 
-        $this->filesystem->mkdir($folder);
-        array_walk($files, function ($file) use ($folder) {
-            $this->filesystem->dumpFile(sprintf('%s/%s', $folder, $file), '');
-        });
-
         $ext = '';
         while ($ext === '') {
             $index = array_rand($files);
             $ext = pathinfo($files[$index], PATHINFO_EXTENSION);
         }
 
-        return [[$folder, $ext]];
-    }
+        $scenario = (new CliScenario())
+            ->withExecution(['files', $ext]);
 
-    public function tearDown(): void
-    {
-        $this->filesystem->remove($this->getTemporaryPath());
+        array_walk($files, function (string $file) use ($scenario) {
+            $scenario->withFile('files/' . $file, '');
+        });
+
+        return $scenario;
     }
 
     public function getType(): ExerciseType
