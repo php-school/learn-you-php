@@ -37,6 +37,8 @@
         "bin/learnyouphp"
     ],
     "scripts": {
+        "post-install-cmd": "@php bin/learnyouphp warm-cache",
+        "post-update-cmd": "@php bin/learnyouphp warm-cache",
         "test": [
             "@unit-tests",
             "@cs",
