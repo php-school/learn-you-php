@@ -4,7 +4,6 @@ namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
 use PhpSchool\PhpWorkshop\Event\EventDispatcher;
-use PhpSchool\PhpWorkshop\Exception\RuntimeException;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
@@ -14,7 +13,7 @@ use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
-use Socket;
+use PhpSchool\PhpWorkshop\Utils\System;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
@@ -30,75 +29,21 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
     public function defineListeners(EventDispatcher $eventDispatcher): void
     {
-        //picked once the sandbox host is known, a port must be free where the code runs
-        $referencePort = 0;
-        $studentPort = 0;
-
-        $eventDispatcher->listen(
-            'cli.verify.reference-execute.pre',
-            function (CliExecuteEvent $event) use (&$referencePort) {
-                $referencePort = $event->getContext()->getSandboxHost()->getFreePort();
-                $event->appendArg('0.0.0.0');
-                $event->appendArg((string) $referencePort);
-                $event->getScenario()->exposePort($referencePort);
-            }
-        );
-        $eventDispatcher->listen(
-            ['cli.verify.student-execute.pre', 'cli.run.student-execute.pre'],
-            function (CliExecuteEvent $event) use (&$studentPort) {
-                $studentPort = $event->getContext()->getSandboxHost()->getFreePort();
-                $event->appendArg('0.0.0.0');
-                $event->appendArg((string) $studentPort);
-                $event->getScenario()->exposePort($studentPort);
-            }
-        );
-
         $eventDispatcher->listen(
             'cli.verify.reference.executing',
-            function (CliExecuteEvent $event) use (&$referencePort) {
-                //wait for server to boot
-                sleep(1);
-
-                $socket = $this->createSocket();
-                @socket_connect($socket, $event->getContext()->getSandboxHost()->getAddress(), $referencePort);
-                @socket_read($socket, 2048, PHP_NORMAL_READ);
-
-                socket_close($socket);
-
-                //wait for shutdown
-                usleep(100000);
+            function (CliExecuteEvent $event) {
+                $this->readTime($event);
             }
         );
 
         $eventDispatcher->insertVerifier(
             'cli.verify.student.executing',
-            function (CliExecuteEvent $event) use (&$studentPort) {
-                //wait for server to boot
-                sleep(1);
+            function (CliExecuteEvent $event) {
+                $out = $this->readTime($event);
 
-                $socket = $this->createSocket();
-
-                $address = $event->getContext()->getSandboxHost()->getAddress();
-                $result = @socket_connect($socket, $address, $studentPort);
-
-                if (!$result) {
-                    $error  =  "Client returns an error (number %d): Connection refused ";
-                    $error .= "while trying to join tcp://%s:%d.";
-
-                    return Failure::fromNameAndReason($this->getName(), sprintf(
-                        $error,
-                        socket_last_error($socket),
-                        $address,
-                        $studentPort
-                    ));
+                if ($out === null) {
+                    return Failure::fromNameAndReason($this->getName(), 'Cannot connect to your server');
                 }
-
-                $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
-
-                socket_close($socket);
-
-                //wait for shutdown
-                usleep(100000);
 
                 $date = new \DateTime();
 
@@ -111,32 +56,11 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
             }
         );
 
-        $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) use (&$studentPort) {
+        $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) {
             /** @var OutputInterface $output */
             $output = $event->getParameter('output');
 
-            //wait for server to boot
-            sleep(1);
-
-            $socket = $this->createSocket();
-            $address = $event->getContext()->getSandboxHost()->getAddress();
-            try {
-                $connectResult = @socket_connect($socket, $address, $studentPort);
-            } catch (\ErrorException $e) {
-                $output->write('Cannot connect');
-                return;
-            }
-
-            if (false === $connectResult) {
-                $output->write('Cannot connect');
-                return;
-            }
-            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
-
-            //wait for shutdown
-            usleep(100000);
-
-            $output->write($out);
+            $output->write($this->readTime($event) ?? 'Cannot connect');
         });
     }
 
@@ -147,20 +71,41 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
     public function defineTestScenario(): CliScenario
     {
+        //free on this machine, and in a sandbox container every port is
+        $port = System::freePort();
+
         return (new CliScenario())
-            ->withExecution();
+            ->exposePort($port)
+            ->withExecution(['0.0.0.0', (string) $port]);
     }
 
-    private function createSocket(): Socket
+    /**
+     * Connects to the server and reads the line it sends, or null when it can not connect.
+     */
+    private function readTime(CliExecuteEvent $event): ?string
     {
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        //wait for server to boot
+        sleep(1);
 
-        if ($socket === false) {
-            throw new RuntimeException('Cannot create socket');
+        try {
+            $address = $event->getExecution()->getAddress($event->getScenario()->getExposedPorts()[0]);
+        } catch (\RuntimeException $e) {
+            //eg. the code exited without listening, so docker has no port for it
+            return null;
         }
 
-        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, ["sec" => 5, "usec" => 0]);
+        $client = @stream_socket_client('tcp://' . $address, $errorCode, $errorMessage, 5);
+        if ($client === false) {
+            return null;
+        }
 
-        return $socket;
+        stream_set_timeout($client, 5);
+        $out = (string) fgets($client);
+        fclose($client);
+
+        //wait for shutdown
+        usleep(100000);
+
+        return $out;
     }
 }

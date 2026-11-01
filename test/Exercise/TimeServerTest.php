@@ -48,14 +48,7 @@ class TimeServerTest extends WorkshopExerciseTest
 
         $this->assertVerifyWasNotSuccessful();
 
-        $reason  = '/^Client returns an error \(number \d+\): Connection refused';
-        $reason .= ' while trying to join tcp:\/\/127\.0\.0\.1:\d+\.$/';
-
-        $this->assertResultsHasFailureAndMatches(Failure::class, function (Failure $failure) use ($reason) {
-            $this->assertMatchesRegularExpression($reason, $failure->getReason());
-
-            return true;
-        });
+        $this->assertResultsHasFailure(Failure::class, 'Cannot connect to your server');
     }
 
     public function testWithIncorrectOutput(): void
