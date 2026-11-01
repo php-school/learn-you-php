@@ -20,10 +20,7 @@ use function PhpSchool\PhpWorkshop\collect;
 
 class DependencyHeavenTest extends WorkshopExerciseTest
 {
-    /**
-     * @var Generator
-     */
-    private $faker;
+    private Generator $faker;
 
     public function setUp(): void
     {
@@ -42,58 +39,6 @@ class DependencyHeavenTest extends WorkshopExerciseTest
         $this->assertFileExists(realpath($e->getProblem()));
     }
 
-    public function testGetRequiredPackages(): void
-    {
-        $this->assertSame(
-            ['league/route', 'laminas/laminas-diactoros', 'laminas/laminas-httphandlerrunner', 'symfony/string'],
-            (new DependencyHeaven($this->faker))->getRequiredPackages()
-        );
-    }
-
-    public function testGetRequests(): void
-    {
-        $e = new DependencyHeaven($this->faker);
-
-        $requests  = $e->getRequests();
-
-        foreach ($requests as $request) {
-            $this->assertInstanceOf(RequestInterface::class, $request);
-            $this->assertSame('POST', $request->getMethod());
-            $this->assertSame(['application/x-www-form-urlencoded'], $request->getHeader('Content-Type'));
-            $this->assertNotEmpty($request->getBody());
-        }
-    }
-
-    public function testGetRequestsReturnsMultipleRequestsForEachEndpoint(): void
-    {
-        $e = new DependencyHeaven($this->faker);
-
-        $endPoints = array_map(function (RequestInterface $request) {
-            return $request->getUri()->getPath();
-        }, $e->getRequests());
-
-        $counts = array_count_values($endPoints);
-        foreach (['/reverse', '/snake', '/titleize'] as $endPoint) {
-            $this->assertTrue(isset($counts[$endPoint]));
-            $this->assertGreaterThan(1, $counts[$endPoint]);
-        }
-    }
-
-    public function testConfigure(): void
-    {
-        $dispatcher = $this->getMockBuilder(ExerciseDispatcher::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $dispatcher
-            ->expects($this->once())
-            ->method('requireCheck')
-            ->with(ComposerCheck::class);
-
-        $e = new DependencyHeaven($this->faker);
-        $e->configure($dispatcher);
-    }
-
     public function getExerciseClass(): string
     {
         return DependencyHeaven::class;
@@ -106,7 +51,7 @@ class DependencyHeavenTest extends WorkshopExerciseTest
 
     public function testWithNoComposerFile(): void
     {
-        $this->runExercise('no-composer/solution.php');
+        $this->runExercise('no-composer/solution.php', self::DIRECTORY_SOLUTION);
 
         $this->assertVerifyWasNotSuccessful();
         $this->assertResultsHasFailureAndMatches(
@@ -119,7 +64,7 @@ class DependencyHeavenTest extends WorkshopExerciseTest
 
     public function testWithNoCode(): void
     {
-        $this->runExercise('no-code/solution.php');
+        $this->runExercise('no-code/solution.php', self::DIRECTORY_SOLUTION);
 
         $this->assertVerifyWasNotSuccessful();
 
@@ -128,7 +73,7 @@ class DependencyHeavenTest extends WorkshopExerciseTest
 
     public function testWithWrongEndpoint(): void
     {
-        $this->runExercise('wrong-endpoint/solution.php');
+        $this->runExercise('wrong-endpoint/solution.php', self::DIRECTORY_SOLUTION);
 
         $this->assertVerifyWasNotSuccessful();
 
@@ -158,7 +103,7 @@ class DependencyHeavenTest extends WorkshopExerciseTest
 
     public function testWithCorrectSolution(): void
     {
-        $this->runExercise('correct-solution/solution.php');
+        $this->runExercise('correct-solution/solution.php', self::DIRECTORY_SOLUTION);
 
         $this->assertVerifyWasSuccessful();
     }

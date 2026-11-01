@@ -9,6 +9,7 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CgiExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CgiScenario;
 use PhpSchool\PhpWorkshop\ExerciseCheck\ComposerExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use PhpSchool\PhpWorkshop\Solution\DirectorySolution;
@@ -42,20 +43,15 @@ class DependencyHeaven extends AbstractExercise implements
         return DirectorySolution::fromDirectory(__DIR__ . '/../../exercises/dependency-heaven/solution');
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getRequests(): array
+    public function defineTestScenario(): CgiScenario
     {
-        $requests = [];
-
+        $scenario = new CgiScenario();
         for ($i = 0; $i < rand(2, 5); $i++) {
-            $requests[] = $this->newApiRequest('/reverse');
-            $requests[] = $this->newApiRequest('/snake');
-            $requests[] = $this->newApiRequest('/titleize');
+            $scenario->withExecution($this->newApiRequest('/reverse'));
+            $scenario->withExecution($this->newApiRequest('/snake'));
+            $scenario->withExecution($this->newApiRequest('/titleize'));
         }
-
-        return $requests;
+        return $scenario;
     }
 
     private function newApiRequest(string $endpoint): RequestInterface
@@ -88,8 +84,8 @@ class DependencyHeaven extends AbstractExercise implements
         return new ExerciseType(ExerciseType::CGI);
     }
 
-    public function configure(ExerciseDispatcher $dispatcher): void
+    public function getRequiredChecks(): array
     {
-        $dispatcher->requireCheck(ComposerCheck::class);
+        return [ComposerCheck::class];
     }
 }

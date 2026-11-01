@@ -6,7 +6,7 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 
 class BabySteps extends AbstractExercise implements ExerciseInterface, CliExercise
 {
@@ -20,10 +20,7 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
         return 'Simple Addition';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
         $numArgs = rand(0, 10);
 
@@ -32,7 +29,8 @@ class BabySteps extends AbstractExercise implements ExerciseInterface, CliExerci
             $args[] = (string) rand(0, 100);
         }
 
-        return [$args];
+        return (new CliScenario())
+            ->withExecution($args);
     }
 
     public function getType(): ExerciseType

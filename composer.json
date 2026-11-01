@@ -11,40 +11,53 @@
             "email": "aydin@hotmail.co.uk"
         }
     ],
-    "require" : {
-        "php" : ">=8.0",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
         "php-school/php-workshop": "dev-master",
         "ext-sockets": "*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.9",
-        "squizlabs/php_codesniffer": "^3.5",
-        "phpunit/phpunit": "^9.6"
+        "phpstan/phpstan": "^2.1",
+        "squizlabs/php_codesniffer": "^3.13",
+        "phpunit/phpunit": "^11.5"
     },
-    "autoload" : {
-        "psr-4" : {
+    "autoload": {
+        "psr-4": {
             "PhpSchool\\LearnYouPhp\\": "src"
         }
     },
     "autoload-dev": {
-        "psr-4": { "PhpSchool\\LearnYouPhpTest\\": "test/" }
+        "psr-4": {
+            "PhpSchool\\LearnYouPhpTest\\": "test/"
+        }
     },
-    "bin": ["bin/learnyouphp"],
-    "scripts" : {
+    "bin": [
+        "bin/learnyouphp"
+    ],
+    "scripts": {
+        "post-install-cmd": "@php bin/learnyouphp warm-cache",
+        "post-update-cmd": "@php bin/learnyouphp warm-cache",
         "test": [
             "@unit-tests",
             "@cs",
             "@static"
         ],
         "unit-tests": "phpunit",
-        "cs" : [
+        "cs": [
             "phpcs src --standard=PSR12",
-            "phpcs test --standard=PSR12 --ignore='test/solutions'"        ],
-        "cs-fix" : [
+            "phpcs test --standard=PSR12 --ignore='test/solutions'"
+        ],
+        "cs-fix": [
             "phpcbf src --standard=PSR12 --encoding=UTF-8",
             "phpcbf test --standard=PSR12 --encoding=UTF-8 --ignore='test/solutions'"
         ],
         "static": "phpstan --ansi analyse --level max src"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.0"
+        }
     }
 }

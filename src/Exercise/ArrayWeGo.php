@@ -8,23 +8,16 @@ use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\Exercise\TemporaryDirectoryTrait;
 use PhpSchool\PhpWorkshop\ExerciseCheck\FunctionRequirementsExerciseCheck;
-use PhpSchool\PhpWorkshop\ExerciseCheck\StdOutExerciseCheck;
 use PhpSchool\PhpWorkshop\ExerciseDispatcher;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionRequirementsExerciseCheck, CliExercise
 {
-    use TemporaryDirectoryTrait;
-
-    private Filesystem $filesystem;
-    private Generator $faker;
-
-    public function __construct(Filesystem $filesystem, Generator $faker)
+    public function __construct(private Generator $faker)
     {
-        $this->filesystem   = $filesystem;
-        $this->faker        = $faker;
     }
 
     public function getName(): string
@@ -37,31 +30,29 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
         return 'Filter an array of file paths and map to SplFile objects';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        $this->filesystem->mkdir($this->getTemporaryPath());
-
         $fileCount = rand(2, 10);
-        $realFiles = rand(1, $fileCount - 1);
+        $realFileCount = rand(1, $fileCount - 1);
 
         $files = [];
+        $realFiles = [];
         foreach (range(1, $fileCount) as $index) {
-            $file = sprintf('%s/%s.txt', $this->getTemporaryPath(), $this->faker->uuid());
-            if ($index <= $realFiles) {
-                $this->filesystem->touch($file);
+            $file = $this->faker->uuid() . ".txt";
+            if ($index <= $realFileCount) {
+                $realFiles[] = $file;
             }
             $files[] = $file;
         }
 
-        return [$files];
-    }
+        $scenario = (new CliScenario())
+            ->withExecution($files);
 
-    public function tearDown(): void
-    {
-        $this->filesystem->remove($this->getTemporaryPath());
+        foreach ($realFiles as $realFile) {
+            $scenario->withFile($realFile, '');
+        }
+
+        return $scenario;
     }
 
     /**
@@ -85,8 +76,8 @@ class ArrayWeGo extends AbstractExercise implements ExerciseInterface, FunctionR
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    public function configure(ExerciseDispatcher $dispatcher): void
+    public function getRequiredChecks(): array
     {
-        $dispatcher->requireCheck(FunctionRequirementsCheck::class);
+        return [FunctionRequirementsCheck::class];
     }
 }

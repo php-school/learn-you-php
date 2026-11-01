@@ -3,17 +3,16 @@
 namespace PhpSchool\LearnYouPhp\Exercise;
 
 use PhpSchool\PhpWorkshop\Event\CliExecuteEvent;
-use PhpSchool\PhpWorkshop\Exception\RuntimeException;
+use PhpSchool\PhpWorkshop\Event\EventDispatcher;
 use PhpSchool\PhpWorkshop\Exercise\AbstractExercise;
 use PhpSchool\PhpWorkshop\Exercise\CliExercise;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
-use PhpSchool\PhpWorkshop\ExerciseDispatcher;
+use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\Output\OutputInterface;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
-use Socket;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
@@ -27,87 +26,48 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         return 'Build a Time Server!';
     }
 
-    public function configure(ExerciseDispatcher $exerciseDispatcher): void
+    public function defineListeners(EventDispatcher $eventDispatcher): void
     {
-        $eventDispatcher = $exerciseDispatcher->getEventDispatcher();
-
-        $appendArgsListener = function (CliExecuteEvent $event) {
-            $event->appendArg('127.0.0.1');
-            $event->appendArg($this->getRandomPort());
-        };
-
-        $eventDispatcher->listen('cli.verify.reference-execute.pre', $appendArgsListener);
-        $eventDispatcher->listen('cli.verify.student-execute.pre', $appendArgsListener);
-        $eventDispatcher->listen('cli.run.student-execute.pre', $appendArgsListener);
-
-        $eventDispatcher->listen('cli.verify.reference.executing', function (CliExecuteEvent $event) {
-            $args = $event->getArgs()->getArrayCopy();
-
-            //wait for server to boot
-            usleep(100000);
-
-            $socket = $this->createSocket();
-            socket_connect($socket, $args[0], (int) $args[1]);
-            socket_read($socket, 2048, PHP_NORMAL_READ);
-
-            //wait for shutdown
-            usleep(100000);
-        });
-
-        $eventDispatcher->insertVerifier('cli.verify.student.executing', function (CliExecuteEvent $event) {
-            $args = $event->getArgs()->getArrayCopy();
-
-            //wait for server to boot
-            usleep(100000);
-
-            $socket = $this->createSocket();
-            $connectResult = @socket_connect($socket, $args[0], (int) $args[1]);
-
-            if (!$connectResult) {
-                return Failure::fromNameAndReason($this->getName(), sprintf(
-                    "Client returns an error (number %d): Connection refused while trying to join tcp://127.0.0.1:%d.",
-                    socket_last_error($socket),
-                    $args[1]
-                ));
+        $eventDispatcher->listen(
+            ['cli.verify.reference-execute.pre', 'cli.verify.student-execute.pre', 'cli.run.student-execute.pre'],
+            function (CliExecuteEvent $event) {
+                $event->appendArg((string) $event->getSandbox()->getPort());
             }
+        );
 
-            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
-
-            //wait for shutdown
-            usleep(100000);
-
-            $date = new \DateTime();
-
-            //match the current date but any seconds
-            //since we can't mock time in PHP easily
-            if (!preg_match(sprintf('/^%s:([0-5][0-9]|60)\n$/', $date->format('Y-m-d H:i')), $out)) {
-                return ComparisonFailure::fromNameAndValues($this->getName(), $date->format("Y-m-d H:i:s\n"), $out);
+        $eventDispatcher->listen(
+            'cli.verify.reference.executing',
+            function (CliExecuteEvent $event) {
+                $this->readTime($event);
             }
-            return new Success($this->getName());
-        });
+        );
+
+        $eventDispatcher->insertVerifier(
+            'cli.verify.student.executing',
+            function (CliExecuteEvent $event) {
+                $out = $this->readTime($event);
+
+                if ($out === null) {
+                    return Failure::fromNameAndReason($this->getName(), 'Cannot connect to your server');
+                }
+
+                $date = new \DateTime();
+
+                //match the current date but any seconds
+                //since we can't mock time in PHP easily
+                if (!preg_match(sprintf('/^%s:([0-5][0-9]|60)\n$/', $date->format('Y-m-d H:i')), $out)) {
+                    return ComparisonFailure::fromNameAndValues($this->getName(), $date->format("Y-m-d H:i:s\n"), $out);
+                }
+                return new Success($this->getName());
+            }
+        );
 
         $eventDispatcher->listen('cli.run.student.executing', function (CliExecuteEvent $event) {
             /** @var OutputInterface $output */
             $output = $event->getParameter('output');
-            $args   = $event->getArgs()->getArrayCopy();
 
-            //wait for server to boot
-            usleep(100000);
-
-            $socket = $this->createSocket();
-            socket_connect($socket, $args[0], (int) $args[1]);
-            $out = (string) socket_read($socket, 2048, PHP_NORMAL_READ);
-
-            //wait for shutdown
-            usleep(100000);
-
-            $output->write($out);
+            $output->write($this->readTime($event) ?? 'Cannot connect');
         });
-    }
-
-    private function getRandomPort(): string
-    {
-        return (string) mt_rand(1025, 65535);
     }
 
     public function getType(): ExerciseType
@@ -115,22 +75,34 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         return new ExerciseType(ExerciseType::CLI);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getArgs(): array
+    public function defineTestScenario(): CliScenario
     {
-        return [];
+        return (new CliScenario())
+            ->exposePort()
+            ->withExecution(['0.0.0.0']);
     }
 
-    private function createSocket(): Socket
+    /**
+     * Connects to the server and reads the line it sends, or null when it can not connect.
+     */
+    private function readTime(CliExecuteEvent $event): ?string
     {
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        //wait for server to boot
+        sleep(1);
 
-        if ($socket === false) {
-            throw new RuntimeException('Cannot create socket');
+        $address = $event->getExecution()->getAddress();
+        $client = @stream_socket_client('tcp://' . $address, $errorCode, $errorMessage, 5);
+        if ($client === false) {
+            return null;
         }
 
-        return $socket;
+        stream_set_timeout($client, 5);
+        $out = (string) fgets($client);
+        fclose($client);
+
+        //wait for shutdown
+        usleep(100000);
+
+        return $out;
     }
 }
