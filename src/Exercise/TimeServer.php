@@ -87,13 +87,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         //wait for server to boot
         sleep(1);
 
-        try {
-            $address = $event->getExecution()->getAddress($event->getScenario()->getExposedPorts()[0]);
-        } catch (\RuntimeException $e) {
-            //eg. the code exited without listening, so docker has no port for it
-            return null;
-        }
-
+        $address = $event->getExecution()->getAddress($event->getScenario()->getExposedPorts()[0]);
         $client = @stream_socket_client('tcp://' . $address, $errorCode, $errorMessage, 5);
         if ($client === false) {
             return null;
