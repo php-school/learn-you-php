@@ -10,10 +10,10 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\Output\OutputInterface;
+use PhpSchool\PhpWorkshop\Process\FreePortPicker;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
-use PhpSchool\PhpWorkshop\Utils\System;
 
 class TimeServer extends AbstractExercise implements ExerciseInterface, CliExercise
 {
@@ -72,7 +72,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
     public function defineTestScenario(): CliScenario
     {
         //free on this machine, and in a sandbox container every port is
-        $port = System::freePort();
+        $port = (new FreePortPicker())->pick();
 
         return (new CliScenario())
             ->exposePort($port)
