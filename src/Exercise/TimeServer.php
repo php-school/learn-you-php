@@ -10,7 +10,6 @@ use PhpSchool\PhpWorkshop\Exercise\ExerciseInterface;
 use PhpSchool\PhpWorkshop\Exercise\ExerciseType;
 use PhpSchool\PhpWorkshop\Exercise\Scenario\CliScenario;
 use PhpSchool\PhpWorkshop\Output\OutputInterface;
-use PhpSchool\PhpWorkshop\Process\FreePortPicker;
 use PhpSchool\PhpWorkshop\Result\ComparisonFailure;
 use PhpSchool\PhpWorkshop\Result\Failure;
 use PhpSchool\PhpWorkshop\Result\Success;
@@ -29,6 +28,13 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
     public function defineListeners(EventDispatcher $eventDispatcher): void
     {
+        $eventDispatcher->listen(
+            ['cli.verify.reference-execute.pre', 'cli.verify.student-execute.pre', 'cli.run.student-execute.pre'],
+            function (CliExecuteEvent $event) {
+                $event->appendArg((string) $event->getSandbox()->getPort());
+            }
+        );
+
         $eventDispatcher->listen(
             'cli.verify.reference.executing',
             function (CliExecuteEvent $event) {
@@ -71,12 +77,9 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
 
     public function defineTestScenario(): CliScenario
     {
-        //free on this machine, and in a sandbox container every port is
-        $port = (new FreePortPicker())->pick();
-
         return (new CliScenario())
-            ->exposePort($port)
-            ->withExecution(['0.0.0.0', (string) $port]);
+            ->exposePort()
+            ->withExecution(['0.0.0.0']);
     }
 
     /**
@@ -87,7 +90,7 @@ class TimeServer extends AbstractExercise implements ExerciseInterface, CliExerc
         //wait for server to boot
         sleep(1);
 
-        $address = $event->getExecution()->getAddress($event->getScenario()->getExposedPorts()[0]);
+        $address = $event->getExecution()->getAddress();
         $client = @stream_socket_client('tcp://' . $address, $errorCode, $errorMessage, 5);
         if ($client === false) {
             return null;
